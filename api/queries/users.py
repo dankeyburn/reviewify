@@ -14,14 +14,12 @@ class UserIn(BaseModel):
     username: str
 
 
-class UserOut(BaseModel):
+class UserOut(UserIn):
     id: int
-    email: str
-    username: str
 
 
-class UsersOut(BaseModel):
-    users: list[UserOut]
+class UsersOutAll(BaseModel):
+    users: List[UserOut]
 
 class UserQueries:
     def get_all_users(self):

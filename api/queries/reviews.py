@@ -20,7 +20,7 @@ class ReviewOut(ReviewIn):
 
 
 class ReviewsOutAll(BaseModel):
-    reviews: list[ReviewOut]
+    reviews: List[ReviewOut]
 
 
 class ReviewQueries:
@@ -35,6 +35,7 @@ class ReviewQueries:
                         , rating
                         , content
                         , album_id
+                    FROM reviews
                     """
                 )
 
@@ -42,7 +43,36 @@ class ReviewQueries:
                 for row in cur.fetchall():
                     record = {}
                     for i, column in enumerate(cur.description):
-                        record[column.id] = row[i]
+                        record[column.name] = row[i]
                     results.append(record)
 
                 return results
+
+
+    def create_review(self, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                params = [
+                    data.reviewer_id,
+                    data.title,
+                    data.rating,
+                    data.content,
+                    data.album_id
+                ]
+                cur.execute(
+                    """
+                    INSERT INTO reviews (reviewer_id, title, rating, content, album_id)
+                    VALUES (%s, %s, %s, %s, %s)
+                    RETURNING id, reviewer_id, title, rating, content, album_id
+                    """,
+                    params,
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
