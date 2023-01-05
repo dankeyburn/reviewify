@@ -2,17 +2,15 @@ steps = [
     [
         ## Create the table
         """
-        CREATE TABLE vacations (
+        CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL,
-            name VARCHAR(1000) NOT NULL,
-            from_date DATE NOT NULL,
-            to_date DATE NOT NULL,
-            thoughts TEXT
+            username VARCHAR(20) NOT NULL UNIQUE,
+            email VARCHAR(319) NOT NULL UNIQUE
         );
         """,
         ## Drop the table
         """
-        DROP TABLE vacations;
+        DROP TABLE users;
         """
     ]
 ]

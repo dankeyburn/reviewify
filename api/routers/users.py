@@ -1,4 +1,4 @@
-from db import UserQueries
+from queries.users import UserIn, UserOut, UsersOut, UserQueries
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 
@@ -6,19 +6,7 @@ from pydantic import BaseModel
 router = APIRouter()
 
 
-class UserIn(BaseModel):
-    email: str
-    username: str
 
-
-class UserOut(BaseModel):
-    id: int
-    email: str
-    username: str
-
-
-class UsersOut(BaseModel):
-    users: list[UserOut]
 
 
 @router.get("/api/users", response_model=UsersOut)
