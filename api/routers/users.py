@@ -11,8 +11,10 @@ class UserIn(BaseModel):
     username: str
 
 
-class UserOut(UserIn):
+class UserOut(BaseModel):
     id: int
+    email: str
+    username: str
 
 
 class UsersOut(BaseModel):
