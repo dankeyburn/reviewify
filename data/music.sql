@@ -20,3 +20,5 @@ INSERT INTO users VALUES
  (1, 'John@gmail.com', 'Jsmith'),
  (2, 'Dave@gmail.com', 'Djones')
  ;
+
+SELECT setval('users_id_seq', (SELECT MAX(id) + 1 FROM users));

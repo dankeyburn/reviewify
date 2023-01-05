@@ -16,18 +16,21 @@ services:
       PGADMIN_DISABLE_POSTFIX: 1
   api:
     build:
-      context: api
+      context: ./api
       dockerfile: Dockerfile.dev
     ports:
-      - "8100:8100"
+      - "8000:8000"
     volumes:
       - ./api:/app
     environment:
       DATABASE_URL: postgresql://music:music@db/music
+      WAIT_HOSTS: db:5432
+      PORT: 8000
   db:
-    build:
-      context: data
-      dockerfile: Dockerfile.dev
+    # build:
+    #   context: data
+    #   dockerfile: Dockerfile.dev
+    image: postgres:14.5-bullseye
     volumes:
       - music:/var/lib/postgresql/data
     environment:
