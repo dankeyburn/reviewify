@@ -1,85 +1,85 @@
 volumes:
-  music:
-    external: true
-  pg-admin:
-    external: true
+    music:
+        external: true
+    pg-admin:
+        external: true
 services:
-  pg-admin:
-    image: dpage/pgadmin4
-    volumes:
-      - pg-admin:/var/lib/pgadmin
-    ports:
-      - 8082:80
-    environment:
-      PGADMIN_DEFAULT_EMAIL: nantahkl@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: drop20
-      PGADMIN_DISABLE_POSTFIX: 1
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile.dev
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./api:/app
-    environment:
-      DATABASE_URL: postgresql://music:music@db/music
-      WAIT_HOSTS: db:5432
-      PORT: 8000
-  db:
-    # build:
-    #   context: data
-    #   dockerfile: Dockerfile.dev
-    image: postgres:14.5-bullseye
-    volumes:
-      - music:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: music
-      POSTGRES_USER: music
-      POSTGRES_DB: music
-    ports:
-      - "15432:5432"
-  ghi:
-    image: node:lts-bullseye
-    command: /bin/bash run.sh
-    working_dir: /app
-    volumes:
-      - ./ghi:/app
-    ports:
-      - "3000:3000"
-    environment:
-      HOST_OS: ${OS}
-      NODE_ENV: development
-      HOST: "0.0.0.0"
-      PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
-  # fastapi:
-  #   build:
-  #     context: sample_service
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - 8000:8000
-  #   volumes:
-  #     - ./sample_service:/app
-  # users_api:
-  #   build:
-  #     context: ./users_api
-  #     dockerfile: ./Dockerfile.dev
-  #   ports:
-  #     - "8100:8100"
-  #   volumes:
-  #     - ./users_api:/app
-  #   environment:
-  #     DATABASE_URL: postgresql://users_api:password@postgres/users
-  #     WAIT_HOSTS: postgres:5432
-  # reviews_api:
-  #   build:
-  #     context: ./reviews_api
-  #     dockerfile: ./Dockerfile.dev
-  #   ports:
-  #     - "8200:8200"
-  #   volumes:
-  #     - ./reviews_api:/app
-  #   environment:
-  #     DATABASE_URL: postgresql://reviews_api:password@postgres/reviews
-  #     WAIT_HOSTS: postgres:5432
+    pg-admin:
+        image: dpage/pgadmin4
+        volumes:
+            - pg-admin:/var/lib/pgadmin
+        ports:
+            - 8082:80
+        environment:
+            PGADMIN_DEFAULT_EMAIL: nantahkl@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: drop20
+            PGADMIN_DISABLE_POSTFIX: 1
+    api:
+        build:
+            context: ./api
+            dockerfile: Dockerfile.dev
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./api:/app
+        environment:
+            DATABASE_URL: postgresql://music:music@db/music
+            WAIT_HOSTS: db:5432
+            PORT: 8000
+    db:
+        # build:
+        #   context: data
+        #   dockerfile: Dockerfile.dev
+        image: postgres:14.5-bullseye
+        volumes:
+            - music:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: music
+            POSTGRES_USER: music
+            POSTGRES_DB: music
+        ports:
+            - "15432:5432"
+    ghi:
+        image: node:lts-bullseye
+        command: /bin/bash run.sh
+        working_dir: /app
+        volumes:
+            - ./ghi:/app
+        ports:
+            - "3000:3000"
+        environment:
+            HOST_OS: ${OS}
+            NODE_ENV: development
+            HOST: "0.0.0.0"
+            PUBLIC_URL: http://localhost:3000
+            REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
+    # fastapi:
+    #   build:
+    #     context: sample_service
+    #     dockerfile: Dockerfile.dev
+    #   ports:
+    #     - 8000:8000
+    #   volumes:
+    #     - ./sample_service:/app
+    # users_api:
+    #   build:
+    #     context: ./users_api
+    #     dockerfile: ./Dockerfile.dev
+    #   ports:
+    #     - "8100:8100"
+    #   volumes:
+    #     - ./users_api:/app
+    #   environment:
+    #     DATABASE_URL: postgresql://users_api:password@postgres/users
+    #     WAIT_HOSTS: postgres:5432
+    # reviews_api:
+    #   build:
+    #     context: ./reviews_api
+    #     dockerfile: ./Dockerfile.dev
+    #   ports:
+    #     - "8200:8200"
+    #   volumes:
+    #     - ./reviews_api:/app
+    #   environment:
+    #     DATABASE_URL: postgresql://reviews_api:password@postgres/reviews
+    #     WAIT_HOSTS: postgres:5432
