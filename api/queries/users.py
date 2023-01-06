@@ -63,12 +63,12 @@ class UserQueries:
 
                 return record
 
-    def create_user(self, data):
+    def create_user(self, user: UserIn) -> UserOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 params = [
-                    data.email,
-                    data.username,
+                    user.email,
+                    user.username,
                 ]
                 cur.execute(
                     """
@@ -88,12 +88,12 @@ class UserQueries:
 
                 return record
 
-    def update_user(self, user_id, data):
+    def update_user(self, user_id, user: UserIn) -> UserOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 params = [
-                    data.email,
-                    data.username,
+                    user.email,
+                    user.username,
                     user_id,
                 ]
                 cur.execute(
@@ -116,7 +116,7 @@ class UserQueries:
 
                 return record
 
-    def delete_user(self, user_id):
+    def delete_user(self, user_id: int) -> bool:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(

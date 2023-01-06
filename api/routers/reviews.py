@@ -27,3 +27,23 @@ def get_review(
 @router.post("/api/reviews/", response_model=ReviewOut)
 def create_review(review_in: ReviewIn, queries: ReviewQueries = Depends()):
     return queries.create_review(review_in)
+
+
+@router.put("/api/reviews/{review_id}", response_model=ReviewOut)
+def update_review(
+    review_id: int,
+    review_in: ReviewIn,
+    response: Response,
+    queries: ReviewQueries = Depends(),
+):
+    record = queries.update_review(review_id, review_in)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
+
+
+@router.delete("/api/reviews/{review_id}", response_model=bool)
+def delete_review(review_id: int, queries: ReviewQueries = Depends()):
+    queries.delete_review(review_id)
+    return True
