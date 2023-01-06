@@ -1,15 +1,11 @@
-from queries.users import UserIn, UserOut, UsersOut, UserQueries
+from queries.users import UserIn, UserOut, UsersOutAll, UserQueries
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 
 
 router = APIRouter()
 
-
-
-
-
-@router.get("/api/users", response_model=UsersOut)
+@router.get("/api/users", response_model=UsersOutAll)
 def users_list(queries: UserQueries = Depends()):
     return {
         "users": queries.get_all_users(),
