@@ -1,23 +1,23 @@
 steps = [
     [
-        ## Create the table
         """
-        CREATE TABLE users (
+        CREATE TABLE accounts (
             id SERIAL PRIMARY KEY NOT NULL,
-            username VARCHAR(20) NOT NULL UNIQUE,
-            email VARCHAR(319) NOT NULL UNIQUE
+            email VARCHAR(200) NOT NULL,
+            hashed_password VARCHAR(200) NOT NULL,
+            username VARCHAR(250) NOT NULL
         );
         """,
-        ## Drop the table
         """
-        DROP TABLE users;
+        DROP TABLE accounts;
         """
+
     ],
     [
         """
         CREATE TABLE reviews(
             id SERIAL PRIMARY KEY NOT NULL,
-            reviewer_id INTEGER REFERENCES users("id") ON DELETE CASCADE,
+            reviewer_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE,
             title TEXT NOT NULL,
             rating INTEGER NOT NULL check(rating = 1 or rating = 2 or rating = 3 or rating = 4 or rating = 5),
             content TEXT NOT NULL,

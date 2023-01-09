@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 
-from routers import users, reviews
+from routers import accounts, reviews
+from authenticator import authenticator
 
 app = FastAPI()
 
-app.include_router(users.router, tags=['users'])
+app.include_router(accounts.router, tags=['accounts'])
 app.include_router(reviews.router, tags=['reviews'])
+app.include_router(authenticator.router)
