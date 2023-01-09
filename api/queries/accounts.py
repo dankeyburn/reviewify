@@ -15,6 +15,7 @@ class AccountOut(BaseModel):
     id: int
     email: str
     username: str
+    hashed_password: str
 
 class AccountIn(BaseModel):
     email: str
@@ -22,10 +23,10 @@ class AccountIn(BaseModel):
     username: str
 
 class AccountsOutAll(BaseModel):
-    account: List[AccountOut]
+    accounts: List[AccountOut]
 
 class AccountsQueries:
-    def get_account(self, email: str) -> Account:
+    def get_account(self, id: int) -> AccountOut:
         # connect the database
         with pool.connection() as conn:
             # get a cursor (something to run SQL with)
@@ -38,9 +39,9 @@ class AccountsQueries:
                          , hashed_password
                          , username
                     FROM accounts
-                    WHERE email = %s;
+                    WHERE id = %s;
                     """,
-                    [email]
+                    [id]
                 )
                 record = result.fetchone()
                 if record is None:
@@ -108,12 +109,11 @@ class AccountsQueries:
                     cur.execute(
                         """
                         UPDATE accounts
-                        SET account_id = %s
-                            , email = %s
+                        SET email = %s
                             , username = %s
-                            , password = %s
+                            , hashed_password = %s
                         WHERE id = %s
-                        RETURNING id, email, username, password
+                        RETURNING id, email, username, hashed_password
                         """,
                         params,
                     )
