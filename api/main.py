@@ -7,4 +7,4 @@ app = FastAPI()
 
 app.include_router(accounts.router, tags=['accounts'])
 app.include_router(reviews.router, tags=['reviews'])
-app.include_router(authenticator.router)
+app.include_router(authenticator.router, tags=['authenticator'])

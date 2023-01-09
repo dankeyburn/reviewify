@@ -24,7 +24,7 @@ class ReviewsOutAll(BaseModel):
 
 
 class ReviewQueries:
-    def get_all_reviews(self):
+    def get_all_reviews(self) -> ReviewsOutAll:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -48,7 +48,7 @@ class ReviewQueries:
 
                 return results
 
-    def get_review(self, id):
+    def get_review(self, id) -> ReviewOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(

@@ -16,6 +16,7 @@ from queries.accounts import (
     AccountIn,
     AccountOut,
     AccountsQueries,
+    AccountsOutAll
 )
 
 class AccountForm(BaseModel):
@@ -39,7 +40,44 @@ async def create_account(
     repo: AccountsQueries = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
-    account = repo.create(info, hashed_password)
+    account = repo.create_account(info, hashed_password)
     form = AccountForm(username=info.email, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
+
+@router.get("/api/accounts", response_model=AccountsOutAll)
+def accounts_list(queries: AccountsQueries = Depends()):
+    return {
+        "accounts": queries.get_all_accounts(),
+    }
+
+@router.get("/api/accounts/{account_id}", response_model=AccountOut)
+def get_account(
+    account_id: int,
+    response: Response,
+    queries: AccountsQueries = Depends(),
+):
+    record = queries.get_account(account_id)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
+
+@router.put("/api/accounts/{account_id}", response_model=AccountOut)
+def update_account(
+    account_id: int,
+    account_in: AccountIn,
+    response: Response,
+    queries: AccountsQueries = Depends(),
+):
+    record = queries.update_account(account_id, account_in)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
+
+
+@router.delete("/api/accounts/{account_id}", response_model=bool)
+def delete_account(account_id: int, queries: AccountsQueries = Depends()):
+    queries.delete_account(account_id)
+    return True
