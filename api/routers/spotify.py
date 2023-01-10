@@ -3,6 +3,6 @@ from queries.spotify import SpotifyQueries
 
 router = APIRouter()
 
-@router.get('/api/artists/{id}')
-def get_artist(id: str, repo: SpotifyQueries = Depends()):
-    return repo.get_artist(id)
+@router.get('/api/artists/{name}')
+def get_artist(name: str, repo: SpotifyQueries = Depends()):
+    return repo.get_artist(name)
