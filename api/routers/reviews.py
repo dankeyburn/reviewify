@@ -34,7 +34,7 @@ def create_review(
     return queries.create_review(review_in)
 
 
-@router.put("/api/reviews/{review_id}", response_model=ReviewOut)
+@router.put("/api/reviews/{review_id}", response_model=ReviewOut | str)
 def update_review(
     review_id: int,
     review_in: ReviewIn,
@@ -43,25 +43,30 @@ def update_review(
     account_data: dict = Depends(authenticator.get_current_account_data)
     ):
     record = queries.update_review(review_id, review_in)
+    review = queries.get_review(
+        review_id,)
     if record is None:
         response.status_code = 404
+    elif account_data["id"] != review["reviewer_id"]:
+        return "You cannot edit a review you did not make"
     else:
         return record
 
 
-@router.delete("/api/reviews/{review_id}", response_model=bool)
+
+@router.delete("/api/reviews/{review_id}", response_model=bool | str)
 def delete_review(
     review_id: int,
     queries: ReviewQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data)
     ):
-    # review = get_review(
-    #     review_id,
-    #     response=ReviewOut,
-    #     ReviewQueries = Depends()
-    #     )
-    # if account_data["id"] == review.reviewer_id:
-    #     queries.delete_review(review)
-    return True
-    # else:
-    #     return {"message": "This is not your review, so you can't delete it"}
+    review = queries.get_review(
+        review_id,
+
+        )
+    print(review)
+    if account_data["id"] == review["reviewer_id"]:
+        queries.delete_review(review)
+        return True
+    else:
+        return  "You cannot delete a review you did not make"
