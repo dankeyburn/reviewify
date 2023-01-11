@@ -1,9 +1,11 @@
 import MainPage from "./MainPage";
+import NavBar from "./NavBar";
 
 function App() {
     return (
         <div>
-            <MainPage></MainPage>
+            <NavBar />
+            <MainPage />
         </div>
     );
 }
