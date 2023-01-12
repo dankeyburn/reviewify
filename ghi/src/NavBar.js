@@ -21,8 +21,8 @@ function NavBar() {
                             marginRight: "10px",
                             backgroundColor: "#c69f3a",
                             color: "#efeee8",
-                            borderColor: "#c69f3a",
-                            border: "2px, solid, black",
+                            borderColor: "black",
+                            border: "2px solid black",
                         }}>
                         Login
                     </button>
@@ -32,7 +32,7 @@ function NavBar() {
                             marginRight: "10px",
                             backgroundColor: "#c69f3a",
                             color: "#efeee8",
-                            borderColor: "#c69f3a",
+                            borderColor: "black",
                             border: "2px solid black",
                         }}>
                         Signup
