@@ -12,10 +12,9 @@ class SpotifyQueries:
     def get_artist_albums(self, name: str):
         results = sp.search(name, type="artist")
         artist_id = results['artists']['items'][0]['id']
-        artist_albums = sp.artist_albums(artist_id)
-        albums = artist_albums['items']
-        for a in albums:                                # removing the "available_markets" list
-            del a["available_markets"]                  # to make it easier to read the returned object
+        artist_albums = sp.artist_albums(artist_id, limit = 50, country = "US", album_type = "album")
+        # for a in albums:                                # removing the "available_markets" list
+        #     del a["available_markets"]                  # to make it easier to read the returned object
         return artist_albums                            # from the albums object
 
     def get_album_details(self, album_id: str):
