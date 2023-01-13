@@ -69,9 +69,9 @@ function ReviewForm() {
                         className="form-check-input"
                         type="radio"
                         name="rating"
-                        id="rating"
-                        value={review.rating}/>
-                        <label className="form-check-label" for="rating">1</label>
+                        id="rating1"
+                        value={review.rating = 1}/>
+                        <label className="form-check-label" for="rating1">1</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
@@ -79,9 +79,9 @@ function ReviewForm() {
                         className="form-check-input"
                         type="radio"
                         name="rating"
-                        id="rating"
-                        value={review.rating}/>
-                        <label className="form-check-label" for="rating">2</label>
+                        id="rating2"
+                        value={review.rating = 2}/>
+                        <label className="form-check-label" for="rating2">2</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
@@ -89,9 +89,9 @@ function ReviewForm() {
                         className="form-check-input"
                         type="radio"
                         name="rating"
-                        id="rating"
-                        value={review.rating}/>
-                        <label className="form-check-label" for="rating">3</label>
+                        id="rating3"
+                        value={review.rating = 3}/>
+                        <label className="form-check-label" for="rating3">3</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
@@ -99,9 +99,9 @@ function ReviewForm() {
                         className="form-check-input"
                         type="radio"
                         name="rating"
-                        id="rating"
-                        value={review.rating}/>
-                        <label className="form-check-label" for="rating">4</label>
+                        id="rating4"
+                        value={review.rating = 4}/>
+                        <label className="form-check-label" for="rating4">4</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
@@ -109,9 +109,9 @@ function ReviewForm() {
                         className="form-check-input"
                         type="radio"
                         name="rating"
-                        id="rating"
-                        value={review.rating}/>
-                        <label className="form-check-label" for="rating">5</label>
+                        id="rating5"
+                        value={review.rating = 5}/>
+                        <label className="form-check-label" for="rating5">5</label>
                     </div>
                     <div className="form-floating mb-3">
                       <input
