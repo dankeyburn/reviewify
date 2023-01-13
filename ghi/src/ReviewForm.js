@@ -73,7 +73,7 @@ function ReviewForm() {
                     </div>
                     <div className="form-check form-check-inline">
                         <input
-                        clasName="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio2"
