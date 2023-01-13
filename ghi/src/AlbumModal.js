@@ -1,68 +1,52 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useEffect } from "react";
 
-export default function AlbumModal(props) {
-  const [show, setShow] = useState(false);
+function AlbumModal(props) {
+    const [show, setShow] = useState(false);
+    const [album, setAlbum] = useState([]);
 
-  return (
-    <>
-      <Button variant="primary" onClick={() => setShow(true)}>
-        See Album
-      </Button>
+    async function search() {
+        fetch(`http://localhost:8000/api/albums/${props.album_id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log(data);
+                setAlbum(data);
+            });
+        // Display those albums to the user
+        // await console.log(album.images[0]["height"]);
+    }
+    return (
+        <>
+            <Button
+                variant="primary"
+                onClick={() => {
+                    setShow(true);
+                    search();
+                }}>
+                See Album
+            </Button>
 
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            Album Details
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            {/* Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-            commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-            ipsam atque a dolores quisquam quisquam adipisci possimus
-            laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-            accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-            reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-            deleniti rem! */}
-            {props.album_id}
-          </p>
-        </Modal.Body>
-      </Modal>
-    </>
-  );
+            <Modal
+                show={show}
+                onHide={() => setShow(false)}
+                dialogClassName="modal-90w"
+                aria-labelledby="example-custom-modal-styling-title">
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-custom-modal-styling-title">
+                        Album Details
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div>Album ID: {props.album_id}</div>
+                    <div>Album Title: {album.name}</div>
+                    <div>Label: {album.label}</div>
+                    <div>Release Date: {album.release_date}</div>
+                    {/* <img src={album.images[0].url} alt="Album Cover" /> */}
+                </Modal.Body>
+            </Modal>
+        </>
+    );
 }
-// {
-//   showModal ? (
-//     <Modal
-//       showModal={showModal}
-//       onHide={() => showModal(false)}
-//       dialogClassName="modal-90w"
-//       aria-labelledby="example-custom-modal-styling-title"
-//     >
-//       <Modal.Header closeButton>
-//         <Modal.Title id="example-custom-modal-styling-title">
-//           Custom Modal Styling
-//         </Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body>
-//         <p>
-//           Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-//           commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam
-//           atque a dolores quisquam quisquam adipisci possimus laboriosam.
-//           Quibusdam facilis doloribus debitis! Sit quasi quod accusamus eos
-//           quod. Ab quos consequuntur eaque quo rem! Mollitia reiciendis porro
-//           quo magni incidunt dolore amet atque facilis ipsum deleniti rem!
-//         </p>
-//       </Modal.Body>
-//     </Modal>
-//   ) : (
-//     <div>Pewp</div>
-//   );
-// }
+export default AlbumModal;
