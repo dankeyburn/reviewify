@@ -17,14 +17,6 @@ function AlbumModal(props) {
 
     return (
         <>
-            {/* <Button
-                variant="primary"
-                onClick={() => {
-                    setShow(true);
-                    search();
-                }}>
-                See Album
-            </Button> */}
             <img
                 src={props.img_url}
                 onClick={() => {
