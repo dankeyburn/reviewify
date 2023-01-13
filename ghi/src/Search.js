@@ -33,14 +33,14 @@ export default function SearchBar() {
         // console.log(albums);
     }
     return (
-        <div className="App">
+        <div className="App" style={{ marginTop: "30px" }}>
             <Container>
                 <InputGroup className="mb-3" size="lg">
                     <FormControl
                         placeholder="Search For Artist"
                         type="input"
                         onKeyDown={(event) => {
-                            if (event.key == "Enter") {
+                            if (event.key === "Enter") {
                                 search();
                             }
                         }}
@@ -56,12 +56,20 @@ export default function SearchBar() {
                             <Card
                                 key={album.id}
                                 variant="primary"
-                                onClick={() => setShowModal(true)}>
-                                <Card.Img src={album.images[0].url} />
-                                <Card.Body>
+                                onClick={() => setShowModal(true)}
+                                style={{
+                                    padding: "0px",
+                                    marginBottom: "20px",
+                                }}>
+                                {/* <Card.Img src={album.images[0].url} /> */}
+                                {/* <Card.Body>
                                     <Card.Title>{album.name}</Card.Title>
-                                </Card.Body>
-                                <AlbumModal album_id={album.id} />
+                                </Card.Body> */}
+                                <AlbumModal
+                                    album_id={album.id}
+                                    img_url={album.images[0].url}
+                                    album_name={album.name}
+                                />
                             </Card>
                         );
                     })}
