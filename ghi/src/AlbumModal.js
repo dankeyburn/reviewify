@@ -6,6 +6,7 @@ import { useEffect } from "react";
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
     const [album, setAlbum] = useState([]);
+    const [reviews, setReviews] = useState([]);
 
     async function search() {
         fetch(`http://localhost:8000/api/albums/${props.album_id}`)
@@ -13,6 +14,20 @@ function AlbumModal(props) {
             .then((data) => {
                 setAlbum(data);
             });
+        fetch("http://localhost:8000/api/reviews")
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error("Automobile server bad resonse");
+            })
+            .then((response) =>
+                setReviews(
+                    response.reviews.filter(
+                        (review) => review.album_id === props.album_id
+                    )
+                )
+            );
     }
 
     return (
@@ -42,6 +57,7 @@ function AlbumModal(props) {
                     <div>Album Title: {album.name}</div>
                     <div>Label: {album.label}</div>
                     <div>Release Date: {album.release_date}</div>
+                    <div>{props.album_id}</div>
                     <div>
                         <img
                             src={props.img_url}
@@ -56,6 +72,27 @@ function AlbumModal(props) {
                             return <li key={track.id}>{track.name}</li>;
                         })}
                     </ol>
+                    {reviews !== [] ? (
+                        <div>
+                            <div>
+                                Reviews:
+                                {reviews.map((review) => {
+                                    return (
+                                        <div key={review.id}>
+                                            <div>Rating: {review.rating}</div>
+                                            <div>Content: {review.content}</div>
+                                            <div>
+                                                Reviewer ID:{" "}
+                                                {review.reviewer_id}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ) : (
+                        <div>No Reviews Yet</div>
+                    )}
                 </Modal.Body>
             </Modal>
         </>
