@@ -12,12 +12,12 @@ function ReviewForm() {
             worst_song: "",
     });
 
-    const [reviewer_id, setReviewerId] = useState("")
-    const [title, setTitle] = useState("")
-    const [rating, setRating] = useState([])
-    const [album_id, setAlbumId] = useState("")
-    const [best_song, setBestSong] = useState([])
-    const [worst_song, setWorstSong] = useState([])
+    // const [reviewer_id, setReviewerId] = useState("")
+    // const [title, setTitle] = useState("")
+    // const [rating, setRating] = useState([])
+    // const [album_id, setAlbumId] = useState("")
+    // const [best_song, setBestSong] = useState([])
+    // const [worst_song, setWorstSong] = useState([])
 
     useEffect(() => {});
 
@@ -28,6 +28,7 @@ function ReviewForm() {
     const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {...review}
+    console.log(data);
     const reviewUrl = "http://localhost:8000/api/reviews/";
     const fetchConfig = {
         method: "POST",
@@ -60,70 +61,87 @@ function ReviewForm() {
                 <div className="shadow p-4 mt-4">
                     <h1>Create a New Review</h1>
                     <form onSubmit={handleSubmit} id="create-review-form">
-                    <div className="mb-3">{title}</div>
+                    <div className="mb-3"></div>
                     <p>Album Rating</p>
                     <div className="form-check form-check-inline">
                         <input
+                        onChange={handleChange}
                         className="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
-                        id="inlineRadio1"
-                        value="option1"/>
-                        <label className="form-check-label" for="inlineRadio1">1</label>
+                        name="rating"
+                        id="rating"
+                        value={review.rating}/>
+                        <label className="form-check-label" for="rating">1</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
+                        onChange={handleChange}
                         className="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
-                        id="inlineRadio2"
-                        value="option2"/>
-                        <label className="form-check-label" for="inlineRadio2">2</label>
+                        name="rating"
+                        id="rating"
+                        value={review.rating}/>
+                        <label className="form-check-label" for="rating">2</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
+                        onChange={handleChange}
                         className="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
-                        id="inlineRadio3"
-                        value="option3"/>
-                        <label className="form-check-label" for="inlineRadio3">3</label>
+                        name="rating"
+                        id="rating"
+                        value={review.rating}/>
+                        <label className="form-check-label" for="rating">3</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
+                        onChange={handleChange}
                         className="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
-                        id="inlineRadio4"
-                        value="option4"/>
-                        <label className="form-check-label" for="inlineRadio4">4</label>
+                        name="rating"
+                        id="rating"
+                        value={review.rating}/>
+                        <label className="form-check-label" for="rating">4</label>
                     </div>
                     <div className="form-check form-check-inline">
                         <input
+                        onChange={handleChange}
                         className="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
-                        id="inlineRadio5"
-                        value="option5"/>
-                        <label className="form-check-label" for="inlineRadio5">5</label>
-                    </div>
-                    <div className="mb-3">
-                        <label for="reviewContent">Review Content</label>
-                        <textarea rows="3" required type="text" name="reviewContent" id="reviewContent" className="form-control"></textarea>
+                        name="rating"
+                        id="rating"
+                        value={review.rating}/>
+                        <label className="form-check-label" for="rating">5</label>
                     </div>
                     <div className="form-floating mb-3">
-                    <input
+                      <input
                         onChange={handleChange}
-                        value={review.album_id}
-                        placeholder="Album Id"
-                        name="AlbumId"
-                        id="AlbumId"
+                        value={review.title}
+                        placeholder="Review Title"
+                        name="title"
+                        id="title"
                         required type="text"
                         className="form-control"
                         />
-                    <label htmlFor='AlbumId'>Album Id</label>
+                      <label htmlFor='title'>Review Title</label>
                     </div>
                     <div className="mb-3">
+                        <label for="content">Review Content</label>
+                        <textarea onChange={handleChange} rows="8" required type="text" name="content" id="content" className="form-control" value={review.content}></textarea>
+                    </div>
+                    <div className="form-floating mb-3">
+                      <input
+                        onChange={handleChange}
+                        value={review.album_id}
+                        placeholder="Album Id"
+                        name="album_id"
+                        id="album_id"
+                        required type="text"
+                        className="form-control"
+                        />
+                      <label htmlFor='album_id'>Album Id</label>
+                    </div>
+                    {/* <div className="mb-3">
                     <select
                       onChange={handleChange}
                       value={review.best_song}
@@ -163,7 +181,19 @@ function ReviewForm() {
                           </option>
                         );
                       })}
-                    </select>
+                    </select> */}
+                    {/* </div> */}
+                    <div className="form-floating mb-3">
+                      <input
+                        onChange={handleChange}
+                        value={review.reviewer_id}
+                        placeholder="Reviewer Id"
+                        name="reviewer_id"
+                        id="reviewer_id"
+                        required type="number"
+                        className="form-control"
+                        />
+                      <label htmlFor='reviewer_id'>Reviewer Id</label>
                     </div>
                     <button className="btn btn-primary" style={{backgroundColor: "#c69f3a", border: "2px solid black"}}>Create</button>
                     </form>
