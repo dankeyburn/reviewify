@@ -1,5 +1,6 @@
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
+import ReviewForm from "./ReviewForm";
 
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
         <div>
             <NavBar />
             <MainPage />
+            <ReviewForm />
         </div>
     );
 }
