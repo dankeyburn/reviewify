@@ -78,7 +78,9 @@ function AlbumModal(props) {
                                 Reviews:
                                 {reviews.map((review) => {
                                     return (
-                                        <div key={review.id}>
+                                        <div
+                                            key={review.id}
+                                            style={{ marginBottom: "20px" }}>
                                             <div>Rating: {review.rating}</div>
                                             <div>Content: {review.content}</div>
                                             <div>
