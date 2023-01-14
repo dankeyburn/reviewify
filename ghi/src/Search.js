@@ -33,7 +33,7 @@ console.log(albums)
           }}
           onChange={event => setSearchInput(event.target.value)}
           />
-          <Button onClick={search}>
+          <Button onClick={search} style={{backgroundColor: "#c69f3a", border: "2px solid black"}}>
             Search
           </Button>
         </InputGroup>

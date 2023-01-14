@@ -29,7 +29,7 @@ def get_review(
 def create_review(
     review_in: ReviewIn,
     queries: ReviewQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    # account_data: dict = Depends(authenticator.get_current_account_data)
     ):
     return queries.create_review(review_in)
 
