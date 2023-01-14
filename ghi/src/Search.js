@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import AlbumModal from "./AlbumModal";
 
-function SearchBar() {
+export default function SearchBar() {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
     function search() {
@@ -27,39 +27,38 @@ function SearchBar() {
             });
     }
     return (
-        <div className="App">
+        <div className="App" style={{ marginTop: "30px" }}>
             <Container>
                 <InputGroup className="mb-3" size="lg">
                     <FormControl
                         placeholder="Search For Artist"
                         type="input"
                         onKeyDown={(event) => {
-                            if (event.key == "Enter") {
+                            if (event.key === "Enter") {
                                 search();
                             }
                         }}
                         onChange={(event) => setSearchInput(event.target.value)}
                     />
-                    <Button
-                        onClick={search}
-                        style={{
-                            backgroundColor: "#c69f3a",
-                            border: "2px solid black",
-                        }}>
-                        Search
-                    </Button>
+                    <Button onClick={search}>Search</Button>
                 </InputGroup>
             </Container>
             <Container>
                 <Row className="mx-2 row row-cols-4">
                     {albums.map((album, i) => {
-                        console.log(album);
                         return (
-                            <Card>
-                                <Card.Img src={album.images[0].url} />
-                                <Card.Body>
-                                    <Card.Title>{album.name}</Card.Title>
-                                </Card.Body>
+                            <Card
+                                key={album.id}
+                                variant="primary"
+                                style={{
+                                    padding: "0px",
+                                    marginBottom: "20px",
+                                }}>
+                                <AlbumModal
+                                    album_id={album.id}
+                                    img_url={album.images[0].url}
+                                    album_name={album.name}
+                                />
                             </Card>
                         );
                     })}
@@ -68,5 +67,3 @@ function SearchBar() {
         </div>
     );
 }
-
-export default SearchBar;
