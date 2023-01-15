@@ -1,3 +1,6 @@
+import { NavLink } from 'react-router-dom';
+
+
 function NavBar() {
     return (
         <nav
@@ -15,6 +18,17 @@ function NavBar() {
                     height={110}
                 />
                 <div>
+                    <button
+                        className="btn btn-primary"
+                        style={{
+                            marginRight: "10px",
+                            backgroundColor: "#c69f3a",
+                            color: "#efeee8",
+                            borderColor: "black",
+                            border: "2px solid black",
+                        }}>
+                        <NavLink className="navbar-brand" to="/">Home</NavLink>
+                    </button>
                     <button
                         className="btn btn-primary"
                         style={{
