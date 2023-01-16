@@ -80,6 +80,7 @@ function AlbumModal(props) {
                         </div>
 
                         <div>Release Date: {album.release_date}</div>
+                        <div>Label: {album.label}</div>
                     </div>
 
                     <div
@@ -121,6 +122,7 @@ function AlbumModal(props) {
                                             key={review.id}
                                             style={{
                                                 marginBottom: "20px",
+                                                border: "2px solid black",
                                             }}>
                                             <div>Rating: {review.rating}</div>
                                             <div>Content: {review.content}</div>
