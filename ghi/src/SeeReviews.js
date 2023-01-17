@@ -1,16 +1,13 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function SeeReviews(props) {
-    const [show, setShow] = useState(false);
-    const [album, setAlbum] = useState([]);
+    const location = useLocation();
+    const album_id = location.state["id"];
     const [reviews, setReviews] = useState([]);
 
-     async function search() {
-        fetch(`http://localhost:8000/api/albums/${props.album_id}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setAlbum(data);
-            });
+    useEffect(() => {
         fetch("http://localhost:8000/api/reviews")
             .then((response) => {
                 if (response.ok) {
@@ -21,47 +18,34 @@ function SeeReviews(props) {
             .then((response) =>
                 setReviews(
                     response.reviews.filter(
-                        (review) => review.album_id === props.album_id
+                        (review) => review.album_id === album_id
                     )
                 )
             );
-    }
-
-
+    }, []);
 
     return (
         <>
-         <img
-                src={props.img_url}
-                onClick={() => {
-                    setShow(true);
-                    search();
-                }}
-                alt={`${props.album_name} Album Cover`}
-            />
-         {reviews !== [] ? (
-                        <div>
-                            <div>
-                                Reviews:
-                                {reviews.map((review) => {
-                                    return (
-                                        <div key={review.id}>
-                                            <div>Rating: {review.rating}</div>
-                                            <div>Content: {review.content}</div>
-                                            <div>
-                                                Reviewer ID:{" "}
-                                                {review.reviewer_id}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    ) : (
-                        <div>No Reviews Yet</div>
-                    )}
+            {reviews !== [] ? (
+                <div>
+                    <div>
+                        Reviews:
+                        {reviews.map((review) => {
+                            return (
+                                <div key={review.id}>
+                                    <div>Rating: {review.rating}</div>
+                                    <div>Content: {review.content}</div>
+                                    <div>Reviewer ID: {review.reviewer_id}</div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            ) : (
+                <div>No Reviews Yet</div>
+            )}
         </>
-    )
+    );
 }
 
 export default SeeReviews;

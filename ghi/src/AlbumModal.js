@@ -78,32 +78,36 @@ function AlbumModal(props) {
                             backgroundColor: "#a3d2fd",
                             color: "#3f72af",
                             borderColor: "#a3d2fd",
+                        }}
+                        type="button"
+                        className="btn btn-primary btn-sm">
+                        <NavLink
+                            style={{
+                                color: "#3f72af",
+                                textDecoration: "none",
                             }}
-                            type="button"
-                            className="btn btn-primary btn-sm">
-                            <NavLink
-                                style={{
-                                    color: "#3f72af",
-                                    textDecoration: "none",
-                                    }}
-                                to="/reviews/new">Review
-                            </NavLink>
+                            to="/reviews/new"
+                            state={{ id: props.album_id, name: album.name }}>
+                            Review
+                        </NavLink>
                     </Button>
                     <Button
                         style={{
                             backgroundColor: "#a3d2fd",
                             color: "#3f72af",
                             borderColor: "#a3d2fd",
+                        }}
+                        type="button"
+                        className="btn btn-primary btn-sm">
+                        <NavLink
+                            style={{
+                                color: "#3f72af",
+                                textDecoration: "none",
                             }}
-                            type="button"
-                            className="btn btn-primary btn-sm">
-                            <NavLink
-                                style={{
-                                    color: "#3f72af",
-                                    textDecoration: "none",
-                                    }}
-                                to="/reviews">See Reviews
-                            </NavLink>
+                            to="/reviews"
+                            state={{ id: props.album_id }}>
+                            See Reviews
+                        </NavLink>
                     </Button>
                     {reviews !== [] ? (
                         <div>
