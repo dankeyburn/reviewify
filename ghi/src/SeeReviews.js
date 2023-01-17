@@ -24,6 +24,8 @@ function SeeReviews(props) {
             );
     }, []);
 
+
+
     return (
         <>
             {reviews !== [] ? (
@@ -33,8 +35,8 @@ function SeeReviews(props) {
                         {reviews.map((review) => {
                             return (
                                 <div key={review.id}>
+                                    <div>Title: {review.title}</div>
                                     <div>Rating: {review.rating}</div>
-                                    <div>Content: {review.content}</div>
                                     <div>Reviewer ID: {review.reviewer_id}</div>
                                 </div>
                             );
