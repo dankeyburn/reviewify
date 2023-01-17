@@ -22,21 +22,8 @@ function NavBar() {
                 </NavLink>
 
                 <div>
-                    <button
-                        className="btn btn-primary"
-                        style={{
-                            marginRight: "10px",
-                            backgroundColor: "#c69f3a",
-                            color: "#efeee8",
-                            borderColor: "black",
-                            border: "2px solid black",
-                        }}>
-                        <NavLink className="navbar-brand" to="/">
-                            Home
-                        </NavLink>
-                    </button>
-                    <LoginModal/>
-                    <SignupModal/>
+                    <LoginModal />
+                    <SignupModal />
                 </div>
             </div>
         </nav>
@@ -45,5 +32,5 @@ function NavBar() {
 export default NavBar;
 
 {
-  /* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">   Launch demo modal </button> */
+    /* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">   Launch demo modal </button> */
 }
