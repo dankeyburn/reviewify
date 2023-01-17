@@ -5,23 +5,26 @@ import { useEffect } from "react";
 
 function LoginModal() {
   const [show, setShow] = useState(false);
+  const [passwordConfirm, setpasswordConfirm] = useState({
+    passwordConfirm: "",
+  });
   const [account, setAccount] = useState({
     password: "",
-    passwordConfirm: "",
     email: "",
   });
 
   const handleChange = (event) => {
+    setpasswordConfirm({...passwordConfirm, [event.target.name]: event.target.value });
     setAccount({ ...account, [event.target.name]: event.target.value });
-    console.log(account);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { ...account };
-    if (data.password === data.passwordConfirm){
+    console.log(data)
+    if (data.password === passwordConfirm.passwordConfirm){
       console.log(data);
-      const accountsUrl = "http://localhost:8000/api/accounts/";
+      const accountsUrl = "http://localhost:8000/token/";
       const fetchConfig = {
           method: "POST",
           body: JSON.stringify(data),
@@ -34,12 +37,13 @@ function LoginModal() {
           const Login = await response.json();
           setAccount({
             password: "",
-            passwordConfirm: "",
             email: "",
-
+        })
+          setpasswordConfirm({
+            passwordConfirm: "",
           });
       } else {
-          console.error("Error in creating review");
+          console.error("Error in logging in");
       }}
       else {console.error("Passwords do not match")};
   };
@@ -70,13 +74,13 @@ function LoginModal() {
             <input
               onChange={handleChange}
               className="form-control"
-              type="text"
-              name="username"
-              id="username"
-              placeholder="username"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="email"
               value={account.email}
             />
-            <label className="form-check-label" htmlFor="username">
+            <label className="form-check-label" htmlFor="email">
               Email
             </label>
           </div>
@@ -102,7 +106,7 @@ function LoginModal() {
               name="passwordConfirm"
               id="passwordConfirm"
               placeholder="Confirm Password"
-              value={account.passwordConfirm}
+              value={passwordConfirm.passwordConfirm}
             />
             <label className="form-check-label" htmlFor="passwordConfirm">
               Confirm Password
