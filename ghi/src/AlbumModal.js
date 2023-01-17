@@ -7,7 +7,6 @@ import { NavLink } from "react-router-dom";
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
     const [album, setAlbum] = useState([]);
-    const [reviews, setReviews] = useState([]);
 
     async function search() {
         fetch(`http://localhost:8000/api/albums/${props.album_id}`)
@@ -15,20 +14,6 @@ function AlbumModal(props) {
             .then((data) => {
                 setAlbum(data);
             });
-        fetch("http://localhost:8000/api/reviews")
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error("Automobile server bad resonse");
-            })
-            .then((response) =>
-                setReviews(
-                    response.reviews.filter(
-                        (review) => review.album_id === props.album_id
-                    )
-                )
-            );
     }
 
     return (
@@ -109,46 +94,32 @@ function AlbumModal(props) {
                         </ol>
                     </div>
 
-                    <Button
-                        style={{
-                            backgroundColor: "#a3d2fd",
-                            color: "#3f72af",
-                            borderColor: "#a3d2fd",
-                        }}
-                        type="button"
-                        className="btn btn-primary btn-sm">
-                        <NavLink
-                            style={{
-                                color: "#3f72af",
-                                textDecoration: "none",
-                            }}
-                            to="/reviews/new"
-                            state={{
-                                id: props.album_id,
-                                name: album.name,
-                                tracks: album.tracks?.items,
-                            }}>
+                    <NavLink
+                        to="/reviews/new"
+                        state={{
+                            id: props.album_id,
+                            name: album.name,
+                            tracks: album.tracks?.items,
+                        }}>
+                        <Button
+                            type="button"
+                            className="btn btn-primary btn-sm">
                             Review
-                        </NavLink>
-                    </Button>
-                    <Button
+                        </Button>
+                    </NavLink>
+                    <NavLink
                         style={{
-                            backgroundColor: "#a3d2fd",
                             color: "#3f72af",
-                            borderColor: "#a3d2fd",
+                            textDecoration: "none",
                         }}
-                        type="button"
-                        className="btn btn-primary btn-sm">
-                        <NavLink
-                            style={{
-                                color: "#3f72af",
-                                textDecoration: "none",
-                            }}
-                            to="/reviews"
-                            state={{ id: props.album_id }}>
+                        to="/reviews"
+                        state={{ id: props.album_id }}>
+                        <Button
+                            type="button"
+                            className="btn btn-primary btn-sm">
                             See Reviews
-                        </NavLink>
-                    </Button>
+                        </Button>
+                    </NavLink>
                 </Modal.Body>
             </Modal>
         </>
