@@ -35,6 +35,8 @@ class ReviewQueries:
                         , rating
                         , content
                         , album_id
+                        , best_song
+                        , worst_song
                     FROM reviews
                     """
                 )
@@ -59,6 +61,8 @@ class ReviewQueries:
                         , rating
                         , content
                         , album_id
+                        , best_song
+                        , worst_song
                     FROM reviews
                     WHERE id = %s
                     """,

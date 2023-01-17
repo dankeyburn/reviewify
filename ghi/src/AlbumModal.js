@@ -87,7 +87,7 @@ function AlbumModal(props) {
                                 textDecoration: "none",
                             }}
                             to="/reviews/new"
-                            state={{ id: props.album_id, name: album.name }}>
+                            state={{ id: props.album_id, name: album.name, tracks: album.tracks?.items }} >
                             Review
                         </NavLink>
                     </Button>
