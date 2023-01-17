@@ -18,7 +18,7 @@ function ReviewForm() {
 
     // const [reviewer_id, setReviewerId] = useState("")
     // const [title, setTitle] = useState("")
-    // const [rating, setRating] = useState([])
+    const [rating, setRating] = useState([]);
     // const [album_id, setAlbumId] = useState("")
     // const [best_song, setBestSong] = useState([])
     // const [worst_song, setWorstSong] = useState([])
@@ -26,41 +26,42 @@ function ReviewForm() {
     useEffect(() => {});
 
     const handleChange = (event) => {
-        setReview({...review, [event.target.name]: event.target.value});
+        setReview({ ...review, [event.target.name]: event.target.value });
+        console.log(review);
     };
 
     const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = {...review}
-    console.log(data);
-    const reviewUrl = "http://localhost:8000/api/reviews/";
-    const fetchConfig = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    };
-    const response = await fetch(reviewUrl, fetchConfig);
-    if (response.ok) {
-        const newreview = await response.json();
-        setReview({
-            reviewer_id: "",
-            title: "",
-            rating: "",
-            content: "",
-            album_id: "",
-            best_song: "",
-            worst_song: "",
-        });
-    } else {
-        console.error("Error in creating review")
-    }
+        event.preventDefault();
+        const data = { ...review };
+        console.log(data);
+        const reviewUrl = "http://localhost:8000/api/reviews/";
+        const fetchConfig = {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const response = await fetch(reviewUrl, fetchConfig);
+        if (response.ok) {
+            const newreview = await response.json();
+            setReview({
+                reviewer_id: "",
+                title: "",
+                rating: "",
+                content: "",
+                album_id: "",
+                best_song: "",
+                worst_song: "",
+            });
+        } else {
+            console.error("Error in creating review");
+        }
     };
 
     return (
         <div className="container">
-        <div className="row"></div>
+            <div className="row"></div>
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Review {initial_name}</h1>
@@ -204,7 +205,7 @@ function ReviewForm() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default ReviewForm;
