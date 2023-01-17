@@ -68,7 +68,6 @@ function AlbumModal(props) {
                         <div>Release Date: {album.release_date}</div>
                         <div>Label: {album.label}</div>
                     </div>
-
                     <div
                         style={{
                             // height: "100px",
@@ -82,11 +81,15 @@ function AlbumModal(props) {
                     </div>
                     <div
                         style={{
-                            gridArea: "3 / 4 / 6 / 6",
-                            height: "30px",
-                            marginTop: "30px",
+                            gridArea: "3 / 3 / 6 / 6",
                         }}>
-                        <ol>
+                        <ol
+                            style={{
+                                height: "400px",
+                                width: "100%",
+                                overflow: "hidden",
+                                overflowY: "scroll",
+                            }}>
                             Tracks
                             {album.tracks?.items.map((track) => {
                                 return <li key={track.id}>{track.name}</li>;
@@ -94,32 +97,34 @@ function AlbumModal(props) {
                         </ol>
                     </div>
 
-                    <NavLink
-                        to="/reviews/new"
-                        state={{
-                            id: props.album_id,
-                            name: album.name,
-                            tracks: album.tracks?.items,
-                        }}>
-                        <Button
-                            type="button"
-                            className="btn btn-primary btn-sm">
-                            Review
-                        </Button>
-                    </NavLink>
-                    <NavLink
-                        style={{
-                            color: "#3f72af",
-                            textDecoration: "none",
-                        }}
-                        to="/reviews"
-                        state={{ id: props.album_id }}>
-                        <Button
-                            type="button"
-                            className="btn btn-primary btn-sm">
-                            See Reviews
-                        </Button>
-                    </NavLink>
+                    <div>
+                        <NavLink
+                            to="/reviews/new"
+                            state={{
+                                id: props.album_id,
+                                name: album.name,
+                                tracks: album.tracks?.items,
+                            }}>
+                            <Button
+                                type="button"
+                                className="btn btn-primary btn-sm">
+                                Review
+                            </Button>
+                        </NavLink>
+                        <NavLink
+                            style={{
+                                color: "#3f72af",
+                                textDecoration: "none",
+                            }}
+                            to="/reviews"
+                            state={{ id: props.album_id }}>
+                            <Button
+                                type="button"
+                                className="btn btn-primary btn-sm">
+                                See Reviews
+                            </Button>
+                        </NavLink>
+                    </div>
                 </Modal.Body>
             </Modal>
         </>
