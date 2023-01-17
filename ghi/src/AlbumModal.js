@@ -89,6 +89,22 @@ function AlbumModal(props) {
                                 to="/reviews/new">Review
                             </NavLink>
                     </Button>
+                    <Button
+                        style={{
+                            backgroundColor: "#a3d2fd",
+                            color: "#3f72af",
+                            borderColor: "#a3d2fd",
+                            }}
+                            type="button"
+                            className="btn btn-primary btn-sm">
+                            <NavLink
+                                style={{
+                                    color: "#3f72af",
+                                    textDecoration: "none",
+                                    }}
+                                to="/reviews">See Reviews
+                            </NavLink>
+                    </Button>
                     {reviews !== [] ? (
                         <div>
                             <div>

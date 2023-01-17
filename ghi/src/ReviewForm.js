@@ -70,7 +70,7 @@ function ReviewForm() {
                         type="radio"
                         name="rating"
                         id="rating1"
-                        value={review.rating = 1}/>
+                        value={1}/>
                         <label className="form-check-label" for="rating1">1</label>
                     </div>
                     <div className="form-check form-check-inline">
@@ -80,7 +80,7 @@ function ReviewForm() {
                         type="radio"
                         name="rating"
                         id="rating2"
-                        value={review.rating = 2}/>
+                        value={2}/>
                         <label className="form-check-label" for="rating2">2</label>
                     </div>
                     <div className="form-check form-check-inline">
@@ -90,7 +90,7 @@ function ReviewForm() {
                         type="radio"
                         name="rating"
                         id="rating3"
-                        value={review.rating = 3}/>
+                        value={3}/>
                         <label className="form-check-label" for="rating3">3</label>
                     </div>
                     <div className="form-check form-check-inline">
@@ -100,7 +100,7 @@ function ReviewForm() {
                         type="radio"
                         name="rating"
                         id="rating4"
-                        value={review.rating = 4}/>
+                        value={4}/>
                         <label className="form-check-label" for="rating4">4</label>
                     </div>
                     <div className="form-check form-check-inline">
@@ -110,7 +110,7 @@ function ReviewForm() {
                         type="radio"
                         name="rating"
                         id="rating5"
-                        value={review.rating = 5}/>
+                        value={5}/>
                         <label className="form-check-label" for="rating5">5</label>
                     </div>
                     <div className="form-floating mb-3">
