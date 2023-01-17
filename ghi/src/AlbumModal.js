@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
@@ -108,6 +109,48 @@ function AlbumModal(props) {
                         </ol>
                     </div>
 
+                    <ol>
+                        Tracks
+                        {album.tracks?.items.map((track) => {
+                            return <li key={track.id}>{track.name}</li>;
+                        })}
+                    </ol>
+                    <Button
+                        style={{
+                            backgroundColor: "#a3d2fd",
+                            color: "#3f72af",
+                            borderColor: "#a3d2fd",
+                        }}
+                        type="button"
+                        className="btn btn-primary btn-sm">
+                        <NavLink
+                            style={{
+                                color: "#3f72af",
+                                textDecoration: "none",
+                            }}
+                            to="/reviews/new"
+                            state={{ id: props.album_id, name: album.name, tracks: album.tracks?.items }} >
+                            Review
+                        </NavLink>
+                    </Button>
+                    <Button
+                        style={{
+                            backgroundColor: "#a3d2fd",
+                            color: "#3f72af",
+                            borderColor: "#a3d2fd",
+                        }}
+                        type="button"
+                        className="btn btn-primary btn-sm">
+                        <NavLink
+                            style={{
+                                color: "#3f72af",
+                                textDecoration: "none",
+                            }}
+                            to="/reviews"
+                            state={{ id: props.album_id }}>
+                            See Reviews
+                        </NavLink>
+                    </Button>
                     {reviews !== [] ? (
                         <div
                             style={{
