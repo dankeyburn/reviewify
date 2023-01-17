@@ -109,12 +109,6 @@ function AlbumModal(props) {
                         </ol>
                     </div>
 
-                    <ol>
-                        Tracks
-                        {album.tracks?.items.map((track) => {
-                            return <li key={track.id}>{track.name}</li>;
-                        })}
-                    </ol>
                     <Button
                         style={{
                             backgroundColor: "#a3d2fd",
@@ -129,7 +123,11 @@ function AlbumModal(props) {
                                 textDecoration: "none",
                             }}
                             to="/reviews/new"
-                            state={{ id: props.album_id, name: album.name, tracks: album.tracks?.items }} >
+                            state={{
+                                id: props.album_id,
+                                name: album.name,
+                                tracks: album.tracks?.items,
+                            }}>
                             Review
                         </NavLink>
                     </Button>
@@ -151,36 +149,6 @@ function AlbumModal(props) {
                             See Reviews
                         </NavLink>
                     </Button>
-                    {reviews !== [] ? (
-                        <div
-                            style={{
-                                gridArea: "3 / 1 / 6 / 4",
-                                marginTop: "30px",
-                            }}>
-                            <div>
-                                Reviews:
-                                {reviews.map((review) => {
-                                    return (
-                                        <div
-                                            key={review.id}
-                                            style={{
-                                                marginBottom: "20px",
-                                                border: "2px solid black",
-                                            }}>
-                                            <div>Rating: {review.rating}</div>
-                                            <div>Content: {review.content}</div>
-                                            <div>
-                                                Reviewer ID:{" "}
-                                                {review.reviewer_id}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    ) : (
-                        <div>No Reviews Yet</div>
-                    )}
                 </Modal.Body>
             </Modal>
         </>
