@@ -1,5 +1,4 @@
-import { NavLink } from 'react-router-dom';
-
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
     return (
@@ -12,11 +11,14 @@ function NavBar() {
                 borderBottom: "2px solid black",
             }}>
             <div className="container-fluid">
-                <img
-                    src={require("./output-onlinepngtools.png")}
-                    alt="Music Reviewify Logo"
-                    height={110}
-                />
+                <NavLink className="navbar-brand" to="/">
+                    <img
+                        src={require("./output-onlinepngtools.png")}
+                        alt="Music Reviewify Logo"
+                        height={110}
+                    />
+                </NavLink>
+
                 <div>
                     <button
                         className="btn btn-primary"
@@ -27,7 +29,9 @@ function NavBar() {
                             borderColor: "black",
                             border: "2px solid black",
                         }}>
-                        <NavLink className="navbar-brand" to="/">Home</NavLink>
+                        <NavLink className="navbar-brand" to="/">
+                            Home
+                        </NavLink>
                     </button>
                     <button
                         className="btn btn-primary"
