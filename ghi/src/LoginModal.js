@@ -3,13 +3,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect } from "react";
 
-function SignupModal() {
+function LoginModal() {
   const [show, setShow] = useState(false);
   const [account, setAccount] = useState({
-    email: "",
     password: "",
     passwordConfirm: "",
-    username: "",
+    email: "",
   });
 
   const handleChange = (event) => {
@@ -32,12 +31,11 @@ function SignupModal() {
       };
       const response = await fetch(accountsUrl, fetchConfig);
       if (response.ok) {
-          const newaccount = await response.json();
+          const Login = await response.json();
           setAccount({
-            email: "",
             password: "",
             passwordConfirm: "",
-            username: "",
+            email: "",
 
           });
       } else {
@@ -52,7 +50,7 @@ function SignupModal() {
             onClick={() => setShow(true)}
             className="btn btn-primary"
           >
-            Signup
+            Login
           </button>
       <Modal
         size="lg"
@@ -76,23 +74,9 @@ function SignupModal() {
               name="username"
               id="username"
               placeholder="username"
-              value={account.username}
-            />
-            <label className="form-check-label" htmlFor="username">
-              Username
-            </label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              onChange={handleChange}
-              className="form-control"
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Email"
               value={account.email}
             />
-            <label className="form-check-label" htmlFor="email">
+            <label className="form-check-label" htmlFor="username">
               Email
             </label>
           </div>
@@ -132,4 +116,4 @@ function SignupModal() {
   );
 }
 
-export default SignupModal;
+export default LoginModal;
