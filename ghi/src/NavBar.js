@@ -30,23 +30,7 @@ function NavBar() {
           >
             Login
           </button>
-          <button
-            onClick={() => {
-              SignupModal.setShow(true);
-            }}
-            data-toggle="modal"
-            data-target="SignupModal"
-            className="btn btn-primary"
-            style={{
-              marginRight: "10px",
-              backgroundColor: "#c69f3a",
-              color: "#efeee8",
-              borderColor: "black",
-              border: "2px solid black",
-            }}
-          >
-            Signup
-          </button>
+          <SignupModal/>
         </div>
       </div>
     </nav>
