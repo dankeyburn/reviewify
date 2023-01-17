@@ -3,6 +3,7 @@ import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 import ReviewForm from "./ReviewForm";
 import SeeReviews from "./SeeReviews";
+import "./Styles.css";
 
 function App() {
     return (

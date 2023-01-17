@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import SignupModal from "./SignupModal";
+import LoginModal from "./LoginModal";
 
 function NavBar() {
     return (
@@ -33,28 +35,8 @@ function NavBar() {
                             Home
                         </NavLink>
                     </button>
-                    <button
-                        className="btn btn-primary"
-                        style={{
-                            marginRight: "10px",
-                            backgroundColor: "#c69f3a",
-                            color: "#efeee8",
-                            borderColor: "black",
-                            border: "2px solid black",
-                        }}>
-                        Login
-                    </button>
-                    <button
-                        className="btn btn-primary"
-                        style={{
-                            marginRight: "10px",
-                            backgroundColor: "#c69f3a",
-                            color: "#efeee8",
-                            borderColor: "black",
-                            border: "2px solid black",
-                        }}>
-                        Signup
-                    </button>
+                    <LoginModal/>
+                    <SignupModal/>
                 </div>
             </div>
         </nav>
