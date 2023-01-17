@@ -65,7 +65,7 @@ function LoginModal() {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Sign Up
+            Login
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
