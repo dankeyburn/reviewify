@@ -18,20 +18,21 @@ function AllReviews() {
 
     return (
         <>
-            <div className="App" style={{ marginTop: "30px" }}></div>
-            <Container>
-                <Row className="mx-2 row row-cols-4">
+            <div className="App" style={{ marginTop: "30px"}}></div>
+            <Container style={{display: 'flex', justifyContent: 'center'}}>
+            <Row className="mx-2 row row-cols-4">
                     {reviews.map((review) => {
                         return (
                             <div
                                 className="card mb-3 w-100"
-                                style={{ maxWidth: "540px" }}>
+                                style={{ maxWidth: "540px"}}>
                                 <div className="row no-gutters">
-                                    <div className="col-md-4">
+                                    <div className="col-md-4" style={{display: 'flex', alignItems: 'center'}}>
                                         <img
                                             src={review.img_url}
                                             className="card-img"
                                             alt="..."
+                                            style={{paddingLeft: '15px'}}
                                         />
                                     </div>
                                     <div className="col-md-8">
@@ -60,7 +61,7 @@ function AllReviews() {
                             </div>
                         );
                     })}
-                </Row>
+                    </Row>
             </Container>
         </>
     );
