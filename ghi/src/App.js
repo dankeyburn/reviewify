@@ -1,22 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 import ReviewForm from "./ReviewForm";
 import SeeReviews from "./SeeReviews";
 import "./Styles.css";
+import { AuthProvider, useToken } from "./UseToken";
+
+function GetToken() {
+    useToken();
+    return null;
+}
 
 function App() {
+    // const navigate = useNavigate();
+
     return (
-        <BrowserRouter>
-        <NavBar />
-        <div>
-            <Routes>
-                <Route path = "/" element={<MainPage />} />
-                <Route path = "/reviews/new" element={ <ReviewForm />} />
-                <Route path = "/reviews" element={<SeeReviews />} />
-            </Routes>
-        </div>
-        </BrowserRouter>
+        <AuthProvider>
+            <BrowserRouter>
+                <GetToken />
+                <NavBar />
+                <div>
+                    <Routes>
+                        <Route path="/" element={<MainPage />} />
+                        <Route path="/reviews/new" element={<ReviewForm />} />
+                        <Route path="/reviews" element={<SeeReviews />} />
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 
