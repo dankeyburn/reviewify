@@ -13,6 +13,7 @@ class ReviewIn(BaseModel):
     album_id: str
     best_song: Optional[str]
     worst_song: Optional[str]
+    img_url: str
 
 
 class ReviewOut(ReviewIn):
@@ -37,6 +38,7 @@ class ReviewQueries:
                         , album_id
                         , best_song
                         , worst_song
+                        , img_url
                     FROM reviews
                     """
                 )
@@ -63,6 +65,7 @@ class ReviewQueries:
                         , album_id
                         , best_song
                         , worst_song
+                        , img_url
                     FROM reviews
                     WHERE id = %s
                     """,
@@ -127,13 +130,14 @@ class ReviewQueries:
                     review.content,
                     review.album_id,
                     review.best_song,
-                    review.worst_song
+                    review.worst_song,
+                    review.img_url
                 ]
                 cur.execute(
                     """
-                    INSERT INTO reviews (reviewer_id, title, rating, content, album_id, best_song, worst_song)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-                    RETURNING id, reviewer_id, title, rating, content, album_id, best_song, worst_song
+                    INSERT INTO reviews (reviewer_id, title, rating, content, album_id, best_song, worst_song, img_url)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    RETURNING id, reviewer_id, title, rating, content, album_id, best_song, worst_song, img_url
                     """,
                     params,
                 )

@@ -23,7 +23,8 @@ steps = [
             content TEXT NOT NULL,
             album_id VARCHAR(300) NOT NULL,
             best_song VARCHAR(100),
-            worst_song VARCHAR(100)
+            worst_song VARCHAR(100),
+            img_url VARCHAR(2000)
         )
         """,
 

@@ -6,6 +6,7 @@ function ReviewForm() {
     const initial_id = location.state["id"];
     const initial_name = location.state["name"];
     const initial_tracks = location.state["tracks"];
+    const image = location.state["img"];
     const [review, setReview] = useState({
             reviewer_id: "",
             title: "",
@@ -14,6 +15,7 @@ function ReviewForm() {
             album_id: initial_id,
             best_song: "",
             worst_song: "",
+            img_url: image,
     });
 
     // const [reviewer_id, setReviewerId] = useState("")
@@ -53,6 +55,7 @@ function ReviewForm() {
                 album_id: "",
                 best_song: "",
                 worst_song: "",
+                img_url: "",
             });
         } else {
             console.error("Error in creating review");
@@ -64,6 +67,7 @@ function ReviewForm() {
             <div className="row"></div>
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
+                  <img src={image} />
                     <h1>Review {initial_name}</h1>
                     <form onSubmit={handleSubmit} id="create-review-form">
                     <div className="mb-3"></div>
