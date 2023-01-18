@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function Review(props) {
-  const values = [true, 'sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down'];
+function ReviewModal(props) {
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
   const [review, setReview] = useState([]);
@@ -19,15 +18,6 @@ function Review(props) {
 
   return (
     <>
-        <img
-            src={props.img_url}
-            onClick={() => {
-                setShow(true);
-                search();
-            }}
-            alt={`${props.album_name} Album Cover`}
-        />
-
       <Modal
         key={props.review_id}
         show={show}
@@ -41,6 +31,7 @@ function Review(props) {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <img src={review.img_url} />
             <div>{review.title}</div>
             <p>{review.content}</p>
             <div>{review.best_song}</div>
@@ -52,4 +43,4 @@ function Review(props) {
 }
 
 
-export default Review;
+export default ReviewModal;
