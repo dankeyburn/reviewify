@@ -11,3 +11,44 @@
     color: #c69f3a;
     border-color: #efeee8;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card:hover {
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,1);
+  cursor: url("https://i.imgur.com/d1oEZiM.png"), pointer;
+}
