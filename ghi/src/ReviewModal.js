@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+
 function ReviewModal(props) {
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
   const [review, setReview] = useState([]);
 
   async function search() {
-        fetch(`http://localhost:8000/api/reviews/${props.review_id}`)
+        fetch(`http://localhost:8000/api/reviews/${props.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setReview(data);
@@ -18,6 +19,10 @@ function ReviewModal(props) {
 
   return (
     <>
+    <div onClick={() => {
+                    setShow(true);
+                    search();
+                }}>{props.title}</div>
       <Modal
         key={props.review_id}
         show={show}
@@ -32,10 +37,10 @@ function ReviewModal(props) {
         </Modal.Header>
         <Modal.Body>
           <img src={review.img_url} />
-            <div>{review.title}</div>
+            <div>Title: {review.title}</div>
             <p>{review.content}</p>
-            <div>{review.best_song}</div>
-            <div>{review.worst_song}</div>
+            <div>Best Song: {review.best_song}</div>
+            <div>Worst Song: {review.worst_song}</div>
         </Modal.Body>
       </Modal>
     </>

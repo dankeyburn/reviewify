@@ -36,7 +36,9 @@ function SeeReviews(props) {
                         {reviews.map((review) => {
                             return (
                                 <div key={review.id}>
-                                    <div>Title: {review.title}</div>
+                                    <ReviewModal
+                                    id={review.id}
+                                    title={review.title}/>
                                     <div>Rating: {review.rating}</div>
                                     <div>Reviewer ID: {review.reviewer_id}</div>
                                 </div>
