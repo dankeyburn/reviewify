@@ -20,7 +20,6 @@ function NavBar() {
                         height={110}
                     />
                 </NavLink>
-
                 <div>
                     <LoginModal />
                     <SignupModal />
