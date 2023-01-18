@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import Review from "./ReviewModal";
 
 function SeeReviews(props) {
     const location = useLocation();
@@ -35,6 +36,7 @@ function SeeReviews(props) {
                         {reviews.map((review) => {
                             return (
                                 <div key={review.id}>
+                                    <button onClick={Review}>See Full Review</button>
                                     <div>Title: {review.title}</div>
                                     <div>Rating: {review.rating}</div>
                                     <div>Reviewer ID: {review.reviewer_id}</div>
