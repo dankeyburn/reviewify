@@ -104,7 +104,7 @@ function AlbumModal(props) {
                                 id: props.album_id,
                                 name: album.name,
                                 tracks: album.tracks?.items,
-                                img: props.img_url
+                                img: props.img_url,
                             }}>
                             <Button
                                 type="button"
