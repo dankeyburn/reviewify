@@ -14,7 +14,7 @@ function SeeReviews(props) {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error("Automobile server bad resonse");
+                throw new Error("Cannot load review data");
             })
             .then((response) =>
                 setReviews(
