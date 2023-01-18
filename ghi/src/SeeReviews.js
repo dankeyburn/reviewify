@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import ReviewModal from "./ReviewModal";
 
 function SeeReviews(props) {
     const location = useLocation();
@@ -13,7 +14,7 @@ function SeeReviews(props) {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error("Automobile server bad resonse");
+                throw new Error("Cannot load review data");
             })
             .then((response) =>
                 setReviews(
@@ -35,7 +36,9 @@ function SeeReviews(props) {
                         {reviews.map((review) => {
                             return (
                                 <div key={review.id}>
-                                    <div>Title: {review.title}</div>
+                                    <ReviewModal
+                                    id={review.id}
+                                    title={review.title}/>
                                     <div>Rating: {review.rating}</div>
                                     <div>Reviewer ID: {review.reviewer_id}</div>
                                 </div>
