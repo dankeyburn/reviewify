@@ -3,6 +3,7 @@ import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 import ReviewForm from "./ReviewForm";
 import SeeReviews from "./SeeReviews";
+import AllReviews from './AllReviews';
 import "./Styles.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
                 <Route path = "/" element={<MainPage />} />
                 <Route path = "/reviews/new" element={ <ReviewForm />} />
                 <Route path = "/reviews" element={<SeeReviews />} />
+                <Route path = "/reviews/all" element={<AllReviews />} />
             </Routes>
         </div>
         </BrowserRouter>
