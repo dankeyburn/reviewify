@@ -18,13 +18,6 @@ function ReviewForm() {
         img_url: image,
     });
 
-    // const [reviewer_id, setReviewerId] = useState("")
-    // const [title, setTitle] = useState("")
-    const [rating, setRating] = useState([]);
-    // const [album_id, setAlbumId] = useState("")
-    // const [best_song, setBestSong] = useState([])
-    // const [worst_song, setWorstSong] = useState([])
-
     useEffect(() => {});
 
     const handleChange = (event) => {
@@ -36,13 +29,14 @@ function ReviewForm() {
         event.preventDefault();
         const data = { ...review };
         console.log(data);
-        const reviewUrl = "http://localhost:8000/api/reviews/";
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
         };
         const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok) {
@@ -68,6 +62,7 @@ function ReviewForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <img
+                        alt="Album Cover"
                         src={image}
                         style={{ objectFit: "contain", maxWidth: "100%" }}
                     />
@@ -85,7 +80,9 @@ function ReviewForm() {
                                 id="rating1"
                                 value={1}
                             />
-                            <label className="form-check-label" for="rating1">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating1">
                                 1
                             </label>
                         </div>
@@ -98,7 +95,9 @@ function ReviewForm() {
                                 id="rating2"
                                 value={2}
                             />
-                            <label className="form-check-label" for="rating2">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating2">
                                 2
                             </label>
                         </div>
@@ -111,7 +110,9 @@ function ReviewForm() {
                                 id="rating3"
                                 value={3}
                             />
-                            <label className="form-check-label" for="rating3">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating3">
                                 3
                             </label>
                         </div>
@@ -124,7 +125,9 @@ function ReviewForm() {
                                 id="rating4"
                                 value={4}
                             />
-                            <label className="form-check-label" for="rating4">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating4">
                                 4
                             </label>
                         </div>
@@ -137,7 +140,9 @@ function ReviewForm() {
                                 id="rating5"
                                 value={5}
                             />
-                            <label className="form-check-label" for="rating5">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating5">
                                 5
                             </label>
                         </div>
@@ -155,7 +160,7 @@ function ReviewForm() {
                             <label htmlFor="title">Review Title</label>
                         </div>
                         <div className="mb-3">
-                            <label for="content">Review Content</label>
+                            <label htmlFor="content">Review Content</label>
                             <textarea
                                 onChange={handleChange}
                                 rows="8"

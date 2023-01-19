@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "./UseToken";
 
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
     const [album, setAlbum] = useState([]);
+    const { token } = useAuthContext();
+    // const [loggedIn, setLoggedIn] = useState();
 
     async function search() {
         fetch(`http://localhost:8000/api/albums/${props.album_id}`)
@@ -98,20 +100,25 @@ function AlbumModal(props) {
                     </div>
 
                     <div>
-                        <NavLink
-                            to="/reviews/new"
-                            state={{
-                                id: props.album_id,
-                                name: album.name,
-                                tracks: album.tracks?.items,
-                                img: props.img_url,
-                            }}>
-                            <Button
-                                type="button"
-                                className="btn btn-primary btn-sm">
-                                Review
-                            </Button>
-                        </NavLink>
+                        {token ? (
+                            <NavLink
+                                to="/reviews/new"
+                                state={{
+                                    id: props.album_id,
+                                    name: album.name,
+                                    tracks: album.tracks?.items,
+                                    img: props.img_url,
+                                }}>
+                                <Button
+                                    type="button"
+                                    className="btn btn-primary btn-sm">
+                                    Review
+                                </Button>
+                            </NavLink>
+                        ) : (
+                            <></>
+                        )}
+
                         <NavLink
                             style={{
                                 color: "#3f72af",
