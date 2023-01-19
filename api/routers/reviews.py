@@ -22,6 +22,16 @@ def reviews_list_by_account(
     }
 
 
+@router.get("/api/albums/{album_id}/reviews/", response_model=ReviewsOutAll)
+def reviews_list_by_album(
+    album_id: str,
+    queries: ReviewQueries = Depends(),
+    ):
+    return {
+        "reviews": queries.get_all_reviews_by_account(album_id),
+    }
+
+
 @router.get("/api/reviews/{review_id}", response_model=ReviewOut)
 def get_review(
     review_id: int,
