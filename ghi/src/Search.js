@@ -26,6 +26,11 @@ export default function SearchBar() {
                 setAlbums(uniqueAlbums);
             });
     }
+    function Display() {
+        document.getElementById("hide-item1").style.display = "none";
+        document.getElementById("hide-item2").style.display = "none";
+    }
+
     return (
         <div className="App" style={{ marginTop: "30px" }}>
             <Container>
@@ -36,6 +41,7 @@ export default function SearchBar() {
                         onKeyDown={(event) => {
                             if (event.key === "Enter") {
                                 search();
+                                Display();
                             }
                         }}
                         onChange={(event) => setSearchInput(event.target.value)}
