@@ -3,6 +3,7 @@ import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 import ReviewForm from "./ReviewForm";
 import SeeReviews from "./SeeReviews";
+import AllReviews from './AllReviews';
 import "./Styles.css";
 import { AuthProvider, useToken } from "./UseToken";
 

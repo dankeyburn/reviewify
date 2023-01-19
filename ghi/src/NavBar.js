@@ -23,7 +23,6 @@ function NavBar() {
                         height={110}
                     />
                 </NavLink>
-
                 <div>
                     {token ? (
                         <></>
