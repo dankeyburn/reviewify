@@ -20,6 +20,7 @@ function NavBar() {
                         height={110}
                     />
                 </NavLink>
+                <NavLink className="navbar-brand" to="/reviews/all"><button className="btn btn-primary">All Reviews</button></NavLink>
                 <div>
                     <LoginModal />
                     <SignupModal />
