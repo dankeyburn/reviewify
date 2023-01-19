@@ -22,7 +22,7 @@ function ReviewModal(props) {
     <div onClick={() => {
                     setShow(true);
                     search();
-                }}>{props.title}</div>
+                }}>{props.img_url}</div>
       <Modal
         key={props.review_id}
         show={show}

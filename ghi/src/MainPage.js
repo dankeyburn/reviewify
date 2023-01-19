@@ -1,4 +1,5 @@
 import SearchBar from "./Search";
+import {Link} from "react-router-dom"
 
 function MainPage() {
   return (
@@ -7,7 +8,7 @@ function MainPage() {
       <img src={require("./logo-512.png")} height="256"/>
     </div>
     <div className="logo-container" id="hide-item2">
-      <img src={require("./Reviewify-title.png")} height="128"/>
+     <Link className="navbar-brand" to="/reviews/all"><button className="btn btn-primary">All Reviews</button></Link>
     </div>
     <div>
       <SearchBar/>

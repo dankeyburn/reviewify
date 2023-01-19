@@ -12,6 +12,7 @@ import AlbumModal from "./AlbumModal";
 export default function SearchBar() {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
+
     function search() {
         fetch(`http://localhost:8000/api/artists/${searchInput}`)
             .then((response) => response.json())
