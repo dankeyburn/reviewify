@@ -18,13 +18,6 @@ function ReviewForm() {
         img_url: image,
     });
 
-    // const [reviewer_id, setReviewerId] = useState("")
-    // const [title, setTitle] = useState("")
-    const [rating, setRating] = useState([]);
-    // const [album_id, setAlbumId] = useState("")
-    // const [best_song, setBestSong] = useState([])
-    // const [worst_song, setWorstSong] = useState([])
-
     useEffect(() => {});
 
     const handleChange = (event) => {
@@ -69,6 +62,7 @@ function ReviewForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <img
+                        alt="Album Cover"
                         src={image}
                         style={{ objectFit: "contain", maxWidth: "100%" }}
                     />
