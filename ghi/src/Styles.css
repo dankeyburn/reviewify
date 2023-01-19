@@ -2,21 +2,30 @@
     margin-right: 10px;
     background-color: #c69f3a;
     color: #efeee8;
-    border-color: black;
     border: 2px solid black;
 }
 
 .btn-primary:hover {
     background-color: black;
     color: #c69f3a;
-    border-color: #efeee8;
+    border-color: #332f2f;
     }
 
+body{
+  background-color: black;
+  color: #efeee8;
+}
 
+.card {
+  background-color: #332f2f;
+  color: #efeee8;
+}
 
+.card-title {color: #c69f3a}
 
+.modal-content {background-color: #332f2f;}
 
-
+.mb-3 {margin-right: 1rem;}
 
 
 
@@ -49,6 +58,6 @@
 
 
 .card:hover {
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,1);
+  box-shadow: 0 10px 16px 0 #c69f3a;
   cursor: url("https://i.imgur.com/d1oEZiM.png"), pointer;
 }
