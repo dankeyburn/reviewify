@@ -85,7 +85,9 @@ function ReviewForm() {
                                 id="rating1"
                                 value={1}
                             />
-                            <label className="form-check-label" for="rating1">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating1">
                                 1
                             </label>
                         </div>
@@ -98,7 +100,9 @@ function ReviewForm() {
                                 id="rating2"
                                 value={2}
                             />
-                            <label className="form-check-label" for="rating2">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating2">
                                 2
                             </label>
                         </div>
@@ -111,7 +115,9 @@ function ReviewForm() {
                                 id="rating3"
                                 value={3}
                             />
-                            <label className="form-check-label" for="rating3">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating3">
                                 3
                             </label>
                         </div>
@@ -124,7 +130,9 @@ function ReviewForm() {
                                 id="rating4"
                                 value={4}
                             />
-                            <label className="form-check-label" for="rating4">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating4">
                                 4
                             </label>
                         </div>
@@ -137,7 +145,9 @@ function ReviewForm() {
                                 id="rating5"
                                 value={5}
                             />
-                            <label className="form-check-label" for="rating5">
+                            <label
+                                className="form-check-label"
+                                htmlFor="rating5">
                                 5
                             </label>
                         </div>
@@ -155,7 +165,7 @@ function ReviewForm() {
                             <label htmlFor="title">Review Title</label>
                         </div>
                         <div className="mb-3">
-                            <label for="content">Review Content</label>
+                            <label htmlFor="content">Review Content</label>
                             <textarea
                                 onChange={handleChange}
                                 rows="8"
