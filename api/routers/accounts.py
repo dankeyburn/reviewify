@@ -1,4 +1,6 @@
 # router.py
+from queries.accounts import Account
+
 from fastapi import (
     Depends,
     HTTPException,
@@ -81,3 +83,17 @@ def update_account(
 def delete_account(account_id: int, queries: AccountsQueries = Depends()):
     queries.delete_account(account_id)
     return True
+
+
+@router.get("/api/token/", response_model=AccountToken | None)
+async def get_token(
+    request: Request,
+    account: Account = Depends(authenticator.try_get_current_account_data),
+) -> AccountToken | None:
+    if authenticator.cookie_name in request.cookies:
+        token_data = {
+            "access_token": request.cookies[authenticator.cookie_name],
+            "type": "Bearer",
+            "account": account,
+        }
+        return AccountToken(**token_data)

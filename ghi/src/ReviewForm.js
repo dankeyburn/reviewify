@@ -36,13 +36,14 @@ function ReviewForm() {
         event.preventDefault();
         const data = { ...review };
         console.log(data);
-        const reviewUrl = "http://localhost:8000/api/reviews/";
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
         };
         const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok) {
