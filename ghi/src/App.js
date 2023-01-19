@@ -25,6 +25,7 @@ function App() {
                         <Route path="/" element={<MainPage />} />
                         <Route path="/reviews/new" element={<ReviewForm />} />
                         <Route path="/reviews" element={<SeeReviews />} />
+                        <Route path = "/reviews/all" element={<AllReviews />} />
                     </Routes>
                 </div>
             </BrowserRouter>
