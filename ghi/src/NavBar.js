@@ -26,12 +26,12 @@ function NavBar() {
 
                 <div>
                     {token ? (
-                        <>
-                            <LoginModal />
-                            <SignupModal />
-                        </>
-                    ) : (
                         <></>
+                    ) : (
+                        <>
+                        <LoginModal />
+                        <SignupModal />
+                        </>
                     )}
                 </div>
             </div>

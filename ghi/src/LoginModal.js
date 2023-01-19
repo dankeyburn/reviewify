@@ -37,6 +37,7 @@ function LoginModal() {
             const fetchConfig = {
                 method: "POST",
                 body: formData,
+                credentials: "include",
             };
             const response = await fetch(accountsUrl, fetchConfig);
             if (response.ok) {
