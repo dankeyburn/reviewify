@@ -52,6 +52,35 @@ class ReviewQueries:
 
                 return results
 
+    def get_all_reviews_by_account(self, account_id) -> ReviewsOutAll:
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id
+                        , reviewer_id
+                        , title
+                        , rating
+                        , content
+                        , album_id
+                        , best_song
+                        , worst_song
+                        , img_url
+                    FROM reviews
+                    WHERE reviewer_id = %s
+                    """,
+                    [account_id]
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
     def get_review(self, id) -> ReviewOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
