@@ -28,8 +28,8 @@ function NavBar() {
                         <></>
                     ) : (
                         <>
-                        <LoginModal />
-                        <SignupModal />
+                            <LoginModal />
+                            <SignupModal />
                         </>
                     )}
                 </div>

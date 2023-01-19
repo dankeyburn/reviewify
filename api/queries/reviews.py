@@ -57,15 +57,7 @@ class ReviewQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id
-                        , reviewer_id
-                        , title
-                        , rating
-                        , content
-                        , album_id
-                        , best_song
-                        , worst_song
-                        , img_url
+                    SELECT *
                     FROM reviews
                     WHERE reviewer_id = %s
                     """,
@@ -82,20 +74,12 @@ class ReviewQueries:
                 return results
 
 
-    def get_all_reviews_by_album(self, album_id) -> ReviewsOutAll:
+    def get_all_reviews_by_album(self, album_id: str) -> ReviewsOutAll:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id
-                        , reviewer_id
-                        , title
-                        , rating
-                        , content
-                        , album_id
-                        , best_song
-                        , worst_song
-                        , img_url
+                    SELECT *
                     FROM reviews
                     WHERE album_id = %s
                     """,

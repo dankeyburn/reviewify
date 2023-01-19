@@ -28,7 +28,7 @@ def reviews_list_by_album(
     queries: ReviewQueries = Depends(),
     ):
     return {
-        "reviews": queries.get_all_reviews_by_account(album_id),
+        "reviews": queries.get_all_reviews_by_album(album_id),
     }
 
 
