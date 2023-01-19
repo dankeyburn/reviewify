@@ -25,17 +25,18 @@ function LoginModal() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = { ...account };
+        const data = { username: account.email, password: account.password };
         console.log(data);
         if (data.password === passwordConfirm.passwordConfirm) {
+            let formData = null;
+            formData = new FormData();
+            formData.append("username", account.email);
+            formData.append("password", account.password);
             console.log(data);
             const accountsUrl = "http://localhost:8000/token/";
             const fetchConfig = {
                 method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                body: formData,
             };
             const response = await fetch(accountsUrl, fetchConfig);
             if (response.ok) {
