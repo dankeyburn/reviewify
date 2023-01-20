@@ -3,10 +3,13 @@ import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 import { useAuthContext } from "./UseToken";
+import { Context } from "./Store";
+import React, { useContext } from "react";
 
 function NavBar() {
-    const { token } = useAuthContext();
-
+    const [context] = useContext(Context);
+    const [state] = useContext(Context);
+    console.log(state);
     return (
         <nav
             className="navbar navbar-expand-md navbar-dark"
@@ -16,6 +19,7 @@ function NavBar() {
                 height: "120px",
                 borderBottom: "2px solid black",
             }}>
+            <div style={{ color: "black" }}>{context.count}</div>
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img
@@ -25,14 +29,14 @@ function NavBar() {
                     />
                 </NavLink>
                 <div>
-                    {token ? (
+                    {state.token ? (
                         <>
-                         <Logout />
+                            <button>logout</button>
                         </>
                     ) : (
                         <>
-                        <LoginModal />
-                        <SignupModal />
+                            <LoginModal />
+                            <SignupModal />
                         </>
                     )}
                 </div>
@@ -41,7 +45,3 @@ function NavBar() {
     );
 }
 export default NavBar;
-
-{
-    /* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">   Launch demo modal </button> */
-}
