@@ -63,7 +63,7 @@ function SignupModal() {
                         Sign Up
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{color:"black"}}>
                     <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input
