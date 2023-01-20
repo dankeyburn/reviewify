@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
+import { useAuthContext } from "./UseToken";
 
 function NavBar() {
+    const { token } = useAuthContext();
+
     return (
         <nav
             className="navbar navbar-expand-md navbar-dark"
@@ -21,8 +24,14 @@ function NavBar() {
                     />
                 </NavLink>
                 <div>
-                    <LoginModal />
-                    <SignupModal />
+                    {token ? (
+                        <></>
+                    ) : (
+                        <>
+                        <LoginModal />
+                        <SignupModal />
+                        </>
+                    )}
                 </div>
             </div>
         </nav>

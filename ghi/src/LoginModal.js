@@ -2,51 +2,60 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect } from "react";
+import { useToken } from "./UseToken";
 
 function LoginModal() {
-  const [show, setShow] = useState(false);
-  const [passwordConfirm, setpasswordConfirm] = useState({
-    passwordConfirm: "",
-  });
-  const [account, setAccount] = useState({
-    password: "",
-    email: "",
-  });
+    const [token, login] = useToken();
+    const [show, setShow] = useState(false);
+    const [passwordConfirm, setpasswordConfirm] = useState({
+        passwordConfirm: "",
+    });
+    const [account, setAccount] = useState({
+        password: "",
+        email: "",
+    });
 
-  const handleChange = (event) => {
-    setpasswordConfirm({...passwordConfirm, [event.target.name]: event.target.value });
-    setAccount({ ...account, [event.target.name]: event.target.value });
-  };
+    const handleChange = (event) => {
+        setpasswordConfirm({
+            ...passwordConfirm,
+            [event.target.name]: event.target.value,
+        });
+        setAccount({ ...account, [event.target.name]: event.target.value });
+    };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = { ...account };
-    console.log(data)
-    if (data.password === passwordConfirm.passwordConfirm){
-      console.log(data);
-      const accountsUrl = "http://localhost:8000/token/";
-      const fetchConfig = {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-              "Content-Type": "application/json",
-          },
-      };
-      const response = await fetch(accountsUrl, fetchConfig);
-      if (response.ok) {
-          const Login = await response.json();
-          setAccount({
-            password: "",
-            email: "",
-        })
-          setpasswordConfirm({
-            passwordConfirm: "",
-          });
-      } else {
-          console.error("Error in logging in");
-      }}
-      else {console.error("Passwords do not match")};
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = { username: account.email, password: account.password };
+        console.log(data);
+        if (data.password === passwordConfirm.passwordConfirm) {
+            let formData = null;
+            formData = new FormData();
+            formData.append("username", account.email);
+            formData.append("password", account.password);
+            console.log(data);
+            const accountsUrl = "http://localhost:8000/token/";
+            const fetchConfig = {
+                method: "POST",
+                body: formData,
+                credentials: "include",
+            };
+            const response = await fetch(accountsUrl, fetchConfig);
+            if (response.ok) {
+                const Login = await response.json();
+                setAccount({
+                    password: "",
+                    email: "",
+                });
+                setpasswordConfirm({
+                    passwordConfirm: "",
+                });
+            } else {
+                console.error("Error in logging in");
+            }
+        } else {
+            console.error("Passwords do not match");
+        }
+    };
 
   return (
     <>
