@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
+import Logout from "./Logout";
 import { useAuthContext } from "./UseToken";
 
 function NavBar() {
@@ -28,6 +29,7 @@ function NavBar() {
                         <></>
                     ) : (
                         <>
+                        <Logout />
                         <LoginModal />
                         <SignupModal />
                         </>
