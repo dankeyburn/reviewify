@@ -22,12 +22,11 @@ client = TestClient(app=app)
 #   }
 
 #   # Act
-#   res = client.post('/api/accounts', json.dumps(account_body))
-#   print("***********************", res)
+#   res = client.post('/api/accounts/', json.dumps(account_body))
 #   # Assert
 #   assert res.status_code == 200
 #   assert res.json()['email'] == "email@email.com"
-#   # assert res.json()['hashed_password'] == "hashed_password"
+#   assert res.json()['hashed_password'] == "hashed_password"
 #   assert res.json()['username'] == "username"
 #   assert res.json()['id'] == 23
 
@@ -37,7 +36,7 @@ client = TestClient(app=app)
 def get_current_account_data_mock():
   return {
     'id': 1337,
-    'username': 'dan'
+    'username': 'dan@email.com'
   }
 
 class ReviewQueriesMock:
@@ -64,7 +63,7 @@ def test_create_review():
   }
 
   # Act
-  res = client.post('/api/reviews', json.dumps(review_body))
+  res = client.post('/api/reviews/', json.dumps(review_body))
 
   # Assert
   assert res.status_code == 200
