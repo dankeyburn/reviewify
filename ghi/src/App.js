@@ -3,7 +3,7 @@ import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 import ReviewForm from "./ReviewForm";
 import SeeReviews from "./SeeReviews";
-import AllReviews from './AllReviews';
+import AllReviews from "./AllReviews";
 import "./Styles.css";
 import { AuthProvider, useToken } from "./UseToken";
 
@@ -25,7 +25,7 @@ function App() {
                         <Route path="/" element={<MainPage />} />
                         <Route path="/reviews/new" element={<ReviewForm />} />
                         <Route path="/reviews" element={<SeeReviews />} />
-                        <Route path = "/reviews/all" element={<AllReviews />} />
+                        <Route path="/reviews/all" element={<AllReviews />} />
                     </Routes>
                 </div>
             </BrowserRouter>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useToken } from "./UseToken";
 import { useContext } from "react";
 import { Context } from "./Store";
@@ -23,30 +23,28 @@ function LoginModal() {
         event.preventDefault();
         const data = { username: account.email, password: account.password };
         console.log(data);
-            let formData = null;
-            formData = new FormData();
-            formData.append("username", account.email);
-            formData.append("password", account.password);
-            console.log(data);
-            const accountsUrl = "http://localhost:8000/token/";
-            const fetchConfig = {
-                method: "POST",
-                body: formData,
-                credentials: "include"}
-            const response = await fetch(accountsUrl, fetchConfig);
-            if (response.ok) {
-                await response.json();
-                dispatch({ type: "login" });
-                setAccount({
-                    password: "",
-                    email: "",
-                });
-                setpasswordConfirm({
-                    passwordConfirm: "",
-                });
-            } else {
-                console.error("Error in logging in");
-            }
+        let formData = null;
+        formData = new FormData();
+        formData.append("username", account.email);
+        formData.append("password", account.password);
+        console.log(data);
+        const accountsUrl = "http://localhost:8000/token/";
+        const fetchConfig = {
+            method: "POST",
+            body: formData,
+            credentials: "include",
+        };
+        const response = await fetch(accountsUrl, fetchConfig);
+        if (response.ok) {
+            await response.json();
+            dispatch({ type: "login" });
+            setAccount({
+                password: "",
+                email: "",
+            });
+        } else {
+            console.error("Error in logging in");
+        }
     };
 
     return (
@@ -97,22 +95,7 @@ function LoginModal() {
                                 Password
                             </label>
                         </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                onChange={handleChange}
-                                className="form-control"
-                                type="password"
-                                name="passwordConfirm"
-                                id="passwordConfirm"
-                                placeholder="Confirm Password"
-                                value={passwordConfirm.passwordConfirm}
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="passwordConfirm">
-                                Confirm Password
-                            </label>
-                        </div>
+
                         <button className="btn btn-primary">Submit</button>
                     </form>
                 </Modal.Body>

@@ -18,11 +18,6 @@ export default function SearchBar() {
     const [text, setText] = useState("");
     const [state, dispatch] = useContext(Context);
 
-    const updateText = () => {
-        dispatch({ type: "update_text", payload: text });
-        setText("");
-    };
-
     function search() {
         fetch(`http://localhost:8000/api/artists/${searchInput}`)
             .then((response) => response.json())
@@ -44,31 +39,6 @@ export default function SearchBar() {
 
     return (
         <div className="App" style={{ marginTop: "30px" }}>
-            <div>
-                <h1>Global State without Redux!</h1>
-
-                <section>
-                    <p>You can increment/decrement count</p>
-                    <p>count: {state.count}</p>
-                    <button onClick={() => dispatch({ type: "increment" })}>
-                        +
-                    </button>
-                    <button onClick={() => dispatch({ type: "decrement" })}>
-                        -
-                    </button>
-                </section>
-
-                <section>
-                    <p>text: {state.text}</p>
-                    <input
-                        type="text"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                    />
-                    <button onClick={updateText}>update text</button>
-                </section>
-            </div>
-
             <Container>
                 <InputGroup className="mb-3" size="lg">
                     <FormControl

@@ -9,7 +9,8 @@ import React, { useContext } from "react";
 function NavBar() {
     const [context] = useContext(Context);
     const [state] = useContext(Context);
-    console.log(state);
+    const { token } = useAuthContext();
+
     return (
         <nav
             className="navbar navbar-expand-md navbar-dark"
@@ -31,7 +32,7 @@ function NavBar() {
                 <div>
                     {state.token ? (
                         <>
-                            <button>logout</button>
+                            <Logout />
                         </>
                     ) : (
                         <>
