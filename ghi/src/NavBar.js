@@ -26,10 +26,11 @@ function NavBar() {
                 </NavLink>
                 <div>
                     {token ? (
-                        <></>
+                        <>
+                         <Logout />
+                        </>
                     ) : (
                         <>
-                        <Logout />
                         <LoginModal />
                         <SignupModal />
                         </>
