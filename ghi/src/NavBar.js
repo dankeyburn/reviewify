@@ -2,17 +2,13 @@ import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
 import { useAuthContext } from "./UseToken";
-import createStore from "./Store";
+import { Context } from "./Store";
+import React, { useContext } from "react";
 
 function NavBar() {
-    const { token } = useAuthContext();
-    const [useStore, dispatch] = createStore(0);
-
-    const addToCount = () => {
-        <button onClick={() => dispatch((count) => count + 1)}>hello</button>;
-    };
-    const count = useStore();
-
+    const [context] = useContext(Context);
+    const [state] = useContext(Context);
+    console.log(state);
     return (
         <nav
             className="navbar navbar-expand-md navbar-dark"
@@ -22,11 +18,8 @@ function NavBar() {
                 height: "120px",
                 borderBottom: "2px solid black",
             }}>
+            <div style={{ color: "black" }}>{context.count}</div>
             <div className="container-fluid">
-                <div>{count}</div>
-                <button onClick={() => dispatch((count) => count + 1)}>
-                    hello
-                </button>
                 <NavLink className="navbar-brand" to="/">
                     <img
                         src={require("./output-onlinepngtools.png")}
@@ -35,8 +28,10 @@ function NavBar() {
                     />
                 </NavLink>
                 <div>
-                    {token ? (
-                        <></>
+                    {state.token ? (
+                        <>
+                            <button>logout</button>
+                        </>
                     ) : (
                         <>
                             <LoginModal />
@@ -49,7 +44,3 @@ function NavBar() {
     );
 }
 export default NavBar;
-
-{
-    /* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">   Launch demo modal </button> */
-}

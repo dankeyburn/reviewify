@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect } from "react";
 import { useToken } from "./UseToken";
+import { useContext } from "react";
+import { Context } from "./Store";
 
 function LoginModal() {
     const [token, login] = useToken();
@@ -14,6 +16,7 @@ function LoginModal() {
         password: "",
         email: "",
     });
+    const [state, dispatch] = useContext(Context);
 
     const handleChange = (event) => {
         setpasswordConfirm({
@@ -41,7 +44,8 @@ function LoginModal() {
             };
             const response = await fetch(accountsUrl, fetchConfig);
             if (response.ok) {
-                const Login = await response.json();
+                await response.json();
+                dispatch({ type: "login" });
                 setAccount({
                     password: "",
                     email: "",
@@ -57,76 +61,76 @@ function LoginModal() {
         }
     };
 
-  return (
-    <>
-    <button
-            onClick={() => setShow(true)}
-            className="btn btn-primary"
-          >
-            Login
-          </button>
-      <Modal
-        size="lg"
-        show={show}
-        onHide={() => setShow(false)}
-        className="modal fade bd-example-modal-lg"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            Login
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{color:"black"}}>
-        <form onSubmit={handleSubmit}>
-          <div className="form-floating mb-3">
-            <input
-              onChange={handleChange}
-              className="form-control"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email"
-              value={account.email}
-            />
-            <label className="form-check-label" htmlFor="email">
-              Email
-            </label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              onChange={handleChange}
-              className="form-control"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              value={account.password}
-            />
-            <label className="form-check-label" htmlFor="password">
-              Password
-            </label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              onChange={handleChange}
-              className="form-control"
-              type="password"
-              name="passwordConfirm"
-              id="passwordConfirm"
-              placeholder="Confirm Password"
-              value={passwordConfirm.passwordConfirm}
-            />
-            <label className="form-check-label" htmlFor="passwordConfirm">
-              Confirm Password
-            </label>
-          </div>
-          <button className="btn btn-primary">Submit</button>
-          </form>
-        </Modal.Body>
-      </Modal>
-    </>
-  );
+    return (
+        <>
+            <button onClick={() => setShow(true)} className="btn btn-primary">
+                Login
+            </button>
+            <Modal
+                size="lg"
+                show={show}
+                onHide={() => setShow(false)}
+                className="modal fade bd-example-modal-lg"
+                aria-labelledby="example-custom-modal-styling-title">
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-custom-modal-styling-title">
+                        Login
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{ color: "black" }}>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-floating mb-3">
+                            <input
+                                onChange={handleChange}
+                                className="form-control"
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="email"
+                                value={account.email}
+                            />
+                            <label className="form-check-label" htmlFor="email">
+                                Email
+                            </label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                onChange={handleChange}
+                                className="form-control"
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="password"
+                                value={account.password}
+                            />
+                            <label
+                                className="form-check-label"
+                                htmlFor="password">
+                                Password
+                            </label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                onChange={handleChange}
+                                className="form-control"
+                                type="password"
+                                name="passwordConfirm"
+                                id="passwordConfirm"
+                                placeholder="Confirm Password"
+                                value={passwordConfirm.passwordConfirm}
+                            />
+                            <label
+                                className="form-check-label"
+                                htmlFor="passwordConfirm">
+                                Confirm Password
+                            </label>
+                        </div>
+                        <button className="btn btn-primary">Submit</button>
+                    </form>
+                </Modal.Body>
+            </Modal>
+        </>
+    );
 }
 
 export default LoginModal;

@@ -1,24 +1,28 @@
-import { useState, useEffect } from "react";
+import React, { createContext, useReducer } from "react";
 
-const createStore = (initialStore) => {
-    let store = initialStore;
-    const listeners = new Set();
-
-    const dispatch = (newStore) => {
-        // Make it like reacts setState so if you pass in a function you can get the store value first
-        store = typeof newStore === "function" ? newStore(store) : newStore;
-        listeners.forEach((listener) => listener(() => store));
-    };
-
-    const useStore = () => {
-        const [, listener] = useState();
-        useEffect(() => {
-            listeners.add(listener);
-            return () => listeners.delete(listener);
-        }, []);
-        return store;
-    };
-
-    return [useStore, dispatch];
+const initialState = {
+    token: false,
 };
-export default createStore;
+
+export const Context = createContext(initialState);
+
+export const Store = ({ children }) => {
+    const [state, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case "login":
+                return { ...state, token: (state.token = true) };
+
+            case "logout":
+                return { ...state, token: (state.token = false) };
+
+            default:
+                return state;
+        }
+    }, initialState);
+
+    return (
+        <Context.Provider value={[state, dispatch]}>
+            {children}
+        </Context.Provider>
+    );
+};
