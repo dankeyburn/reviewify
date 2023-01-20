@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
+import Logout from "./Logout";
 import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import React, { useContext } from "react";

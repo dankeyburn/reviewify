@@ -9,9 +9,6 @@ import { Context } from "./Store";
 function LoginModal() {
     const [token, login] = useToken();
     const [show, setShow] = useState(false);
-    const [passwordConfirm, setpasswordConfirm] = useState({
-        passwordConfirm: "",
-    });
     const [account, setAccount] = useState({
         password: "",
         email: "",
@@ -19,10 +16,6 @@ function LoginModal() {
     const [state, dispatch] = useContext(Context);
 
     const handleChange = (event) => {
-        setpasswordConfirm({
-            ...passwordConfirm,
-            [event.target.name]: event.target.value,
-        });
         setAccount({ ...account, [event.target.name]: event.target.value });
     };
 
@@ -30,7 +23,6 @@ function LoginModal() {
         event.preventDefault();
         const data = { username: account.email, password: account.password };
         console.log(data);
-        if (data.password === passwordConfirm.passwordConfirm) {
             let formData = null;
             formData = new FormData();
             formData.append("username", account.email);
@@ -40,8 +32,7 @@ function LoginModal() {
             const fetchConfig = {
                 method: "POST",
                 body: formData,
-                credentials: "include",
-            };
+                credentials: "include"}
             const response = await fetch(accountsUrl, fetchConfig);
             if (response.ok) {
                 await response.json();
@@ -56,9 +47,6 @@ function LoginModal() {
             } else {
                 console.error("Error in logging in");
             }
-        } else {
-            console.error("Passwords do not match");
-        }
     };
 
     return (
