@@ -122,7 +122,7 @@ function LoginModal() {
                             </label>
                         </div>
                         <button
-                            onClick={() => login}
+                            // onClick={() => login}
                             className="btn btn-primary">
                             Submit
                         </button>
