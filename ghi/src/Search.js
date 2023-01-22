@@ -14,7 +14,7 @@ export default function SearchBar() {
     const [albums, setAlbums] = useState([]);
 
     function search() {
-        fetch(`http://localhost:8000/api/artists/${searchInput}`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/artists/${searchInput}`)
             .then((response) => response.json())
             .then((data) => {
                 let albums_with_dupes = data.items;

@@ -8,7 +8,7 @@ function ReviewModal(props) {
     const [review, setReview] = useState([]);
 
     async function search() {
-        fetch(`http://localhost:8000/api/reviews/${props.id}`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setReview(data);

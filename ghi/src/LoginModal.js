@@ -12,7 +12,7 @@ function LoginModal() {
     });
     const [account, setAccount] = useState({
         password: "",
-        email: "",
+        username: "",
     });
 
     const handleChange = (event) => {
@@ -25,15 +25,15 @@ function LoginModal() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = { username: account.email, password: account.password };
+        const data = { username: account.username, password: account.password };
         console.log(data);
         if (data.password === passwordConfirm.passwordConfirm) {
             let formData = null;
             formData = new FormData();
-            formData.append("username", account.email);
+            formData.append("username", account.username);
             formData.append("password", account.password);
             console.log(data);
-            const accountsUrl = "http://localhost:8000/token/";
+            const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token/`;
             const fetchConfig = {
                 method: "POST",
                 body: formData,
@@ -44,7 +44,7 @@ function LoginModal() {
                 const Login = await response.json();
                 setAccount({
                     password: "",
-                    email: "",
+                    username: "",
                 });
                 setpasswordConfirm({
                     passwordConfirm: "",
@@ -83,14 +83,14 @@ function LoginModal() {
             <input
               onChange={handleChange}
               className="form-control"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email"
-              value={account.email}
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
+              value={account.username}
             />
-            <label className="form-check-label" htmlFor="email">
-              Email
+            <label className="form-check-label" htmlFor="username">
+              Username
             </label>
           </div>
           <div className="form-floating mb-3">

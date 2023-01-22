@@ -43,7 +43,7 @@ async def create_account(
 ):
     hashed_password = authenticator.hash_password(info.password)
     account = repo.create_account(info, hashed_password)
-    form = AccountForm(username=info.email, password=info.password)
+    form = AccountForm(username=info.username, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
 
