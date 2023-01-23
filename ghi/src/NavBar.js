@@ -1,9 +1,14 @@
 import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
+import Logout from "./Logout";
 import { useAuthContext } from "./UseToken";
+import { Context } from "./Store";
+import React, { useContext } from "react";
 
 function NavBar() {
+    const [context] = useContext(Context);
+    const [state] = useContext(Context);
     const { token } = useAuthContext();
 
     return (
@@ -15,6 +20,7 @@ function NavBar() {
                 height: "120px",
                 borderBottom: "2px solid black",
             }}>
+            <div style={{ color: "black" }}>{context.count}</div>
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img
@@ -24,12 +30,14 @@ function NavBar() {
                     />
                 </NavLink>
                 <div>
-                    {token ? (
-                        <></>
+                    {state.token ? (
+                        <>
+                            <Logout />
+                        </>
                     ) : (
                         <>
-                        <LoginModal />
-                        <SignupModal />
+                            <LoginModal />
+                            <SignupModal />
                         </>
                     )}
                 </div>
@@ -38,7 +46,3 @@ function NavBar() {
     );
 }
 export default NavBar;
-
-{
-    /* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">   Launch demo modal </button> */
-}

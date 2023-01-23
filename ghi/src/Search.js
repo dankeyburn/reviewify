@@ -8,10 +8,15 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 import AlbumModal from "./AlbumModal";
+import React, { useContext } from "react";
+// import "./style.css";
+import { Context } from "./Store";
 
 export default function SearchBar() {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
+    const [text, setText] = useState("");
+    const [state, dispatch] = useContext(Context);
 
     function search() {
         fetch(`http://localhost:8000/api/artists/${searchInput}`)
@@ -47,7 +52,11 @@ export default function SearchBar() {
                         }}
                         onChange={(event) => setSearchInput(event.target.value)}
                     />
-                    <Button onClick={search} style={{border: "2px solid #efeee8"}}>Search</Button>
+                    <Button
+                        onClick={search}
+                        style={{ border: "2px solid #efeee8" }}>
+                        Search
+                    </Button>
                 </InputGroup>
             </Container>
             <Container>
