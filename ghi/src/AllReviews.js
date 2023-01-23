@@ -6,7 +6,7 @@ function AllReviews() {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8000/api/reviews")
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`)
             .then((response) => {
                 if (response.ok) {
                     return response.json();

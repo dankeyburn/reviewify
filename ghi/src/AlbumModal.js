@@ -14,7 +14,7 @@ function AlbumModal(props) {
     // const [loggedIn, setLoggedIn] = useState();
 
     async function search() {
-        fetch(`http://localhost:8000/api/albums/${props.album_id}`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${props.album_id}`)
             .then((response) => response.json())
             .then((data) => {
                 setAlbum(data);
