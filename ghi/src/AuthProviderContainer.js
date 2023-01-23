@@ -8,7 +8,7 @@ function GetToken() {
     return null;
 }
 
-function Authorization() {
+function AuthProviderContainer() {
     // const navigate = useNavigate();
 
     return (
@@ -21,4 +21,4 @@ function Authorization() {
     );
 }
 
-export default Authorization;
+export default AuthProviderContainer;

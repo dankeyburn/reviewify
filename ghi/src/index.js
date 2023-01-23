@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Authorization from "./Authorization";
 import reportWebVitals from "./reportWebVitals";
 import { Store } from "./Store";
-
+import AuthProviderContainer from "./AuthProviderContainer";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <Store>
-            <Authorization />
+            <AuthProviderContainer />
         </Store>
     </React.StrictMode>
 );
