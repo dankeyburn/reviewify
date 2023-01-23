@@ -72,3 +72,12 @@ def test_create_review():
 
   # A cleanup
   app.dependency_overrides = {}
+
+
+
+def test_reviews_list():
+  app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
+  app.dependency_overrides[authenticator.get_current_account_data] = get_current_account_data_mock
+  res = client.get('/api/reviews/')
+
+  assert res.status_code == 200
