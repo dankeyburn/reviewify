@@ -1,25 +1,21 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useToken } from "./UseToken";
+import { useContext } from "react";
+import { Context } from "./Store";
 
 function LoginModal() {
     const [token, login] = useToken();
     const [show, setShow] = useState(false);
-    const [passwordConfirm, setpasswordConfirm] = useState({
-        passwordConfirm: "",
-    });
     const [account, setAccount] = useState({
         password: "",
         username: "",
     });
+    const [state, dispatch] = useContext(Context);
 
     const handleChange = (event) => {
-        setpasswordConfirm({
-            ...passwordConfirm,
-            [event.target.name]: event.target.value,
-        });
         setAccount({ ...account, [event.target.name]: event.target.value });
     };
 
@@ -53,7 +49,7 @@ function LoginModal() {
                 console.error("Error in logging in");
             }
         } else {
-            console.error("Passwords do not match");
+            console.error("Error in logging in");
         }
     };
 
