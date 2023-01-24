@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Context } from "./Store";
 
-
 function ReviewForm() {
     const [state] = useContext(Context);
     const location = useLocation();
@@ -22,11 +21,11 @@ function ReviewForm() {
     });
 
     useEffect(() => {
-        setReview({...review, reviewer_id: state.currentAccount["id"]})}, []);
+        setReview({ ...review, reviewer_id: state.currentAccount["id"] });
+    }, []);
 
     const handleChange = (event) => {
         setReview({ ...review, [event.target.name]: event.target.value });
-
     };
 
     const handleSubmit = async (event) => {
@@ -55,6 +54,7 @@ function ReviewForm() {
                 worst_song: "",
                 img_url: "",
             });
+            window.location.href = "http://localhost:3000/reviews/user";
         } else {
             console.error("Error in creating review");
         }
