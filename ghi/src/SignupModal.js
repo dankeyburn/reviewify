@@ -22,7 +22,7 @@ function SignupModal() {
         const data = { ...account };
         if (data.password === data.passwordConfirm) {
             console.log(data);
-            const accountsUrl = "http://localhost:8000/api/accounts/";
+            const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/`;
             const fetchConfig = {
                 method: "POST",
                 body: JSON.stringify(data),
@@ -63,7 +63,7 @@ function SignupModal() {
                         Sign Up
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{color:"black"}}>
                     <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input

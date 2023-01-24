@@ -6,7 +6,7 @@ from authenticator import authenticator
 
 router = APIRouter()
 
-@router.get("/api/reviews", response_model=ReviewsOutAll)
+@router.get("/api/reviews/", response_model=ReviewsOutAll)
 def reviews_list(queries: ReviewQueries = Depends()):
     return {
         "reviews": queries.get_all_reviews(),

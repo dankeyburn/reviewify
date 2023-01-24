@@ -26,7 +26,7 @@ class AccountsOutAll(BaseModel):
     accounts: List[AccountOut]
 
 class AccountsQueries:
-    def get_account(self, email: str) -> AccountOut:
+    def get_account(self, username: str) -> AccountOut:
         # connect the database
         with pool.connection() as conn:
             # get a cursor (something to run SQL with)
@@ -39,9 +39,9 @@ class AccountsQueries:
                          , hashed_password
                          , username
                     FROM accounts
-                    WHERE email = %s;
+                    WHERE username = %s;
                     """,
-                    [email]
+                    [username]
                 )
                 record = result.fetchone()
                 if record is None:

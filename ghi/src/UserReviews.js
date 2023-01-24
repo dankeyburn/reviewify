@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
 
-function SeeReviews(props) {
+function UserReviews(props) {
     const location = useLocation();
     const album_id = location.state["id"];
     const [reviews, setReviews] = useState([]);
@@ -58,21 +58,4 @@ function SeeReviews(props) {
     );
 }
 
-export default SeeReviews;
-
-// <div>
-//     <div>
-//         Reviews:
-//         {reviews.map((review) => {
-//             return (
-//                 <div key={review.id}>
-//                     <ReviewModal
-//                     id={review.id}
-//                     title={review.title}/>
-//                     <div>Rating: {review.rating}</div>
-//                     <div>Reviewer ID: {review.reviewer_id}</div>
-//                 </div>
-//             );
-//         })}
-//     </div>
-// </div>
+export default UserReviews;

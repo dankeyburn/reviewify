@@ -3,15 +3,18 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "./UseToken";
+import { Context } from "./Store";
+import { useContext } from "react";
 
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
     const [album, setAlbum] = useState([]);
     const { token } = useAuthContext();
+    const [state, dispatch] = useContext(Context);
     // const [loggedIn, setLoggedIn] = useState();
 
     async function search() {
-        fetch(`http://localhost:8000/api/albums/${props.album_id}`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${props.album_id}`)
             .then((response) => response.json())
             .then((data) => {
                 setAlbum(data);
@@ -100,7 +103,7 @@ function AlbumModal(props) {
                     </div>
 
                     <div>
-                        {token ? (
+                        {state.token ? (
                             <NavLink
                                 to="/reviews/new"
                                 state={{

@@ -8,12 +8,18 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 import AlbumModal from "./AlbumModal";
+import React, { useContext } from "react";
+// import "./style.css";
+import { Context } from "./Store";
 
 export default function SearchBar() {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
+    const [text, setText] = useState("");
+    const [state, dispatch] = useContext(Context);
+
     function search() {
-        fetch(`http://localhost:8000/api/artists/${searchInput}`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/artists/${searchInput}`)
             .then((response) => response.json())
             .then((data) => {
                 let albums_with_dupes = data.items;
@@ -26,6 +32,11 @@ export default function SearchBar() {
                 setAlbums(uniqueAlbums);
             });
     }
+    function Display() {
+        document.getElementById("hide-item1").style.display = "none";
+        document.getElementById("hide-item2").style.display = "none";
+    }
+
     return (
         <div className="App" style={{ marginTop: "30px" }}>
             <Container>
@@ -36,11 +47,16 @@ export default function SearchBar() {
                         onKeyDown={(event) => {
                             if (event.key === "Enter") {
                                 search();
+                                Display();
                             }
                         }}
                         onChange={(event) => setSearchInput(event.target.value)}
                     />
-                    <Button onClick={search}>Search</Button>
+                    <Button
+                        onClick={search}
+                        style={{ border: "2px solid #efeee8" }}>
+                        Search
+                    </Button>
                 </InputGroup>
             </Container>
             <Container>

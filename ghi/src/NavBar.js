@@ -1,9 +1,15 @@
 import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
+import Logout from "./Logout";
 import { useAuthContext } from "./UseToken";
+import { Context } from "./Store";
+import React, { useContext } from "react";
+import { useState } from "react";
 
 function NavBar() {
+    const [context] = useContext(Context);
+    const [state] = useContext(Context);
     const { token } = useAuthContext();
 
     return (
@@ -23,9 +29,19 @@ function NavBar() {
                         height={110}
                     />
                 </NavLink>
-                <div>
-                    {token ? (
+
+                <div style={{ color: "black" }}>
+                    {state.currentAccount["id"] ? (
+                        <div>Hello, {state.currentAccount["username"]}!</div>
+                    ) : (
                         <></>
+                    )}
+                </div>
+                <div>
+                    {state.token ? (
+                        <>
+                            <Logout />
+                        </>
                     ) : (
                         <>
                             <LoginModal />
@@ -38,7 +54,3 @@ function NavBar() {
     );
 }
 export default NavBar;
-
-{
-    /* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">   Launch demo modal </button> */
-}
