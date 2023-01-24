@@ -47,9 +47,17 @@ class ReviewQueriesMock:
     review_dict = review.dict()
     return ReviewOut(id=1337, **review_dict)
 
-  def get_review(self, id: int) -> ReviewOut:
-    record = ReviewOut(id=666)
-    return record
+  def get_review(self, id: int ) -> ReviewOut:
+    record = {"reviewer_id": 1337,
+    "title": "This is electrifting",
+    "rating": 4,
+    "content": "I can't believe this is live, the killed it, and the audio quality is pretty damn good",
+    "album_id": "1dmBXO2zmCbsf8qAicqbs0",
+    "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
+    "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f"
+    }
+    return ReviewOut(id=666, **record)
 
   def delete_review(self, review_id: int) -> bool:
     return True
