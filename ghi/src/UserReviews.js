@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
+import { Context } from "./Store";
 
-function UserReviews(props) {
+function UserReviews() {
     const location = useLocation();
-    const album_id = location.state["id"];
-    const [reviews, setReviews] = useState([]);
 
+    const [reviews, setReviews] = useState([]);
+    const [state] = useContext(Context);
+    const account_id = state.currentAccount["id"]
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews`)
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -18,10 +20,8 @@ function UserReviews(props) {
             })
             .then((response) =>
                 setReviews(
-                    response.reviews.filter(
-                        (review) => review.album_id === album_id
-                    )
-                )
+                    response.reviews)
+
             );
     }, []);
 

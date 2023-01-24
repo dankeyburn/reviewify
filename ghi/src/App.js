@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import ReviewForm from "./ReviewForm";
 import SeeReviews from "./SeeReviews";
 import AllReviews from "./AllReviews";
+import UserReviews from "./UserReviews"
 import "./Styles.css";
 import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
@@ -49,6 +50,7 @@ function App() {
                     <Route path="/reviews/new" element={<ReviewForm />} />
                     <Route path="/reviews" element={<SeeReviews />} />
                     <Route path="/reviews/all" element={<AllReviews />} />
+                    <Route path="/reviews/user" element={<UserReviews />} />
                 </Routes>
             </div>
         </>
