@@ -6,6 +6,8 @@ import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import React, { useContext } from "react";
 import { useState } from "react";
+import UserReviews from "./UserReviews";
+import { Button } from "react-bootstrap";
 
 function NavBar() {
     const [context] = useContext(Context);
@@ -41,6 +43,11 @@ function NavBar() {
                     {state.token ? (
                         <>
                             <Logout />
+                            <NavLink
+                                className="navbar-brand"
+                                to="/reviews/user">
+                                <Button>My Reviews</Button>
+                            </NavLink>
                         </>
                     ) : (
                         <>

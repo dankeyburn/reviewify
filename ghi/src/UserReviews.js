@@ -9,21 +9,20 @@ function UserReviews() {
 
     const [reviews, setReviews] = useState([]);
     const [state] = useContext(Context);
-    const account_id = state.currentAccount["id"]
+    const account_id = state.currentAccount["id"];
+
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews`)
+        fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews`
+        )
             .then((response) => {
                 if (response.ok) {
                     return response.json();
                 }
                 throw new Error("Cannot load review data");
             })
-            .then((response) =>
-                setReviews(
-                    response.reviews)
-
-            );
-    }, []);
+            .then((response) => setReviews(response.reviews));
+    }, [account_id]);
 
     return (
         <>
