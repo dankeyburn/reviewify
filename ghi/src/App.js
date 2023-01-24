@@ -15,6 +15,17 @@ function App() {
     const { token } = useAuthContext();
 
     useEffect(() => {
+        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/token/`;
+        const fetchConfig = {
+            method: "GET",
+            credentials: "include",
+        };
+        fetch(accountsUrl, fetchConfig)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
+
         if (token) {
             dispatch({ type: "login" });
         } else {
