@@ -11,7 +11,6 @@ import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 
 function App() {
-    const [context] = useContext(Context);
     const [state, dispatch] = useContext(Context);
     // const [currentAccount, updateCurrent] = useState(state.account);
     const { token } = useAuthContext();
@@ -40,7 +39,6 @@ function App() {
             dispatch({ type: "logout" });
         }
     }, [token, dispatch]);
-    console.log(state);
 
     return (
         <>

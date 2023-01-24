@@ -28,7 +28,6 @@ function LoginModal() {
         formData = new FormData();
         formData.append("username", account.username);
         formData.append("password", account.password);
-        console.log(data);
         const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token/`;
         const fetchConfig = {
             method: "POST",
@@ -62,7 +61,6 @@ function LoginModal() {
                 dispatch({ type: "update_current", payload: accountData });
             });
     };
-    console.log(state);
 
     return (
         <>

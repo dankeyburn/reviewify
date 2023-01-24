@@ -14,6 +14,12 @@ function Logout() {
         };
         await fetch(accountsUrl, fetchConfig);
         dispatch({ type: "logout" });
+        let accountData = {
+            id: null,
+            email: null,
+            username: null,
+        };
+        dispatch({ type: "update_current", payload: accountData });
     };
     return (
         <>
