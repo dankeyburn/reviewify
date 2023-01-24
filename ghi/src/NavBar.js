@@ -5,6 +5,7 @@ import Logout from "./Logout";
 import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import React, { useContext } from "react";
+import { useState } from "react";
 
 function NavBar() {
     const [context] = useContext(Context);
@@ -20,7 +21,6 @@ function NavBar() {
                 height: "120px",
                 borderBottom: "2px solid black",
             }}>
-            <div style={{ color: "black" }}>{context.count}</div>
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img
@@ -29,6 +29,14 @@ function NavBar() {
                         height={110}
                     />
                 </NavLink>
+
+                <div style={{ color: "black" }}>
+                    {state.currentAccount["id"] ? (
+                        <div>Hello, {state.currentAccount["username"]}!</div>
+                    ) : (
+                        <></>
+                    )}
+                </div>
                 <div>
                     {state.token ? (
                         <>

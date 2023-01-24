@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 // import { useEffect } from "react";
@@ -14,6 +14,7 @@ function LoginModal() {
         username: "",
     });
     const [state, dispatch] = useContext(Context);
+    const [currentAccount, updateCurrent] = useState(state.currentAccount);
 
     const handleChange = (event) => {
         setAccount({ ...account, [event.target.name]: event.target.value });
@@ -45,7 +46,23 @@ function LoginModal() {
         } else {
             console.error("Error in logging in");
         }
+        const accountsUrl2 = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/token/`;
+        const fetchConfig2 = {
+            method: "GET",
+            credentials: "include",
+        };
+        fetch(accountsUrl2, fetchConfig2)
+            .then((response) => response.json())
+            .then((data) => {
+                let accountData = {
+                    id: data.account["id"],
+                    email: data.account["email"],
+                    username: data.account["username"],
+                };
+                dispatch({ type: "update_current", payload: accountData });
+            });
     };
+    console.log(state);
 
     return (
         <>

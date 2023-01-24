@@ -8,10 +8,12 @@ import "./Styles.css";
 import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import React, { useContext, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
     const [context] = useContext(Context);
     const [state, dispatch] = useContext(Context);
+    // const [currentAccount, updateCurrent] = useState(state.account);
     const { token } = useAuthContext();
 
     useEffect(() => {
@@ -23,15 +25,22 @@ function App() {
         fetch(accountsUrl, fetchConfig)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                if (data) {
+                    let accountData = {
+                        id: data.account["id"],
+                        email: data.account["email"],
+                        username: data.account["username"],
+                    };
+                    dispatch({ type: "update_current", payload: accountData });
+                }
             });
-
         if (token) {
             dispatch({ type: "login" });
         } else {
             dispatch({ type: "logout" });
         }
-    }, [token]);
+    }, [token, dispatch]);
+    console.log(state);
 
     return (
         <>
