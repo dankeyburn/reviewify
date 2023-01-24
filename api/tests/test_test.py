@@ -88,6 +88,8 @@ def test_reviews_list():
   res = client.get('/api/reviews/')
 
   assert res.status_code == 200
+  assert res.json() == {'reviews': []}
+  app.dependency_overrides = {}
 
 def test_get_review():
   app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
