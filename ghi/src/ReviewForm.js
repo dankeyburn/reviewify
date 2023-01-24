@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { Context } from "./Store";
+
 
 function ReviewForm() {
+    const [state] = useContext(Context);
     const location = useLocation();
     const initial_id = location.state["id"];
     const initial_name = location.state["name"];
     const initial_tracks = location.state["tracks"];
     const image = location.state["img"];
     const [review, setReview] = useState({
-        reviewer_id: "",
+        reviewer_id: state.currentAccount["id"],
         title: "",
         rating: "",
         content: "",
@@ -18,11 +21,12 @@ function ReviewForm() {
         img_url: image,
     });
 
-    useEffect(() => {});
+    useEffect(() => {
+        setReview({...review, reviewer_id: state.currentAccount["id"]})}, []);
 
     const handleChange = (event) => {
         setReview({ ...review, [event.target.name]: event.target.value });
-        console.log(review);
+
     };
 
     const handleSubmit = async (event) => {
@@ -217,7 +221,7 @@ function ReviewForm() {
                                 })}
                             </select>
                         </div>
-                        <div className="form-floating mb-3">
+                        {/* <div className="form-floating mb-3">
                             <input
                                 onChange={handleChange}
                                 value={review.reviewer_id}
@@ -229,7 +233,7 @@ function ReviewForm() {
                                 className="form-control"
                             />
                             <label htmlFor="reviewer_id">Reviewer Id</label>
-                        </div>
+                        </div> */}
                         <button
                             className="btn btn-primary"
                             style={{
