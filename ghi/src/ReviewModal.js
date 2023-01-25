@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { NavLink } from "react-router-dom";
+import { useAuthContext } from "./UseToken";
+import { Context } from "./Store";
+import { useContext } from "react";
+
 
 function ReviewModal(props) {
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
     const [review, setReview] = useState([]);
+    const { token } = useAuthContext();
+    const [state, dispatch] = useContext(Context);
 
     async function search() {
         fetch(
@@ -82,6 +89,30 @@ function ReviewModal(props) {
                     <div>Best Song: {review.best_song}</div>
                     <div>Worst Song: {review.worst_song}</div>
                 </Modal.Body>
+                <div>
+                    {state.token ? (
+                    <Modal.Footer >
+                    <NavLink
+                        to="/reviews/update"
+                        state={{
+                            id: review.album_id,
+                        //     name: album.name,
+                        //     tracks: album.tracks?.items,
+                            img: review.img_url,
+                        }}>
+
+                        <Button
+                            type="button"
+                            className="btn btn-primary btn-sm">
+                            Edit
+                        </Button>
+                    </NavLink>
+                </Modal.Footer>
+                    ) : (
+                        <></>
+                    )}
+            </div>
+
             </Modal>
         </>
     );
