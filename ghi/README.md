@@ -15,12 +15,13 @@
 
 ## Intended market
 
-Lorem ipsum dolor sit amet, consectetur adip
+We are targeting general consumers in the music appreciation community who are looking for reviews from other listeners.
 
 ## Functionality
 
-- Visitors can do this
-- Logged-in users can do that
+- Visitors can search for an artist and the page populates with cards of their albums. Visitors can then click the album to see album release date, album title, tracks, album art, and any reviews the album has received from logged in users. Visitors can then click the reviews as well and read at their leisure. Finally, visitors can create a user account by clicking the Sign Up button.
+
+- Logged-in users can search for an artist and receive a list of their albums. Users can then click the album to see album release date, album title, tracks, album art, and any reviews the album has received from other users. Users can then click the reviews as well and read at their leisure. Users can also click on the My Reviews button to see a page populated with cards of their reviews. Finally, logged-in users can log out by clicking the Log Out button.
 
 ## Project Initilization
 
