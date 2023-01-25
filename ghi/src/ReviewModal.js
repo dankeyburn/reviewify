@@ -6,7 +6,6 @@ import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import { useContext } from "react";
 
-
 function ReviewModal(props) {
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
@@ -32,13 +31,7 @@ function ReviewModal(props) {
         };
         const response = fetch(reviewUrl, fetchConfig);
         if (response.ok) {
-        <div class="alert alert-success" role="alert">
-        Review deleted successfully
-        </div>
-        } else  {
-        <div class="alert alert-danger" role="alert">
-        You cannot delete a review you did not make
-        </div>}
+        }
     }
 
     return (
@@ -107,40 +100,41 @@ function ReviewModal(props) {
                     <div>Worst Song: {review.worst_song}</div>
                 </Modal.Body>
                 <div>
-                    {state.token ? (
-                    <Modal.Footer >
-                    <NavLink
-                        to="/reviews/update"
-                        state={{
-                            album_id: review.album_id,
-                            title: review.title,
-                            rating: review.rating,
-                            content: review.content,
-                            best_song: review.best_song,
-                            worst_song: review.worst_song,
-                            img: review.img_url,
-                            id: review.id
-                        }}>
-
-                        <Button
-                            type="button"
-                            className="btn btn-primary btn-sm">
-                            Edit
-                        </Button>
-                    </NavLink>
-                    <Button
-                        type="button"
-                        className="btn btn-primary btn-sm"
-                        onClick={() => {Delete(); setShow(false)}}
-                        >
-                        Delete
-                    </Button>
-                </Modal.Footer>
+                    {state.token &&
+                    state.currentAccount["id"] === review.reviewer_id ? (
+                        <Modal.Footer>
+                            <NavLink
+                                to="/reviews/update"
+                                state={{
+                                    album_id: review.album_id,
+                                    title: review.title,
+                                    rating: review.rating,
+                                    content: review.content,
+                                    best_song: review.best_song,
+                                    worst_song: review.worst_song,
+                                    img: review.img_url,
+                                    id: review.id,
+                                }}>
+                                <Button
+                                    type="button"
+                                    className="btn btn-primary btn-sm">
+                                    Edit
+                                </Button>
+                            </NavLink>
+                            <Button
+                                type="button"
+                                className="btn btn-primary btn-sm"
+                                onClick={() => {
+                                    Delete();
+                                    setShow(false);
+                                }}>
+                                Delete
+                            </Button>
+                        </Modal.Footer>
                     ) : (
                         <></>
                     )}
-            </div>
-
+                </div>
             </Modal>
         </>
     );
