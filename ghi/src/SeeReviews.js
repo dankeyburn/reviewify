@@ -44,7 +44,8 @@ function SeeReviews(props) {
                                         rating={review.rating}
                                         best_song={review.best_song}
                                         worst_song={review.worst_song}
-                                        reviewer_id={review.reviewer_id}
+                                        reviewer_id={review.id}
+                                        reviewer_name={review.username}
                                     />
                                 </div>
                             );

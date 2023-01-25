@@ -18,16 +18,26 @@ class ReviewIn(BaseModel):
 
 class ReviewOut(ReviewIn):
     id: int
+
+class ReviewOutForList(BaseModel):
+    id: int
+    reviewer_id: int
+    title: str
+    rating: int
+    content: str
+    album_id: str
+    best_song: Optional[str]
+    worst_song: Optional[str]
+    img_url: str
     username: str
 
 
-
 class ReviewsOutAll(BaseModel):
-    reviews: List[ReviewOut]
+    reviews: List
 
 
 class ReviewQueries:
-    def get_all_reviews(self) -> List:
+    def get_all_reviews(self) -> ReviewsOutAll:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(

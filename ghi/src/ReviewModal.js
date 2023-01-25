@@ -8,7 +8,9 @@ function ReviewModal(props) {
     const [review, setReview] = useState([]);
 
     async function search() {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}`)
+        fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}`
+        )
             .then((response) => response.json())
             .then((data) => {
                 setReview(data);
@@ -48,11 +50,15 @@ function ReviewModal(props) {
                             <p className="card-text">
                                 Worst Song: {props.worst_song}
                             </p>
-                            <p className="card-text">
-                                <small className="text-muted">
-                                    Reviewer: {props.reviewer_id}
-                                </small>
-                            </p>
+                            {props.reviewer_name ? (
+                                <p className="card-text">
+                                    <small className="text-muted">
+                                        Reviewer: {props.reviewer_name}
+                                    </small>
+                                </p>
+                            ) : (
+                                <></>
+                            )}
                         </div>
                     </div>
                 </div>
