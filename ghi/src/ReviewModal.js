@@ -23,16 +23,7 @@ function ReviewModal(props) {
             });
     }
 
-    function Delete() {
-        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review.id}`;
-        const fetchConfig = {
-            method: "DELETE",
-            credentials: "include",
-        };
-        const response = fetch(reviewUrl, fetchConfig);
-        if (response.ok) {
-        }
-    }
+    const deleteReview = props.delete_review;
 
     return (
         <>
@@ -132,6 +123,35 @@ function ReviewModal(props) {
                                 Delete
                             </Button>
                         </Modal.Footer>
+                //     {state.token ? (
+                //     <Modal.Footer >
+                //     <NavLink
+                //         to="/reviews/update"
+                //         state={{
+                //             album_id: review.album_id,
+                //             title: review.title,
+                //             rating: review.rating,
+                //             content: review.content,
+                //             best_song: review.best_song,
+                //             worst_song: review.worst_song,
+                //             img: review.img_url,
+                //             id: review.id
+                //         }}>
+
+                //         <Button
+                //             type="button"
+                //             className="btn btn-primary btn-sm">
+                //             Edit
+                //         </Button>
+                //     </NavLink>
+                //     <Button
+                //         type="button"
+                //         className="btn btn-primary btn-sm"
+                //         onClick={props.delete_review(props.id)}
+                //         >
+                //         Delete
+                //     </Button>
+                // </Modal.Footer>
                     ) : (
                         <></>
                     )}

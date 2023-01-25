@@ -22,7 +22,19 @@ function UserReviews() {
                 throw new Error("Cannot load review data");
             })
             .then((response) => setReviews(response.reviews));
-    }, [account_id]);
+    }, [account_id, setReviews]);
+
+    async function deleteReview(review_id) {
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}`;
+        const fetchConfig = {
+            method: "DELETE",
+            credentials: "include",
+        };
+        const response = await fetch(reviewUrl, fetchConfig);
+        if (response.ok) {
+            setReviews(reviews.filter(review => review.id !== review_id));
+        }
+    }
 
     return (
         <>
@@ -44,6 +56,7 @@ function UserReviews() {
                                         best_song={review.best_song}
                                         worst_song={review.worst_song}
                                         reviewer_id={review.reviewer_id}
+                                        delete_review={deleteReview()}
                                     />
                                 </div>
                             );
