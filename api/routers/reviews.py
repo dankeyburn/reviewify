@@ -60,15 +60,15 @@ def update_review(
     review_in: ReviewIn,
     response: Response,
     queries: ReviewQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    # account_data: dict = Depends(authenticator.get_current_account_data)
     ):
     record = queries.update_review(review_id, review_in)
-    review = queries.get_review(
-        review_id,)
+    # review = queries.get_review(
+    #     review_id,)
     if record is None:
         response.status_code = 404
-    elif account_data["id"] != review.reviewer_id:
-        return "You cannot edit a review you did not make"
+    # elif account_data["id"] != review["reviewer_id"]:
+    #     return "You cannot edit a review you did not make"
     else:
         return record
 

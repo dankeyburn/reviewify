@@ -12,10 +12,11 @@ function EditReviewForm(props) {
     const review_rating = location.state["rating"];
     const review_best_song = location.state["best_song"];
     const review_worst_song = location.state["worst_song"];
+    const reviewer_id = location.state["reviewer_id"];
     const review_id = location.state["id"];
     const [tracks, setTracks] = useState([]);
     const [review, setReview] = useState({
-        reviewer_id: state.currentAccount["id"],
+        reviewer_id: reviewer_id,
         title: initial_title,
         rating: review_rating,
         content: review_content,
@@ -43,7 +44,7 @@ function EditReviewForm(props) {
 
     const handleChange = (event) => {
         setReview({ ...review, [event.target.name]: event.target.value });
-    };
+    console.log(review)};
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -72,7 +73,7 @@ function EditReviewForm(props) {
                 worst_song: "",
                 img_url: "",
             });
-            window.location.href = "http://localhost:3000/reviews/user";
+            window.location.href = `${process.env.PUBLIC_URL}/reviews/user`;
         } else {
             console.error("Error in updating review");
         }

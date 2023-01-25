@@ -31,11 +31,6 @@ export default function SearchBar() {
     }
     function Display() {
         document.getElementById("hide-item1").style.display = "none";
-        document.getElementById("hide-item2").style.display = "none";
-    }
-
-    function ShowButton() {
-        document.getElementById("show-button").style.display = "block";
     }
 
 
@@ -50,7 +45,7 @@ export default function SearchBar() {
                             if (event.key === "Enter") {
                                 search();
                                 Display();
-                                ShowButton();
+
                             }
                         }}
                         onChange={(event) => setSearchInput(event.target.value)}
@@ -59,7 +54,7 @@ export default function SearchBar() {
                         onClick={() => {
                             search();
                             Display();
-                            ShowButton();
+
                         }}
                         style={{ border: "2px solid #efeee8" }}>
                         Search

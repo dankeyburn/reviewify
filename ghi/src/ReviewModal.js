@@ -147,6 +147,7 @@ function ReviewModal(props) {
                                 to="/reviews/update"
                                 state={{
                                     album_id: review.album_id,
+                                    reviewer_id: review.reviewer_id,
                                     title: review.title,
                                     rating: review.rating,
                                     content: review.content,
