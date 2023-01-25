@@ -41,9 +41,6 @@ function NavBar() {
                     )}
                 </div>
                 <div>
-
-
-
                     {state.token ? (
                         <>
                             <Link className="navbar-brand" to="/reviews/all">
@@ -60,7 +57,10 @@ function NavBar() {
                         </>
                     ) : (
                         <>
-                            <Link className="navbar-brand" to="/reviews/all">
+                            <Link
+                                className="navbar-brand"
+                                to="/reviews/all"
+                                style={{ marginRight: "0px" }}>
                                 <button className="btn btn-primary">
                                     All Reviews
                                 </button>
