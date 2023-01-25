@@ -59,6 +59,10 @@ class ReviewQueriesMock:
     }
     return ReviewOut(id=666, **record)
 
+  def update_review(self, review_id, review: ReviewIn) -> ReviewOut:
+      review_dict = review.dict()
+      return ReviewOut(id=55, **review_dict)
+
   def delete_review(self, review_id: int) -> bool:
     return True
 
@@ -132,6 +136,41 @@ def test_get_review():
 
   app.dependency_overrides = {}
 
+def test_update_review():
+  app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
+  app.dependency_overrides[authenticator.get_current_account_data] = get_current_account_data_mock
+  review_id = 55
+
+  new_review_body = {
+    "reviewer_id": 1337,
+    "title": "Not so electrifting",
+    "rating": 3,
+    "content": "I can't believe this is live, they gently pushed it over, and the audio quality is alright",
+    "album_id": "1dmBXO2zmCbsf8qAicqbs0",
+    "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
+    "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
+  }
+
+# Act
+  res = client.put(f'/api/reviews/{review_id}', json.dumps(new_review_body))
+
+  # Assert
+  assert res.status_code == 200
+  assert res.json() == {
+    "reviewer_id": 1337,
+    "title": "Not so electrifting",
+    "rating": 3,
+    "content": "I can't believe this is live, they gently pushed it over, and the audio quality is alright",
+    "album_id": "1dmBXO2zmCbsf8qAicqbs0",
+    "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
+    "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
+    "id": 55
+  }
+
+  # A cleanup
+  app.dependency_overrides = {}
 
 def test_delete_review():
   # Arrange
