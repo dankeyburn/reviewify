@@ -52,7 +52,7 @@ function ReviewForm() {
                 worst_song: "",
                 img_url: "",
             });
-            window.location.href = "http://localhost:3000/reviews/user";
+            window.location.href = `${process.env.PUBLIC_URL}/reviews/user`;
         } else {
             console.error("Error in creating review");
         }
