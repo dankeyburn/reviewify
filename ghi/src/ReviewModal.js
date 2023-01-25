@@ -127,6 +127,7 @@ function ReviewModal(props) {
                                 onClick={() => {
                                     Delete();
                                     setShow(false);
+                                    window.location.href = "http://localhost:3000/reviews/user"
                                 }}>
                                 Delete
                             </Button>
