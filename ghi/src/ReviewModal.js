@@ -83,7 +83,7 @@ function ReviewModal(props) {
             <Modal
                 key={props.review_id}
                 show={show}
-                // fullscreen={fullscreen}
+                fullscreen={fullscreen}
                 onHide={() => setShow(false)}
                 className="modal fade bd-example-modal-lg"
                 aria-labelledby="example-custom-modal-styling-title">
@@ -118,24 +118,24 @@ function ReviewModal(props) {
                     </div>
                     <div
                         style={{
-                            gridArea: "4 / 1 / 7 / 7",
+                            gridArea: "3 / 4 / 4 / 7",
                             marginTop: "20px",
+                            marginLeft: "20px",
                         }}>
                         Content:<br></br> {review.content}
                     </div>
                     <div
                         style={{
-                            gridArea: "3 / 4 / 4 / 7",
-                            marginLeft: "4px",
-                        }}>
-                        Best Song: {review.best_song}
-                    </div>
-                    <div
-                        style={{
                             gridArea: "2 / 4 / 3 / 7",
-                            marginLeft: "4px",
+                            marginLeft: "20px",
                         }}>
-                        Worst Song: {review.worst_song}
+                        <div>Rating: {review.rating} out of 5</div>
+                        <div style={{ marginTop: "20px" }}>
+                            Best Song: {review.best_song}
+                        </div>
+                        <div style={{ marginTop: "20px" }}>
+                            Worst Song: {review.worst_song}
+                        </div>
                     </div>
                 </Modal.Body>
                 <div>
