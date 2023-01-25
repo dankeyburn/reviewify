@@ -67,7 +67,7 @@ def update_review(
         review_id,)
     if record is None:
         response.status_code = 404
-    elif account_data["id"] != review["reviewer_id"]:
+    elif account_data["id"] != review.reviewer_id:
         return "You cannot edit a review you did not make"
     else:
         return record
