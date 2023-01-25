@@ -3,11 +3,10 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
 import { Context } from "./Store";
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 function UserReviews() {
-    const location = useLocation();
-
     const [reviews, setReviews] = useState([]);
     const [state] = useContext(Context);
     const account_id = state.currentAccount["id"];
@@ -40,8 +39,8 @@ function UserReviews() {
     return (
         <>
             <div className="App" style={{ marginTop: "30px" }}></div>
-            {reviews !== [] ? (
-                <container>
+            {reviews.length > 0 ? (
+                <Container>
                     <div className="row justify-content-center">
                         {reviews.map((review) => {
                             return (
@@ -64,9 +63,15 @@ function UserReviews() {
                             );
                         })}
                     </div>
-                </container>
+                </Container>
             ) : (
-                <div>No Reviews Yet</div>
+                <Container>
+                    <div
+                        style={{ marginTop: "50px" }}
+                        className="row justify-content-center">
+                        You Have No Reiviews Yet!
+                    </div>
+                </Container>
             )}
         </>
     );

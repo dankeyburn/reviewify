@@ -34,7 +34,9 @@ function NavBar() {
 
                 <div style={{ color: "black" }}>
                     {state.currentAccount["id"] ? (
-                        <div>Hello, {state.currentAccount["username"]}!</div>
+                        <div style={{ fontSize: "20px" }}>
+                            Hello, {state.currentAccount["username"]}!
+                        </div>
                     ) : (
                         <></>
                     )}

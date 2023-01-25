@@ -93,12 +93,51 @@ function ReviewModal(props) {
                         Review Details
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <img src={review.img_url} />
-                    <div>Title: {review.title}</div>
-                    <p>{review.content}</p>
-                    <div>Best Song: {review.best_song}</div>
-                    <div>Worst Song: {review.worst_song}</div>
+                <Modal.Body
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(6, 1fr)",
+                        gridTemplateRows: "repeat(5, 1fr)",
+                    }}>
+                    <img
+                        alt="Album Cover"
+                        src={review.img_url}
+                        style={{
+                            gridArea: "1 / 1 / 4 / 4",
+                            objectFit: "contain",
+                            maxWidth: "100%",
+                        }}
+                    />
+
+                    <div
+                        style={{
+                            gridArea: "1 / 4 / 2 / 7",
+                            textAlign: "center",
+                            fontSize: "20px",
+                        }}>
+                        {review.title}
+                    </div>
+                    <div
+                        style={{
+                            gridArea: "3 / 4 / 4 / 7",
+                            marginTop: "20px",
+                            marginLeft: "20px",
+                        }}>
+                        Content:<br></br> {review.content}
+                    </div>
+                    <div
+                        style={{
+                            gridArea: "2 / 4 / 3 / 7",
+                            marginLeft: "20px",
+                        }}>
+                        <div>Rating: {review.rating} out of 5</div>
+                        <div style={{ marginTop: "20px" }}>
+                            Best Song: {review.best_song}
+                        </div>
+                        <div style={{ marginTop: "20px" }}>
+                            Worst Song: {review.worst_song}
+                        </div>
+                    </div>
                 </Modal.Body>
                 <div>
                     {state.token &&
