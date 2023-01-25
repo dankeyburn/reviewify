@@ -83,7 +83,7 @@ function ReviewModal(props) {
             <Modal
                 key={props.review_id}
                 show={show}
-                fullscreen={fullscreen}
+                // fullscreen={fullscreen}
                 onHide={() => setShow(false)}
                 className="modal fade bd-example-modal-lg"
                 aria-labelledby="example-custom-modal-styling-title">
@@ -92,12 +92,51 @@ function ReviewModal(props) {
                         Review Details
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <img src={review.img_url} />
-                    <div>Title: {review.title}</div>
-                    <p>{review.content}</p>
-                    <div>Best Song: {review.best_song}</div>
-                    <div>Worst Song: {review.worst_song}</div>
+                <Modal.Body
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(6, 1fr)",
+                        gridTemplateRows: "repeat(5, 1fr)",
+                    }}>
+                    <img
+                        alt="Album Cover"
+                        src={review.img_url}
+                        style={{
+                            gridArea: "1 / 1 / 4 / 4",
+                            objectFit: "contain",
+                            maxWidth: "100%",
+                        }}
+                    />
+
+                    <div
+                        style={{
+                            gridArea: "1 / 4 / 2 / 7",
+                            textAlign: "center",
+                            fontSize: "20px",
+                        }}>
+                        {review.title}
+                    </div>
+                    <div
+                        style={{
+                            gridArea: "4 / 1 / 7 / 7",
+                            marginTop: "20px",
+                        }}>
+                        Content:<br></br> {review.content}
+                    </div>
+                    <div
+                        style={{
+                            gridArea: "3 / 4 / 4 / 7",
+                            marginLeft: "4px",
+                        }}>
+                        Best Song: {review.best_song}
+                    </div>
+                    <div
+                        style={{
+                            gridArea: "2 / 4 / 3 / 7",
+                            marginLeft: "4px",
+                        }}>
+                        Worst Song: {review.worst_song}
+                    </div>
                 </Modal.Body>
                 <div>
                     {state.token &&

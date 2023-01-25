@@ -23,11 +23,12 @@ function UserReviews() {
             })
             .then((response) => setReviews(response.reviews));
     }, [account_id]);
+    console.log(reviews);
 
     return (
         <>
             <div className="App" style={{ marginTop: "30px" }}></div>
-            {reviews !== [] ? (
+            {reviews.length > 0 ? (
                 <container>
                     <div className="row justify-content-center">
                         {reviews.map((review) => {
@@ -51,7 +52,13 @@ function UserReviews() {
                     </div>
                 </container>
             ) : (
-                <div>No Reviews Yet</div>
+                <container>
+                    <div
+                        style={{ marginTop: "50px" }}
+                        className="row justify-content-center">
+                        You Have No Reiviews Yet!
+                    </div>
+                </container>
             )}
         </>
     );
