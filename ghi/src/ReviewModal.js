@@ -6,7 +6,6 @@ import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import { useContext } from "react";
 
-
 function ReviewModal(props) {
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
@@ -124,8 +123,7 @@ function ReviewModal(props) {
                     ) : (
                         <></>
                     )}
-            </div>
-
+                </div>
             </Modal>
         </>
     );
