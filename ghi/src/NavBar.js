@@ -8,11 +8,10 @@ import React, { useContext } from "react";
 // import { useState } from "react";
 // import UserReviews from "./UserReviews";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NavBar() {
-    // const [context] = useContext(Context);
     const [state] = useContext(Context);
-    // const { token } = useAuthContext();
 
     return (
         <nav
@@ -41,14 +40,17 @@ function NavBar() {
                         <></>
                     )}
                 </div>
-
                 <div>
 
 
 
                     {state.token ? (
                         <>
-
+                            <Link className="navbar-brand" to="/reviews/all">
+                                <button className="btn btn-primary">
+                                    All Reviews
+                                </button>
+                            </Link>
                             <Logout />
                             <NavLink
                                 className="navbar-brand"
@@ -58,7 +60,11 @@ function NavBar() {
                         </>
                     ) : (
                         <>
-
+                            <Link className="navbar-brand" to="/reviews/all">
+                                <button className="btn btn-primary">
+                                    All Reviews
+                                </button>
+                            </Link>
                             <LoginModal />
                             <SignupModal />
                         </>
