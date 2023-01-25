@@ -24,6 +24,7 @@ function EditReviewForm(props) {
         worst_song: review_worst_song,
         img_url: image,
     });
+
     function GetTracks()  {
         fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${album_id}`)
         .then((response) => response.json())
@@ -47,7 +48,7 @@ function EditReviewForm(props) {
         event.preventDefault();
         const data = { ...review };
         console.log(data);
-        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}`;
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}/`;
         const fetchConfig = {
             method: "PUT",
             body: JSON.stringify(data),
@@ -71,7 +72,7 @@ function EditReviewForm(props) {
             });
             window.location.href = "http://localhost:3000/reviews/user";
         } else {
-            console.error("Error in creating review");
+            console.error("Error in updating review");
         }
     };
 

@@ -16,12 +16,29 @@ function ReviewModal(props) {
 
     async function search() {
         fetch(
-            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}`
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}/`
         )
             .then((response) => response.json())
             .then((data) => {
                 setReview(data);
             });
+    }
+
+    function Delete() {
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review.id}`;
+        const fetchConfig = {
+            method: "DELETE",
+            credentials: "include",
+        };
+        const response = fetch(reviewUrl, fetchConfig);
+        if (response.ok) {
+        <div class="alert alert-success" role="alert">
+        Review deleted successfully
+        </div>
+        } else  {
+        <div class="alert alert-danger" role="alert">
+        You cannot delete a review you did not make
+        </div>}
     }
 
     return (
@@ -111,6 +128,13 @@ function ReviewModal(props) {
                             Edit
                         </Button>
                     </NavLink>
+                    <Button
+                        type="button"
+                        className="btn btn-primary btn-sm"
+                        onClick={() => {Delete(); setShow(false)}}
+                        >
+                        Delete
+                    </Button>
                 </Modal.Footer>
                     ) : (
                         <></>
