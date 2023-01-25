@@ -23,14 +23,15 @@ function ReviewModal(props) {
             });
     }
 
-    function Delete() {
-        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review.id}`;
+   async function deleteReview(review_id) {
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}`;
         const fetchConfig = {
             method: "DELETE",
             credentials: "include",
         };
-        const response = fetch(reviewUrl, fetchConfig);
+        const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok) {
+            setReview(review.filter(review => review.id !== review_id));
         }
     }
 
@@ -164,12 +165,14 @@ function ReviewModal(props) {
                                 type="button"
                                 className="btn btn-primary btn-sm"
                                 onClick={() => {
-                                    Delete();
+                                    deleteReview(review.id);
                                     setShow(false);
+                                    window.location.href = "http://localhost:3000/reviews/user"
                                 }}>
                                 Delete
                             </Button>
                         </Modal.Footer>
+
                     ) : (
                         <></>
                     )}
