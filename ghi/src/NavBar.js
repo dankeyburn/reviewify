@@ -2,17 +2,17 @@ import { NavLink } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
 import Logout from "./Logout";
-import { useAuthContext } from "./UseToken";
+// import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import React, { useContext } from "react";
-import { useState } from "react";
-import UserReviews from "./UserReviews";
+// import { useState } from "react";
+// import UserReviews from "./UserReviews";
 import { Button } from "react-bootstrap";
 
 function NavBar() {
-    const [context] = useContext(Context);
+    // const [context] = useContext(Context);
     const [state] = useContext(Context);
-    const { token } = useAuthContext();
+    // const { token } = useAuthContext();
 
     return (
         <nav

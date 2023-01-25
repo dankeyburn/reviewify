@@ -13,7 +13,7 @@ function EditReviewForm(props) {
     const review_best_song = location.state["best_song"];
     const review_worst_song = location.state["worst_song"];
     const review_id = location.state["id"];
-    const [tracks, setTracks] = useState([])
+    const [tracks, setTracks] = useState([]);
     const [review, setReview] = useState({
         reviewer_id: state.currentAccount["id"],
         title: initial_title,
@@ -25,19 +25,20 @@ function EditReviewForm(props) {
         img_url: image,
     });
 
-    function GetTracks()  {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${album_id}`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            setTracks(data.tracks.items.filter(track => track.name));
-        });
+    function GetTracks() {
+        fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${album_id}`
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setTracks(data.tracks.items.filter((track) => track.name));
+            });
     }
-
 
     useEffect(() => {
         setReview({ ...review, reviewer_id: state.currentAccount["id"] });
-        GetTracks()
+        GetTracks();
     }, []);
 
     const handleChange = (event) => {
@@ -58,6 +59,7 @@ function EditReviewForm(props) {
             credentials: "include",
         };
         const response = await fetch(reviewUrl, fetchConfig);
+        // console.log(response);
         if (response.ok) {
             const newreview = await response.json();
             setReview({
@@ -225,10 +227,7 @@ function EditReviewForm(props) {
                                 })}
                             </select>
                         </div>
-                        <button
-                            className="btn btn-primary">
-                            Update
-                        </button>
+                        <button className="btn btn-primary">Update</button>
                     </form>
                 </div>
             </div>

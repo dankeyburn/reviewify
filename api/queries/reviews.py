@@ -151,6 +151,7 @@ class ReviewQueries:
                     review.album_id,
                     review.best_song,
                     review.worst_song,
+                    review.img_url,
                     review_id
                 ]
                 cur.execute(
@@ -163,8 +164,9 @@ class ReviewQueries:
                         , album_id = %s
                         , best_song = %s
                         , worst_song = %s
+                        , img_url = %s
                     WHERE id = %s
-                    RETURNING id, reviewer_id, title, rating, content, album_id, best_song, worst_song
+                    RETURNING id, reviewer_id, title, rating, content, album_id, best_song, worst_song, img_url
                     """,
                     params,
                 )
