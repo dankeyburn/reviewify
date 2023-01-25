@@ -27,7 +27,6 @@ class AccountsOutAll(BaseModel):
 
 class AccountsQueries:
     def get_account(self, username: str) -> AccountOut:
-        # connect the database
         with pool.connection() as conn:
             # get a cursor (something to run SQL with)
             with conn.cursor() as db:

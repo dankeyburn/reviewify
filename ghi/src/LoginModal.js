@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-// import Button from "react-bootstrap/Button";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-// import { useEffect } from "react";
-import { useToken } from "./UseToken";
 import { useContext } from "react";
 import { Context } from "./Store";
 
 function LoginModal() {
-    const [token, login] = useToken();
     const [show, setShow] = useState(false);
     const [account, setAccount] = useState({
         password: "",
@@ -22,7 +18,6 @@ function LoginModal() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = { username: account.username, password: account.password };
         event.preventDefault();
         let formData = null;
         formData = new FormData();

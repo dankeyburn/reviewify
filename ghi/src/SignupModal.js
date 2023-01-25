@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useEffect } from "react";
 
 function SignupModal() {
     const [show, setShow] = useState(false);
@@ -14,14 +12,12 @@ function SignupModal() {
 
     const handleChange = (event) => {
         setAccount({ ...account, [event.target.name]: event.target.value });
-        console.log(account);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = { ...account };
         if (data.password === data.passwordConfirm) {
-            console.log(data);
             const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/`;
             const fetchConfig = {
                 method: "POST",
@@ -32,14 +28,13 @@ function SignupModal() {
             };
             const response = await fetch(accountsUrl, fetchConfig);
             if (response.ok) {
-                const newaccount = await response.json();
                 setAccount({
                     email: "",
                     password: "",
                     passwordConfirm: "",
                     username: "",
                 });
-                setShow(false)
+                setShow(false);
             } else {
                 console.error("Error in creating review");
             }
@@ -64,7 +59,7 @@ function SignupModal() {
                         Sign Up
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{color:"black"}}>
+                <Modal.Body style={{ color: "black" }}>
                     <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input

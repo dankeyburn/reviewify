@@ -12,7 +12,6 @@ function AlbumModal(props) {
     const { token } = useAuthContext();
     const [state, dispatch] = useContext(Context);
     const [artist, setArtist] = useState("");
-    // const [loggedIn, setLoggedIn] = useState();
 
     async function search() {
         fetch(
@@ -74,7 +73,6 @@ function AlbumModal(props) {
                         </div>
                         <div
                             style={{
-                                // fontWeight: "bold",
                                 textAlign: "center",
                                 fontSize: "20px",
                                 marginBottom: "20px",

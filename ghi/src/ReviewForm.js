@@ -31,7 +31,6 @@ function ReviewForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = { ...review };
-        console.log(data);
         const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`;
         const fetchConfig = {
             method: "POST",
@@ -43,7 +42,6 @@ function ReviewForm() {
         };
         const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok) {
-            const newreview = await response.json();
             setReview({
                 reviewer_id: "",
                 title: "",
@@ -234,10 +232,7 @@ function ReviewForm() {
                             />
                             <label htmlFor="reviewer_id">Reviewer Id</label>
                         </div> */}
-                        <button
-                            className="btn btn-primary">
-                            Create
-                        </button>
+                        <button className="btn btn-primary">Create</button>
                     </form>
                 </div>
             </div>

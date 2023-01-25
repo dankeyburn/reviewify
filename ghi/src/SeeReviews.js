@@ -60,20 +60,3 @@ function SeeReviews(props) {
 }
 
 export default SeeReviews;
-
-// <div>
-//     <div>
-//         Reviews:
-//         {reviews.map((review) => {
-//             return (
-//                 <div key={review.id}>
-//                     <ReviewModal
-//                     id={review.id}
-//                     title={review.title}/>
-//                     <div>Rating: {review.rating}</div>
-//                     <div>Reviewer ID: {review.reviewer_id}</div>
-//                 </div>
-//             );
-//         })}
-//     </div>
-// </div>

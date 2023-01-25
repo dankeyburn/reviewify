@@ -1,4 +1,3 @@
-# router.py
 from queries.accounts import Account
 
 from fastapi import (

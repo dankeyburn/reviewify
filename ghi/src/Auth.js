@@ -20,9 +20,8 @@ async function login(username, password) {
             if (response.ok) {
                 const data = await response.json();
                 const token = data.access_token;
-                const request = await fetch(url, {
+                await fetch(url, {
                     headers: { Authorization: `Bearer ${token}` },
-                    // Other fetch options, like method and body, if applicable
                 });
             }
         } catch (e) {}
@@ -30,5 +29,4 @@ async function login(username, password) {
     }
     let error = await response.json();
     return error;
-    // DO SOMETHING WITH THE ERROR, IF YOU WANT
 }

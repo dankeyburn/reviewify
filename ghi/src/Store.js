@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import { useAuthContext } from "./UseToken";
 
 const initialState = {
     token: null,

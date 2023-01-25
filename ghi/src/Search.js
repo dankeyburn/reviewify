@@ -33,7 +33,6 @@ export default function SearchBar() {
         document.getElementById("hide-item1").style.display = "none";
     }
 
-
     return (
         <div className="App" style={{ marginTop: "30px" }}>
             <Container>
@@ -45,7 +44,6 @@ export default function SearchBar() {
                             if (event.key === "Enter") {
                                 search();
                                 Display();
-
                             }
                         }}
                         onChange={(event) => setSearchInput(event.target.value)}
@@ -54,7 +52,6 @@ export default function SearchBar() {
                         onClick={() => {
                             search();
                             Display();
-
                         }}
                         style={{ border: "2px solid #efeee8" }}>
                         Search

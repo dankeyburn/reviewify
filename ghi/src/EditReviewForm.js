@@ -32,7 +32,6 @@ function EditReviewForm(props) {
         )
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setTracks(data.tracks.items.filter((track) => track.name));
             });
     }
@@ -44,12 +43,11 @@ function EditReviewForm(props) {
 
     const handleChange = (event) => {
         setReview({ ...review, [event.target.name]: event.target.value });
-    console.log(review)};
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = { ...review };
-        console.log(data);
         const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}/`;
         const fetchConfig = {
             method: "PUT",
@@ -60,9 +58,8 @@ function EditReviewForm(props) {
             credentials: "include",
         };
         const response = await fetch(reviewUrl, fetchConfig);
-        // console.log(response);
         if (response.ok) {
-            const newreview = await response.json();
+            await response.json();
             setReview({
                 reviewer_id: "",
                 title: "",

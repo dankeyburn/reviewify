@@ -1,10 +1,8 @@
 import React, { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
 import { Context } from "./Store";
 import { Container } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 
 function UserReviews() {
     const [reviews, setReviews] = useState([]);
@@ -23,18 +21,6 @@ function UserReviews() {
             })
             .then((response) => setReviews(response.reviews));
     }, [account_id, setReviews]);
-
-    // async function deleteReview(review_id) {
-    //     const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}`;
-    //     const fetchConfig = {
-    //         method: "DELETE",
-    //         credentials: "include",
-    //     };
-    //     const response = await fetch(reviewUrl, fetchConfig);
-    //     if (response.ok) {
-    //         setReviews(reviews.filter(review => review.id !== review_id));
-    //     }
-    // }
 
     return (
         <>
@@ -56,9 +42,7 @@ function UserReviews() {
                                         best_song={review.best_song}
                                         worst_song={review.worst_song}
                                         reviewer_id={review.reviewer_id}
-                                        // delete_review={deleteReview()}
                                     />
-                                    {/* <Button onClick={deleteReview(review.id)} >Delete</Button> */}
                                 </div>
                             );
                         })}

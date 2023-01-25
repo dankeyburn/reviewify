@@ -60,15 +60,10 @@ def update_review(
     review_in: ReviewIn,
     response: Response,
     queries: ReviewQueries = Depends(),
-    # account_data: dict = Depends(authenticator.get_current_account_data)
     ):
     record = queries.update_review(review_id, review_in)
-    # review = queries.get_review(
-    #     review_id,)
     if record is None:
         response.status_code = 404
-    # elif account_data["id"] != review["reviewer_id"]:
-    #     return "You cannot edit a review you did not make"
     else:
         return record
 
@@ -78,15 +73,6 @@ def update_review(
 def delete_review(
     review_id: int,
     queries: ReviewQueries = Depends(),
-    # account_data: dict = Depends(authenticator.get_current_account_data)
     ):
-    # review = queries.get_review(
-    #     review_id,
-
-    #     )
-    # print(review)
-    # if account_data["id"] == review["reviewer_id"]:
     queries.delete_review(review_id)
     return True
-    # else:
-    #     return  "You cannot delete a review you did not make"

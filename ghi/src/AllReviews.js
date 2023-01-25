@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Container, Row, Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function AllReviews() {
     const [reviews, setReviews] = useState([]);
@@ -73,8 +72,3 @@ function AllReviews() {
 }
 
 export default AllReviews;
-
-// <Card
-//     key={review.id}>
-//     <img src={review.img_url}/>
-// </Card>
