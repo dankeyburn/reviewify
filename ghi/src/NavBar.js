@@ -41,6 +41,9 @@ function NavBar() {
                         <></>
                     )}
                 </div>
+                            <div>
+                                <NavLink className="navbar-brand" to="/reviews/all"><Button style={{"display":"none"}} id="show-button" className="btn btn-primary">All Reviews</Button></NavLink>
+                            </div>
                 <div>
                     {state.token ? (
                         <>
