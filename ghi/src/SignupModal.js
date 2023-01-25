@@ -39,6 +39,7 @@ function SignupModal() {
                     passwordConfirm: "",
                     username: "",
                 });
+                setShow(false)
             } else {
                 console.error("Error in creating review");
             }

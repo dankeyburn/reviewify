@@ -41,6 +41,9 @@ function NavBar() {
                     )}
                 </div>
                 <div>
+
+
+
                     {state.token ? (
                         <>
                             <Link className="navbar-brand" to="/reviews/all">
