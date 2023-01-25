@@ -11,13 +11,17 @@ function AlbumModal(props) {
     const [album, setAlbum] = useState([]);
     const { token } = useAuthContext();
     const [state, dispatch] = useContext(Context);
+    const [artist, setArtist] = useState("");
     // const [loggedIn, setLoggedIn] = useState();
 
     async function search() {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${props.album_id}`)
+        fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${props.album_id}`
+        )
             .then((response) => response.json())
             .then((data) => {
                 setAlbum(data);
+                setArtist(data.artists[0]["name"]);
             });
     }
 
@@ -43,7 +47,6 @@ function AlbumModal(props) {
                     <Modal.Title id="example-custom-modal-styling-title">
                         Album Details
                     </Modal.Title>
-                    {/* <Modal.Img src={album.images?[0].url} /> */}
                 </Modal.Header>
                 <Modal.Body
                     style={{
@@ -69,13 +72,20 @@ function AlbumModal(props) {
                             }}>
                             {album.name}
                         </div>
-
+                        <div
+                            style={{
+                                // fontWeight: "bold",
+                                textAlign: "center",
+                                fontSize: "20px",
+                                marginBottom: "20px",
+                            }}>
+                            {artist}
+                        </div>
                         <div>Release Date: {album.release_date}</div>
                         <div>Label: {album.label}</div>
                     </div>
                     <div
                         style={{
-                            // height: "100px",
                             gridArea: "1 / 1 / 3 / 3",
                         }}>
                         <img
@@ -88,6 +98,13 @@ function AlbumModal(props) {
                         style={{
                             gridArea: "3 / 3 / 6 / 6",
                         }}>
+                        <div
+                            style={{
+                                textAlign: "center",
+                                marginBottom: "10px",
+                            }}>
+                            Tracks
+                        </div>
                         <ol
                             style={{
                                 height: "400px",
@@ -95,14 +112,18 @@ function AlbumModal(props) {
                                 overflow: "hidden",
                                 overflowY: "scroll",
                             }}>
-                            Tracks
                             {album.tracks?.items.map((track) => {
                                 return <li key={track.id}>{track.name}</li>;
                             })}
                         </ol>
                     </div>
 
-                    <div>
+                    <div
+                        style={{
+                            display: "flex",
+                            marginTop: "20px",
+                            marginLeft: "60px",
+                        }}>
                         {state.token ? (
                             <NavLink
                                 to="/reviews/new"
@@ -113,6 +134,7 @@ function AlbumModal(props) {
                                     img: props.img_url,
                                 }}>
                                 <Button
+                                    style={{ width: "100px", height: "60px" }}
                                     type="button"
                                     className="btn btn-primary btn-sm">
                                     Review
@@ -130,6 +152,7 @@ function AlbumModal(props) {
                             to="/reviews"
                             state={{ id: props.album_id }}>
                             <Button
+                                style={{ width: "100px", height: "60px" }}
                                 type="button"
                                 className="btn btn-primary btn-sm">
                                 See Reviews
