@@ -18,6 +18,8 @@ class ReviewIn(BaseModel):
 
 class ReviewOut(ReviewIn):
     id: int
+    username: str
+
 
 
 class ReviewsOutAll(BaseModel):
@@ -25,21 +27,24 @@ class ReviewsOutAll(BaseModel):
 
 
 class ReviewQueries:
-    def get_all_reviews(self) -> ReviewsOutAll:
+    def get_all_reviews(self) -> List:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id
-                        , reviewer_id
-                        , title
-                        , rating
-                        , content
-                        , album_id
-                        , best_song
-                        , worst_song
-                        , img_url
-                    FROM reviews
+                    SELECT r.id
+                        , r.reviewer_id
+                        , r.title
+                        , r.content
+                        , r.rating
+                        , r.album_id
+                        , r.best_song
+                        , r.worst_song
+                        , r.img_url
+                        , a.username
+                    FROM reviews r
+                    LEFT JOIN accounts a
+                        ON(a.id = r.reviewer_id)
                     """
                 )
 
