@@ -95,10 +95,14 @@ function ReviewModal(props) {
                     <NavLink
                         to="/reviews/update"
                         state={{
-                            id: review.album_id,
-                        //     name: album.name,
-                        //     tracks: album.tracks?.items,
+                            album_id: review.album_id,
+                            title: review.title,
+                            rating: review.rating,
+                            content: review.content,
+                            best_song: review.best_song,
+                            worst_song: review.worst_song,
                             img: review.img_url,
+                            id: review.id
                         }}>
 
                         <Button

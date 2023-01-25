@@ -235,11 +235,7 @@ function ReviewForm() {
                             <label htmlFor="reviewer_id">Reviewer Id</label>
                         </div> */}
                         <button
-                            className="btn btn-primary"
-                            style={{
-                                backgroundColor: "#c69f3a",
-                                border: "2px solid black",
-                            }}>
+                            className="btn btn-primary">
                             Create
                         </button>
                     </form>
