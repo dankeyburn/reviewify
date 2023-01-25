@@ -18,51 +18,55 @@ function AllReviews() {
 
     return (
         <>
-            <div className="App" style={{ marginTop: "30px"}}></div>
-            <container>
+            <div className="App" style={{ marginTop: "30px" }}></div>
+            <Container>
                 <div className="row justify-content-center">
-                        {reviews.map((review) => {
-                            return (
-                                <div
-                                    className="card mb-3 w-100 justify-content-around"
-                                    style={{ maxWidth: "540px"}}>
-                                    <div className="row no-gutters">
-                                        <div className="col-md-4" style={{display: 'flex', alignItems: 'center'}}>
-                                            <img
-                                                src={review.img_url}
-                                                className="card-img"
-                                                alt="..."
-                                                style={{paddingLeft: '15px'}}
-                                            />
-                                        </div>
-                                        <div className="col-md-8">
-                                            <div className="card-body">
-                                                <h5 className="card-title">
-                                                    {review.title}
-                                                </h5>
-                                                <p className="card-text">
-                                                    Rating: {review.rating} out of 5
-                                                </p>
-                                                <p className="card-text">
-                                                    Best Song: {review.best_song}
-                                                </p>
-                                                <p className="card-text">
-                                                    Worst Song: {review.worst_song}
-                                                </p>
-                                                <p className="card-text">
-                                                    <small className="text-muted">
-                                                        Reviewer:{" "}
-                                                        {review.reviewer_id}
-                                                    </small>
-                                                </p>
-                                            </div>
+                    {reviews.map((review) => {
+                        return (
+                            <div
+                                className="card mb-3 w-100 justify-content-around"
+                                style={{ maxWidth: "540px" }}>
+                                <div className="row no-gutters">
+                                    <div
+                                        className="col-md-4"
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                        }}>
+                                        <img
+                                            src={review.img_url}
+                                            className="card-img"
+                                            alt="..."
+                                            style={{ paddingLeft: "15px" }}
+                                        />
+                                    </div>
+                                    <div className="col-md-8">
+                                        <div className="card-body">
+                                            <h5 className="card-title">
+                                                {review.title}
+                                            </h5>
+                                            <p className="card-text">
+                                                Rating: {review.rating} out of 5
+                                            </p>
+                                            <p className="card-text">
+                                                Best Song: {review.best_song}
+                                            </p>
+                                            <p className="card-text">
+                                                Worst Song: {review.worst_song}
+                                            </p>
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Reviewer: {review.username}
+                                                </small>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            );
-                        })}
-                        </div>
-            </container>
+                            </div>
+                        );
+                    })}
+                </div>
+            </Container>
         </>
     );
 }

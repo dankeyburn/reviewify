@@ -19,9 +19,21 @@ class ReviewIn(BaseModel):
 class ReviewOut(ReviewIn):
     id: int
 
+class ReviewOutForList(BaseModel):
+    id: int
+    reviewer_id: int
+    title: str
+    rating: int
+    content: str
+    album_id: str
+    best_song: Optional[str]
+    worst_song: Optional[str]
+    img_url: str
+    username: str
+
 
 class ReviewsOutAll(BaseModel):
-    reviews: List[ReviewOut]
+    reviews: List
 
 
 class ReviewQueries:
@@ -30,16 +42,19 @@ class ReviewQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id
-                        , reviewer_id
-                        , title
-                        , rating
-                        , content
-                        , album_id
-                        , best_song
-                        , worst_song
-                        , img_url
-                    FROM reviews
+                    SELECT r.id
+                        , r.reviewer_id
+                        , r.title
+                        , r.content
+                        , r.rating
+                        , r.album_id
+                        , r.best_song
+                        , r.worst_song
+                        , r.img_url
+                        , a.username
+                    FROM reviews r
+                    LEFT JOIN accounts a
+                        ON(a.id = r.reviewer_id)
                     """
                 )
 
@@ -51,6 +66,50 @@ class ReviewQueries:
                     results.append(record)
 
                 return results
+
+    def get_all_reviews_by_account(self, account_id) -> ReviewsOutAll:
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM reviews
+                    WHERE reviewer_id = %s
+                    """,
+                    [account_id]
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+
+    def get_all_reviews_by_album(self, album_id: str) -> ReviewsOutAll:
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM reviews
+                    WHERE album_id = %s
+                    """,
+                    [album_id]
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
 
     def get_review(self, id) -> ReviewOut:
         with pool.connection() as conn:
@@ -93,7 +152,7 @@ class ReviewQueries:
                     review.best_song,
                     review.worst_song,
                     review.img_url,
-                    review.id
+                    review_id
                 ]
                 cur.execute(
                     """

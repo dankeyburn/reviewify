@@ -53,7 +53,7 @@ export default function SearchBar() {
                         onChange={(event) => setSearchInput(event.target.value)}
                     />
                     <Button
-                        onClick={search}
+                        onClick={() => {search(); Display()}}
                         style={{ border: "2px solid #efeee8" }}>
                         Search
                     </Button>

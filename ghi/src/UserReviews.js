@@ -1,29 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
+import { Context } from "./Store";
+import Button from "react-bootstrap/Button";
 
-function SeeReviews(props) {
+function UserReviews() {
     const location = useLocation();
-    const album_id = location.state["id"];
+
     const [reviews, setReviews] = useState([]);
+    const [state] = useContext(Context);
+    const account_id = state.currentAccount["id"];
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`)
+        fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews`
+        )
             .then((response) => {
                 if (response.ok) {
                     return response.json();
                 }
                 throw new Error("Cannot load review data");
             })
-            .then((response) =>
-                setReviews(
-                    response.reviews.filter(
-                        (review) => review.album_id === album_id
-                    )
-                )
-            );
-    }, []);
+            .then((response) => setReviews(response.reviews));
+    }, [account_id, setReviews]);
+
+    // async function deleteReview(review_id) {
+    //     const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}`;
+    //     const fetchConfig = {
+    //         method: "DELETE",
+    //         credentials: "include",
+    //     };
+    //     const response = await fetch(reviewUrl, fetchConfig);
+    //     if (response.ok) {
+    //         setReviews(reviews.filter(review => review.id !== review_id));
+    //     }
+    // }
 
     return (
         <>
@@ -44,9 +56,10 @@ function SeeReviews(props) {
                                         rating={review.rating}
                                         best_song={review.best_song}
                                         worst_song={review.worst_song}
-                                        reviewer_id={review.id}
-                                        reviewer_name={review.username}
+                                        reviewer_id={review.reviewer_id}
+                                        // delete_review={deleteReview()}
                                     />
+                                    {/* <Button onClick={deleteReview(review.id)} >Delete</Button> */}
                                 </div>
                             );
                         })}
@@ -59,21 +72,4 @@ function SeeReviews(props) {
     );
 }
 
-export default SeeReviews;
-
-// <div>
-//     <div>
-//         Reviews:
-//         {reviews.map((review) => {
-//             return (
-//                 <div key={review.id}>
-//                     <ReviewModal
-//                     id={review.id}
-//                     title={review.title}/>
-//                     <div>Rating: {review.rating}</div>
-//                     <div>Reviewer ID: {review.reviewer_id}</div>
-//                 </div>
-//             );
-//         })}
-//     </div>
-// </div>
+export default UserReviews;
