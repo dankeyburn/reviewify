@@ -139,17 +139,6 @@ def test_get_review():
 def test_update_review():
   app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
   app.dependency_overrides[authenticator.get_current_account_data] = get_current_account_data_mock
-  review_body = {
-    "reviewer_id": 1337,
-    "title": "This is electrifting",
-    "rating": 4,
-    "content": "I can't believe this is live, the killed it, and the audio quality is pretty damn good",
-    "album_id": "1dmBXO2zmCbsf8qAicqbs0",
-    "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
-    "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
-    # "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f"
-  }
-
   review_id = 55
 
   new_review_body = {
@@ -160,11 +149,10 @@ def test_update_review():
     "album_id": "1dmBXO2zmCbsf8qAicqbs0",
     "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
     "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
-    # "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f"
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
   }
 
 # Act
-  res = client.post('/api/reviews/', json.dumps(review_body))
   res = client.put(f'/api/reviews/{review_id}', json.dumps(new_review_body))
 
   # Assert
@@ -177,7 +165,7 @@ def test_update_review():
     "album_id": "1dmBXO2zmCbsf8qAicqbs0",
     "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
     "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
-    # "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
     "id": 55
   }
 

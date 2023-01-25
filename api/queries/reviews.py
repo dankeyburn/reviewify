@@ -92,7 +92,7 @@ class ReviewQueries:
                     review.album_id,
                     review.best_song,
                     review.worst_song,
-                    review.img_url
+                    review.img_url,
                     review.id
                 ]
                 cur.execute(
