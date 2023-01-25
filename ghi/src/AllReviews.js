@@ -24,6 +24,7 @@ function AllReviews() {
                     {reviews.map((review) => {
                         return (
                             <div
+                                key={review.id}
                                 className="card mb-3 w-100 justify-content-around"
                                 style={{ maxWidth: "540px" }}>
                                 <div className="row no-gutters">
