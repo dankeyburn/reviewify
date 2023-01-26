@@ -34,7 +34,6 @@ function AlbumModal(props) {
                 }}
                 alt={`${props.album_name} Album Cover`}
             />
-
             <Modal
                 size="lg"
                 key={props.album_id}
@@ -115,7 +114,6 @@ function AlbumModal(props) {
                             })}
                         </ol>
                     </div>
-
                     <div
                         style={{
                             display: "flex",
@@ -141,7 +139,6 @@ function AlbumModal(props) {
                         ) : (
                             <></>
                         )}
-
                         <NavLink
                             style={{
                                 color: "#3f72af",
