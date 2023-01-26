@@ -1,29 +1,36 @@
+:root {
+  --gold: #c69f3a;
+  --offWhite: #efeee8;
+  --black: black;
+  --grey: #332f2f;
+}
+
 .btn-primary {
     margin-right: 10px;
-    background-color: #c69f3a;
-    color: #efeee8;
-    border: 2px solid black;
+    background-color: var(--gold);
+    color: var(--offWhite);
+    border: 2px solid var(--black);
 }
 
 .btn-primary:hover {
-    background-color: black;
-    color: #c69f3a;
-    border-color: #332f2f;
+    background-color: var(--black);
+    color: var(--gold);
+    border-color: var(--grey);
     }
 
 body{
-  background-color: black;
-  color: #efeee8;
+  background-color: var(--black);
+  color: var(--offWhite);
 }
 
 .card {
   background-color: #332f2f;
-  color: #efeee8;
+  color: var(--offWhite);
 }
 
-.card-title {color: #c69f3a}
+.card-title {color: var(--gold)}
 
-.modal-content {background-color: #332f2f;}
+.modal-content {background-color: var(--grey)}
 
 .mb-3 {margin-right: 1rem;}
 
@@ -34,16 +41,30 @@ body{
   margin-top: 10px;
 }
 
+.navbar-expand-md {
+  background-color: #efeee8;
+  font-family: Gill Sans, sans-serif;
+  height: 120px;
+  border-bottom: 2px solid black;
+}
 
+.hello-message {
+  color: black;
+  font-size: 20px;
+}
 
+.all-reviews {
+  margin-right: 0px;
+}
 
+.no-gutters {
+  display: flex;
+  align-items: center;
+}
 
-
-
-
-
-
-
+.review-modal {
+  padding-left: 15px;
+}
 
 
 
