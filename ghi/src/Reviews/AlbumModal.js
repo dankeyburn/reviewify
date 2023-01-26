@@ -34,7 +34,6 @@ function AlbumModal(props) {
                 }}
                 alt={`${props.album_name} Album Cover`}
             />
-
             <Modal
                 size="lg"
                 key={props.album_id}
@@ -93,7 +92,6 @@ function AlbumModal(props) {
                         ) : (
                             <></>
                         )}
-
                         <NavLink
                             to="/reviews"
                             state={{ id: props.album_id }}>

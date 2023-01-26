@@ -10,7 +10,6 @@ function LoginModal() {
         username: "",
     });
     const [state, dispatch] = useContext(Context);
-    const [currentAccount, updateCurrent] = useState(state.currentAccount);
 
     const handleChange = (event) => {
         setAccount({ ...account, [event.target.name]: event.target.value });
