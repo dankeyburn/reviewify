@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
-import { Context } from "./Store";
+import { Context } from "../Store";
 import { Container } from "react-bootstrap";
 
 function UserReviews() {

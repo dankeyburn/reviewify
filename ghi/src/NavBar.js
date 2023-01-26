@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import SignupModal from "./SignupModal";
-import LoginModal from "./LoginModal";
-import Logout from "./Logout";
+import SignupModal from "./Accounts/SignupModal";
+import LoginModal from "./Accounts/LoginModal";
+import Logout from "./Accounts/Logout";
 import { Context } from "./Store";
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";

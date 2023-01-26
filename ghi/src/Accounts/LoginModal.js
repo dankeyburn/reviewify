@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useContext } from "react";
-import { Context } from "./Store";
+import { Context } from "../Store";
 
 function LoginModal() {
     const [show, setShow] = useState(false);

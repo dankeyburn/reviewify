@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
-import ReviewForm from "./ReviewForm";
+import ReviewForm from "./Reviews/ReviewForm";
 import EditReviewForm from "./EditReviewForm";
-import SeeReviews from "./SeeReviews";
-import AllReviews from "./AllReviews";
-import UserReviews from "./UserReviews";
+import SeeReviews from "./Reviews/SeeReviews";
+import AllReviews from "./Reviews/AllReviews";
+import UserReviews from "./Reviews/UserReviews";
 import "./Styles.css";
 import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { NavLink } from "react-router-dom";
-import { useAuthContext } from "./UseToken";
-import { Context } from "./Store";
+import { useAuthContext } from "../UseToken";
+import { Context } from "../Store";
 import { useContext } from "react";
 
 function AlbumModal(props) {

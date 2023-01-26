@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { useToken } from "./UseToken";
+import { useToken } from "../UseToken";
 
 function LogoutButton() {
     const [token, logout] = useToken();

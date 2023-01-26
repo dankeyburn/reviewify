@@ -28,9 +28,7 @@ class AccountsOutAll(BaseModel):
 class AccountsQueries:
     def get_account(self, username: str) -> AccountOut:
         with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
             with conn.cursor() as db:
-                # Run our SELECT statement
                 result = db.execute(
                     """
                     SELECT id
@@ -75,11 +73,8 @@ class AccountsQueries:
                 return results
 
     def create_account(self, account: AccountIn, hashed_password: str) -> AccountOut:
-        # connect the database
         with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
             with conn.cursor() as db:
-                # Run our SELECT statement
                 result = db.execute(
                     """
                     INSERT INTO accounts (email, hashed_password, username)

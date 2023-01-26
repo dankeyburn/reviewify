@@ -1,4 +1,4 @@
-import SearchBar from "./Search";
+import SearchBar from "./Reviews/Search";
 
 function MainPage() {
     return (

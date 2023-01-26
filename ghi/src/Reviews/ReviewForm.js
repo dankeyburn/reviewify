@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { Context } from "./Store";
+import { Context } from "../Store";
 
 function ReviewForm() {
     const [state] = useContext(Context);
