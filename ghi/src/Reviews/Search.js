@@ -73,6 +73,7 @@ export default function SearchBar() {
                                     album_id={album.id}
                                     img_url={album.images[0].url}
                                     album_name={album.name}
+                                    artist_id={album.artists[0]["id"]}
                                 />
                             </Card>
                         );

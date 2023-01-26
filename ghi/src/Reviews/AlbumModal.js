@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../UseToken";
 import { Context } from "../Store";
 import { useContext } from "react";
+import RelatedArtists from "./RelatedArtists";
 
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
@@ -81,6 +82,10 @@ function AlbumModal(props) {
                         </div>
                         <div>Release Date: {album.release_date}</div>
                         <div>Label: {album.label}</div>
+                        <RelatedArtists
+                            artist_id={props.artist_id}
+                            artist={artist}
+                        />
                     </div>
                     <div
                         style={{
