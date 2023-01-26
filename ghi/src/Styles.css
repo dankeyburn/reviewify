@@ -145,6 +145,7 @@ body {
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;
+  color: var(--offWhite);
 }
 
 .album-modal-body-div7 {
@@ -168,7 +169,7 @@ body {
 }
 
 .review-modal-body {
-  color: white;
+  color: var(--offWhite);
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
