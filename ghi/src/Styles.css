@@ -66,9 +66,22 @@ body{
   padding-left: 15px;
 }
 
+.App {
+  margin-top: 30px;
+}
 
+.justify-content-around {
+  max-width: 540px
+}
 
+.col-md-4 {
+  display: flex;
+  align-items: center;
+}
 
+.card-img {
+  padding-left: 15px;
+}
 
 
 
