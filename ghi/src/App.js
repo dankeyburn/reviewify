@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 import ReviewForm from "./Reviews/ReviewForm";
-import EditReviewForm from "./EditReviewForm";
+import EditReviewForm from "./Reviews/EditReviewForm";
 import SeeReviews from "./Reviews/SeeReviews";
 import AllReviews from "./Reviews/AllReviews";
 import UserReviews from "./Reviews/UserReviews";
