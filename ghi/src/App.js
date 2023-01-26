@@ -47,10 +47,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/reviews/new" element={<ReviewForm />} />
-                    <Route
-                        path="/reviews/update"
-                        element={<EditReviewForm />}
-                    />
+                    <Route path="/reviews/update"element={<EditReviewForm />}/>
                     <Route path="/reviews" element={<SeeReviews />} />
                     <Route path="/reviews/all" element={<AllReviews />} />
                     <Route path="/reviews/user" element={<UserReviews />} />

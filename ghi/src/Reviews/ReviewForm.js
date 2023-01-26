@@ -173,18 +173,6 @@ function ReviewForm() {
                                 className="form-control"
                                 value={review.content}></textarea>
                         </div>
-                        {/* <div className="form-floating mb-3">
-                      <input
-                        onChange={handleChange}
-                        value={review.album_id}
-                        placeholder="Album Id"
-                        name="album_id"
-                        id="album_id"
-                        required type="text"
-                        className="form-control"
-                        />
-                      <label htmlFor='album_id'>Album Id</label>
-                    </div> */}
                         <div className="mb-3">
                             <select
                                 onChange={handleChange}
@@ -219,19 +207,6 @@ function ReviewForm() {
                                 })}
                             </select>
                         </div>
-                        {/* <div className="form-floating mb-3">
-                            <input
-                                onChange={handleChange}
-                                value={review.reviewer_id}
-                                placeholder="Reviewer Id"
-                                name="reviewer_id"
-                                id="reviewer_id"
-                                required
-                                type="number"
-                                className="form-control"
-                            />
-                            <label htmlFor="reviewer_id">Reviewer Id</label>
-                        </div> */}
                         <button className="btn btn-primary">Create</button>
                     </form>
                 </div>
