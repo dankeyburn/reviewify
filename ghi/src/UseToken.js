@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import {os} from;
 let internalToken = null;
 
 export function getToken() {

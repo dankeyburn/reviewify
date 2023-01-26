@@ -1,58 +1,39 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { Context } from "./Store";
+import { Context } from "../Store";
 
-function EditReviewForm(props) {
+function ReviewForm() {
     const [state] = useContext(Context);
     const location = useLocation();
-    const album_id = location.state["album_id"];
-    const initial_title = location.state["title"];
+    const initial_id = location.state["id"];
+    const initial_name = location.state["name"];
+    const initial_tracks = location.state["tracks"];
     const image = location.state["img"];
-    const review_content = location.state["content"];
-    const review_rating = location.state["rating"];
-    const review_best_song = location.state["best_song"];
-    const review_worst_song = location.state["worst_song"];
-    const reviewer_id = location.state["reviewer_id"];
-    const review_id = location.state["id"];
-    const [tracks, setTracks] = useState([]);
     const [review, setReview] = useState({
-        reviewer_id: reviewer_id,
-        title: initial_title,
-        rating: review_rating,
-        content: review_content,
-        album_id: album_id,
-        best_song: review_best_song,
-        worst_song: review_worst_song,
+        reviewer_id: state.currentAccount["id"],
+        title: "",
+        rating: "",
+        content: "",
+        album_id: initial_id,
+        best_song: "",
+        worst_song: "",
         img_url: image,
     });
 
-    function GetTracks() {
-        fetch(
-            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${album_id}`
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setTracks(data.tracks.items.filter((track) => track.name));
-            });
-    }
-
     useEffect(() => {
         setReview({ ...review, reviewer_id: state.currentAccount["id"] });
-        GetTracks();
     }, []);
 
     const handleChange = (event) => {
         setReview({ ...review, [event.target.name]: event.target.value });
-    console.log(review)};
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = { ...review };
-        console.log(data);
-        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}/`;
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`;
         const fetchConfig = {
-            method: "PUT",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
@@ -60,9 +41,7 @@ function EditReviewForm(props) {
             credentials: "include",
         };
         const response = await fetch(reviewUrl, fetchConfig);
-        // console.log(response);
         if (response.ok) {
-            const newreview = await response.json();
             setReview({
                 reviewer_id: "",
                 title: "",
@@ -75,7 +54,7 @@ function EditReviewForm(props) {
             });
             window.location.href = `${process.env.PUBLIC_URL}/reviews/user`;
         } else {
-            console.error("Error in updating review");
+            console.error("Error in creating review");
         }
     };
 
@@ -90,7 +69,7 @@ function EditReviewForm(props) {
                         style={{ objectFit: "contain", maxWidth: "100%" }}
                     />
                     <h1>Review:</h1>
-                    <h1>{initial_title}</h1>
+                    <h1>{initial_name}</h1>
                     <form onSubmit={handleSubmit} id="create-review-form">
                         <div className="mb-3"></div>
                         <p>Album Rating</p>
@@ -194,6 +173,18 @@ function EditReviewForm(props) {
                                 className="form-control"
                                 value={review.content}></textarea>
                         </div>
+                        {/* <div className="form-floating mb-3">
+                      <input
+                        onChange={handleChange}
+                        value={review.album_id}
+                        placeholder="Album Id"
+                        name="album_id"
+                        id="album_id"
+                        required type="text"
+                        className="form-control"
+                        />
+                      <label htmlFor='album_id'>Album Id</label>
+                    </div> */}
                         <div className="mb-3">
                             <select
                                 onChange={handleChange}
@@ -202,7 +193,7 @@ function EditReviewForm(props) {
                                 name="best_song"
                                 className="form-select">
                                 <option value="">Best song</option>
-                                {tracks?.map((song) => {
+                                {initial_tracks?.map((song) => {
                                     return (
                                         <option key={song.id} value={song.name}>
                                             {song.name}
@@ -219,7 +210,7 @@ function EditReviewForm(props) {
                                 name="worst_song"
                                 className="form-select">
                                 <option value="">Worst song</option>
-                                {tracks?.map((song) => {
+                                {initial_tracks?.map((song) => {
                                     return (
                                         <option key={song.id} value={song.name}>
                                             {song.name}
@@ -228,7 +219,20 @@ function EditReviewForm(props) {
                                 })}
                             </select>
                         </div>
-                        <button className="btn btn-primary">Update</button>
+                        {/* <div className="form-floating mb-3">
+                            <input
+                                onChange={handleChange}
+                                value={review.reviewer_id}
+                                placeholder="Reviewer Id"
+                                name="reviewer_id"
+                                id="reviewer_id"
+                                required
+                                type="number"
+                                className="form-control"
+                            />
+                            <label htmlFor="reviewer_id">Reviewer Id</label>
+                        </div> */}
+                        <button className="btn btn-primary">Create</button>
                     </form>
                 </div>
             </div>
@@ -236,4 +240,4 @@ function EditReviewForm(props) {
     );
 }
 
-export default EditReviewForm;
+export default ReviewForm;

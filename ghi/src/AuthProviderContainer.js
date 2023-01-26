@@ -9,8 +9,6 @@ function GetToken() {
 }
 
 function AuthProviderContainer() {
-    // const navigate = useNavigate();
-
     return (
         <AuthProvider>
             <BrowserRouter>

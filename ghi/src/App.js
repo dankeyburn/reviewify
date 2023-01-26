@@ -1,20 +1,18 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
-import ReviewForm from "./ReviewForm";
-import EditReviewForm from "./EditReviewForm"
-import SeeReviews from "./SeeReviews";
-import AllReviews from "./AllReviews";
-import UserReviews from "./UserReviews"
+import ReviewForm from "./Reviews/ReviewForm";
+import EditReviewForm from "./EditReviewForm";
+import SeeReviews from "./Reviews/SeeReviews";
+import AllReviews from "./Reviews/AllReviews";
+import UserReviews from "./Reviews/UserReviews";
 import "./Styles.css";
 import { useAuthContext } from "./UseToken";
 import { Context } from "./Store";
 import React, { useContext, useEffect } from "react";
-import { useState } from "react";
 
 function App() {
     const [state, dispatch] = useContext(Context);
-    // const [currentAccount, updateCurrent] = useState(state.account);
     const { token } = useAuthContext();
 
     useEffect(() => {
@@ -49,7 +47,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/reviews/new" element={<ReviewForm />} />
-                    <Route path="/reviews/update" element={<EditReviewForm />} />
+                    <Route
+                        path="/reviews/update"
+                        element={<EditReviewForm />}
+                    />
                     <Route path="/reviews" element={<SeeReviews />} />
                     <Route path="/reviews/all" element={<AllReviews />} />
                     <Route path="/reviews/user" element={<UserReviews />} />

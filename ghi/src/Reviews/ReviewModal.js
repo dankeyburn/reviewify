@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { NavLink } from "react-router-dom";
-import { useAuthContext } from "./UseToken";
-import { Context } from "./Store";
+import { useAuthContext } from "../UseToken";
+import { Context } from "../Store";
 import { useContext } from "react";
 
 function ReviewModal(props) {
@@ -23,7 +23,7 @@ function ReviewModal(props) {
             });
     }
 
-   async function deleteReview(review_id) {
+    async function deleteReview(review_id) {
         const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${review_id}`;
         const fetchConfig = {
             method: "DELETE",
@@ -31,7 +31,7 @@ function ReviewModal(props) {
         };
         const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok) {
-            setReview(review.filter(review => review.id !== review_id));
+            setReview(review.filter((review) => review.id !== review_id));
         }
     }
 
@@ -168,12 +168,11 @@ function ReviewModal(props) {
                                 onClick={() => {
                                     deleteReview(review.id);
                                     setShow(false);
-                                    window.location.href = "http://localhost:3000/reviews/user"
+                                    window.location.href = `${process.env.PUBLIC_URL}/reviews/user`;
                                 }}>
                                 Delete
                             </Button>
                         </Modal.Footer>
-
                     ) : (
                         <></>
                     )}

@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
-// import Button from "react-bootstrap/Button";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-// import { useEffect } from "react";
-import { useToken } from "./UseToken";
-import { useContext } from "react";
-import { Context } from "./Store";
 
-function LoginModal() {
-    const [token, login] = useToken();
+function SignupModal() {
     const [show, setShow] = useState(false);
     const [account, setAccount] = useState({
+        email: "",
         password: "",
+        passwordConfirm: "",
         username: "",
     });
-    const [state, dispatch] = useContext(Context);
-    const [currentAccount, updateCurrent] = useState(state.currentAccount);
 
     const handleChange = (event) => {
         setAccount({ ...account, [event.target.name]: event.target.value });
@@ -22,50 +16,37 @@ function LoginModal() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = { username: account.username, password: account.password };
-        event.preventDefault();
-        let formData = null;
-        formData = new FormData();
-        formData.append("username", account.username);
-        formData.append("password", account.password);
-        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token/`;
-        const fetchConfig = {
-            method: "POST",
-            body: formData,
-            credentials: "include",
-        };
-        const response = await fetch(accountsUrl, fetchConfig);
-        if (response.ok) {
-            await response.json();
-            dispatch({ type: "login" });
-            setAccount({
-                password: "",
-                username: "",
-            });
+        const data = { ...account };
+        if (data.password === data.passwordConfirm) {
+            const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/`;
+            const fetchConfig = {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            const response = await fetch(accountsUrl, fetchConfig);
+            if (response.ok) {
+                setAccount({
+                    email: "",
+                    password: "",
+                    passwordConfirm: "",
+                    username: "",
+                });
+                setShow(false);
+            } else {
+                console.error("Error in creating review");
+            }
         } else {
-            console.error("Error in logging in");
+            console.error("Passwords do not match");
         }
-        const accountsUrl2 = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/token/`;
-        const fetchConfig2 = {
-            method: "GET",
-            credentials: "include",
-        };
-        fetch(accountsUrl2, fetchConfig2)
-            .then((response) => response.json())
-            .then((data) => {
-                let accountData = {
-                    id: data.account["id"],
-                    email: data.account["email"],
-                    username: data.account["username"],
-                };
-                dispatch({ type: "update_current", payload: accountData });
-            });
     };
 
     return (
         <>
             <button onClick={() => setShow(true)} className="btn btn-primary">
-                Login
+                Signup
             </button>
             <Modal
                 size="lg"
@@ -75,7 +56,7 @@ function LoginModal() {
                 aria-labelledby="example-custom-modal-styling-title">
                 <Modal.Header closeButton>
                     <Modal.Title id="example-custom-modal-styling-title">
-                        Login
+                        Sign Up
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ color: "black" }}>
@@ -87,13 +68,27 @@ function LoginModal() {
                                 type="text"
                                 name="username"
                                 id="username"
-                                placeholder="Username"
+                                placeholder="username"
                                 value={account.username}
                             />
                             <label
                                 className="form-check-label"
                                 htmlFor="username">
                                 Username
+                            </label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                onChange={handleChange}
+                                className="form-control"
+                                type="text"
+                                name="email"
+                                id="email"
+                                placeholder="Email"
+                                value={account.email}
+                            />
+                            <label className="form-check-label" htmlFor="email">
+                                Email
                             </label>
                         </div>
                         <div className="form-floating mb-3">
@@ -112,6 +107,22 @@ function LoginModal() {
                                 Password
                             </label>
                         </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                onChange={handleChange}
+                                className="form-control"
+                                type="password"
+                                name="passwordConfirm"
+                                id="passwordConfirm"
+                                placeholder="Confirm Password"
+                                value={account.passwordConfirm}
+                            />
+                            <label
+                                className="form-check-label"
+                                htmlFor="passwordConfirm">
+                                Confirm Password
+                            </label>
+                        </div>
                         <button className="btn btn-primary">Submit</button>
                     </form>
                 </Modal.Body>
@@ -120,4 +131,4 @@ function LoginModal() {
     );
 }
 
-export default LoginModal;
+export default SignupModal;

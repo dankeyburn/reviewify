@@ -1,12 +1,9 @@
 import { NavLink } from "react-router-dom";
-import SignupModal from "./SignupModal";
-import LoginModal from "./LoginModal";
-import Logout from "./Logout";
-// import { useAuthContext } from "./UseToken";
+import SignupModal from "./Accounts/SignupModal";
+import LoginModal from "./Accounts/LoginModal";
+import Logout from "./Accounts/Logout";
 import { Context } from "./Store";
 import React, { useContext } from "react";
-// import { useState } from "react";
-// import UserReviews from "./UserReviews";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -25,7 +22,7 @@ function NavBar() {
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img
-                        src={require("./output-onlinepngtools.png")}
+                        src={require("./images/output-onlinepngtools.png")}
                         alt="Music Reviewify Logo"
                         height={110}
                     />
