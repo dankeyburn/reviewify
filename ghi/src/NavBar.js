@@ -12,13 +12,7 @@ function NavBar() {
 
     return (
         <nav
-            className="navbar navbar-expand-md navbar-dark"
-            style={{
-                backgroundColor: "#efeee8",
-                fontFamily: "Gill Sans, sans-serif",
-                height: "120px",
-                borderBottom: "2px solid black",
-            }}>
+            className="navbar navbar-expand-md navbar-dark">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img
@@ -28,9 +22,9 @@ function NavBar() {
                     />
                 </NavLink>
 
-                <div style={{ color: "black" }}>
+                <div>
                     {state.currentAccount["id"] ? (
-                        <div style={{ fontSize: "20px" }}>
+                        <div className="hello-message">
                             Hello, {state.currentAccount["username"]}!
                         </div>
                     ) : (
@@ -41,9 +35,8 @@ function NavBar() {
                     {state.token ? (
                         <>
                             <Link
-                                className="navbar-brand"
-                                to="/reviews/all"
-                                style={{ marginRight: "0px" }}>
+                                className="navbar-brand all-reviews"
+                                to="/reviews/all">
                                 <button className="btn btn-primary">
                                     All Reviews
                                 </button>
@@ -58,9 +51,8 @@ function NavBar() {
                     ) : (
                         <>
                             <Link
-                                className="navbar-brand"
-                                to="/reviews/all"
-                                style={{ marginRight: "0px" }}>
+                                className="navbar-brand all-reviews"
+                                to="/reviews/all">
                                 <button className="btn btn-primary">
                                     All Reviews
                                 </button>

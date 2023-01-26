@@ -17,27 +17,21 @@ function AllReviews() {
 
     return (
         <>
-            <div className="App" style={{ marginTop: "30px" }}></div>
+            <div className="App" ></div>
             <Container>
                 <div className="row justify-content-center">
                     {reviews.map((review) => {
                         return (
                             <div
                                 key={review.id}
-                                className="card mb-3 w-100 justify-content-around"
-                                style={{ maxWidth: "540px" }}>
+                                className="card mb-3 w-100 justify-content-around">
                                 <div className="row no-gutters">
                                     <div
-                                        className="col-md-4"
-                                        style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                        }}>
+                                        className="col-md-4">
                                         <img
                                             src={review.img_url}
                                             className="card-img"
                                             alt="..."
-                                            style={{ paddingLeft: "15px" }}
                                         />
                                     </div>
                                     <div className="col-md-8">
