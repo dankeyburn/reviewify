@@ -5,6 +5,7 @@ function RelatedArtists(props) {
     const [artists, setArtists] = useState([]);
 
     useEffect(() => {
+        console.log(props);
         fetch(
             `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/${props.artist_id}/related`
         )

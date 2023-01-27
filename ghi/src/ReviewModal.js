@@ -23,8 +23,7 @@ function ReviewModal(props) {
                     search();
                 }}>
                 <div className="row no-gutters">
-                    <div
-                        className="col-md-4">
+                    <div className="col-md-4">
                         <img
                             src={props.img_url}
                             className="card-img review-modal"

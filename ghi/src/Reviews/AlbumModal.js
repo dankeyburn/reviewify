@@ -52,9 +52,7 @@ function AlbumModal(props) {
                         <div className="album-modal-body-div2">
                             {album.name}
                         </div>
-                        <div className="album-modal-body-div3">
-                            {artist}
-                        </div>
+                        <div className="album-modal-body-div3">{artist}</div>
                         <div>Release Date: {album.release_date}</div>
                         <div
                             style={{ marginTop: "15px", marginBottom: "15px" }}>
@@ -66,14 +64,14 @@ function AlbumModal(props) {
                         />
                     </div>
                     <div className="album-modal-body-div4">
-                        <img className="album-modal-img"
+                        <img
+                            className="album-modal-img"
                             src={props.img_url}
-                            alt=""/>
+                            alt=""
+                        />
                     </div>
                     <div className="album-modal-body-div5">
-                        <div className="album-modal-body-div6">
-                            Tracks
-                        </div>
+                        <div className="album-modal-body-div6">Tracks</div>
                         <ol className="album-modal-body-ol">
                             {album.tracks?.items.map((track) => {
                                 return <li key={track.id}>{track.name}</li>;
@@ -100,9 +98,7 @@ function AlbumModal(props) {
                         ) : (
                             <></>
                         )}
-                        <NavLink
-                            to="/reviews"
-                            state={{ id: props.album_id }}>
+                        <NavLink to="/reviews" state={{ id: props.album_id }}>
                             <Button
                                 type="button"
                                 className="btn btn-primary btn-sm">
