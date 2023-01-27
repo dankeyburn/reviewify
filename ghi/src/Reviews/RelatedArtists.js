@@ -10,8 +10,6 @@ function RelatedArtists(props) {
         )
             .then((response) => response.json())
             .then((data) => {
-                // setArtists(data);
-                console.log(data);
                 let first_3 = [
                     {
                         name: data.artists[0]["name"],
@@ -25,14 +23,10 @@ function RelatedArtists(props) {
                         name: data.artists[2]["name"],
                         artist_id: data.artists[2]["id"],
                     },
-
-                    // data.artists[1]["id"],
-                    // data.artists[2]["name"],
                 ];
                 setArtists(first_3);
             });
     }, []);
-    console.log(artists);
 
     return (
         <>

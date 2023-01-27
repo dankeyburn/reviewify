@@ -81,7 +81,10 @@ function AlbumModal(props) {
                             {artist}
                         </div>
                         <div>Release Date: {album.release_date}</div>
-                        <div>Label: {album.label}</div>
+                        <div
+                            style={{ marginTop: "15px", marginBottom: "15px" }}>
+                            Label: {album.label}
+                        </div>
                         <RelatedArtists
                             artist_id={props.artist_id}
                             artist={artist}
