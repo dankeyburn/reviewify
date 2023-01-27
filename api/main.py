@@ -7,10 +7,11 @@ import os
 
 app = FastAPI()
 
-origins = ["http://localhost:3000",
-            os.environ.get("REACT_APP_SAMPLE_SERVICE_API_HOST", None),
-            os.environ.get("CORS_HOST", None),
-            os.environ.get("PUBLIC_URL", None)]
+origins = [
+    os.environ.get("REACT_APP_SAMPLE_SERVICE_API_HOST", None),
+    os.environ.get("CORS_HOST", None),
+    os.environ.get("PUBLIC_URL", None)
+]
 
 app.include_router(accounts.router, tags=['accounts'])
 app.include_router(reviews.router, tags=['reviews'])
