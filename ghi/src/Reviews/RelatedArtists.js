@@ -30,12 +30,20 @@ function RelatedArtists(props) {
 
     return (
         <>
-            <div>If you like {props.artist}, you may also like:</div>
-            <ul>
-                {artists?.map((artist) => {
-                    return <li key={artist.artist_id}>{artist.name}</li>;
-                })}
-            </ul>
+            {artists ? (
+                <>
+                    <div>If you like {props.artist}, you may also like:</div>
+                    <ul>
+                        {artists?.map((artist) => {
+                            return (
+                                <li key={artist.artist_id}>{artist.name}</li>
+                            );
+                        })}
+                    </ul>
+                </>
+            ) : (
+                <></>
+            )}
         </>
     );
 }
