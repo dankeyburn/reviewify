@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../Store";
+import { Button } from "react-bootstrap";
 
 function Logout() {
     const [token, dispatch] = useContext(Context);
@@ -24,9 +25,9 @@ function Logout() {
     };
     return (
         <>
-            <button onClick={handleSubmit} className="btn btn-primary">
+            <Button onClick={handleSubmit} className="btn btn-primary">
                 Log Out
-            </button>
+            </Button>
         </>
     );
 }
