@@ -13,8 +13,8 @@ export default function SearchBar() {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
 
-    function search() {
-        fetch(
+    async function search() {
+        await fetch(
             `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/artists/${searchInput}`
         )
             .then((response) => response.json())
