@@ -16,8 +16,7 @@ function NavBar() {
     const [state] = useContext(Context);
 
     return (
-        <nav
-            className="navbar navbar-expand-md navbar-dark">
+        <nav className="navbar navbar-expand-md navbar-dark">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img

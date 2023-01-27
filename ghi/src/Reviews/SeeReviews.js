@@ -28,7 +28,7 @@ function SeeReviews(props) {
     return (
         <>
             <div className="App" style={{ marginTop: "30px" }}></div>
-            {reviews !== [] ? (
+            {reviews.length > 0 ? (
                 <container>
                     <div className="row justify-content-center">
                         {reviews.map((review) => {
@@ -53,7 +53,11 @@ function SeeReviews(props) {
                     </div>
                 </container>
             ) : (
-                <div>No Reviews Yet</div>
+                <div
+                    style={{ marginTop: "50px" }}
+                    className="row justify-content-center">
+                    No reviews yet!
+                </div>
             )}
         </>
     );

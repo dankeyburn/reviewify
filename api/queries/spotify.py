@@ -19,3 +19,7 @@ class SpotifyQueries:
         album_details = sp.album(album_id)
         del album_details["available_markets"]
         return album_details
+
+    def related_artists(self, artist_id: str):
+        results = sp.artist_related_artists(artist_id)
+        return results

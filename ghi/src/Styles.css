@@ -72,8 +72,8 @@ body {
 .navbar-expand-md {
   background-color: var(--Accent-2);
   font-family: Gill Sans, sans-serif;
-  height: 120px;
-  border-bottom: 2px solid var(--Accent-3);
+  height: auto;
+  border-bottom: 2px solid var(--Accent-2);
 }
 
 .hello-message {
@@ -198,6 +198,12 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
+}
+
+.review-modal-img {
+  grid-area: 1 / 1 / 4 / 4;
+  object-fit: contain;
+  max-width: 100%;
 }
 
 .review-modal-body-div1 {
