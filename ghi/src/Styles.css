@@ -177,6 +177,13 @@ body {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
+
+.review-modal-img {
+  grid-area: 1 / 1 / 4 / 4;
+  object-fit: contain;
+  max-width: 100%;
+}
+
 .review-modal-body-div1 {
   grid-area: 1 / 4 / 2 / 7;
   text-align: center;
