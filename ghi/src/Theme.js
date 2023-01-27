@@ -24,11 +24,19 @@ const DarkMode = () => {
 
     const switchTheme = (e) => {
         if (theme === darkTheme) {
+            document.getElementById("dark-logo").style.display = "none";
+            document.getElementById("light-logo").style.display = "flex";
+            document.getElementById("dark-nav-logo").style.display = "flex";
+            document.getElementById("light-nav-logo").style.display = "none";
             body.classList.replace(darkTheme, lightTheme);
             e.target.classList.remove(clickedClass);
             localStorage.setItem("theme", "light");
             theme = lightTheme;
         } else {
+            document.getElementById("dark-logo").style.display = "flex";
+            document.getElementById("light-logo").style.display = "none";
+            document.getElementById("dark-nav-logo").style.display = "none";
+            document.getElementById("light-nav-logo").style.display = "flex";
             body.classList.replace(lightTheme, darkTheme);
             e.target.classList.remove(clickedClass);
             localStorage.setItem("theme", "dark");
@@ -49,7 +57,6 @@ const DarkMode = () => {
             <ToggleButton
                 current_theme={theme}
                 selected={selected}
-                // selected={selected}
                 toggleSelected={(e) => {
                     setSelected(!selected);
                     switchTheme(e);
@@ -58,12 +65,6 @@ const DarkMode = () => {
                 id="darkMode"
                 onClick={(e) => switchTheme(e)}
             />
-            {/* <Button
-                className={theme === "dark" ? clickedClass : ""}
-                id="darkMode"
-                onClick={(e) => switchTheme(e)}>
-                Theme Toggle
-            </Button> */}
         </>
     );
 };

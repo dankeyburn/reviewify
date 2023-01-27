@@ -21,7 +21,14 @@ function NavBar() {
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <img
+                        id="light-nav-logo"
                         src={require("./images/output-onlinepngtools.png")}
+                        alt="Music Reviewify Logo"
+                        height={110}
+                    />
+                    <img
+                        id="dark-nav-logo"
+                        src={require("./images/dark-reviewify-png.png")}
                         alt="Music Reviewify Logo"
                         height={110}
                     />

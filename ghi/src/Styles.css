@@ -19,6 +19,14 @@
   --Accent-4: #efeee8;
 }
 
+#dark-nav-logo {
+  display: none;
+}
+
+#light-logo {
+  display: none;
+}
+
 .btn-primary {
   margin-right: 10px;
   background-color: var(--Accent-1);
