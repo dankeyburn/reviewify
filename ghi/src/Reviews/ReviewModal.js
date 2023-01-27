@@ -29,10 +29,10 @@ function ReviewModal(props) {
             method: "DELETE",
             credentials: "include",
         };
-        const response = await fetch(reviewUrl, fetchConfig);
-        if (response.ok) {
-            setReview(review.filter((review) => review.id !== review_id));
-        }
+        await fetch(reviewUrl, fetchConfig);
+        // if (response.ok) {
+        //     setReview(review.filter((review) => review.id !== review_id));
+        // }
     }
 
     return (
