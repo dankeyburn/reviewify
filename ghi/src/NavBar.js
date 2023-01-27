@@ -3,9 +3,14 @@ import SignupModal from "./Accounts/SignupModal";
 import LoginModal from "./Accounts/LoginModal";
 import Logout from "./Accounts/Logout";
 import { Context } from "./Store";
-import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button, ToggleButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import DarkMode from "./Theme";
+
+const swapTheme = (newThemeName) => {
+  document.getElementById('app').className = newThemeName;
+}
 
 function NavBar() {
     const [state] = useContext(Context);
@@ -22,6 +27,7 @@ function NavBar() {
                     />
                 </NavLink>
 
+                <DarkMode/>
                 <div>
                     {state.currentAccount["id"] ? (
                         <div className="hello-message">
@@ -37,9 +43,9 @@ function NavBar() {
                             <Link
                                 className="navbar-brand all-reviews"
                                 to="/reviews/all">
-                                <button className="btn btn-primary">
+                                <Button className="btn btn-primary">
                                     All Reviews
-                                </button>
+                                </Button>
                             </Link>
                             <Logout />
                             <NavLink
@@ -53,9 +59,9 @@ function NavBar() {
                             <Link
                                 className="navbar-brand all-reviews"
                                 to="/reviews/all">
-                                <button className="btn btn-primary">
+                                <Button className="btn btn-primary">
                                     All Reviews
-                                </button>
+                                </Button>
                             </Link>
                             <LoginModal />
                             <SignupModal />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useContext } from "react";
 import { Context } from "../Store";
+import { Button } from "react-bootstrap";
 
 function LoginModal() {
     const [show, setShow] = useState(false);
@@ -58,9 +59,9 @@ function LoginModal() {
 
     return (
       <>
-        <button onClick={() => setShow(true)} className="btn btn-primary">
+        <Button onClick={() => setShow(true)} className="btn btn-primary">
           Login
-        </button>
+        </Button>
         <Modal
           size="lg"
           show={show}
