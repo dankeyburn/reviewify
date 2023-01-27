@@ -8,7 +8,7 @@ function ReviewModal(props) {
     const [review, setReview] = useState([]);
 
     async function search() {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}`)
+        fetch(`http://localhost:8000/api/reviews/${props.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setReview(data);
@@ -23,17 +23,11 @@ function ReviewModal(props) {
                     search();
                 }}>
                 <div className="row no-gutters">
-                    <div
-                        className="col-md-4"
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                        }}>
+                    <div className="col-md-4">
                         <img
                             src={props.img_url}
-                            className="card-img"
+                            className="card-img review-modal"
                             alt="..."
-                            style={{ paddingLeft: "15px" }}
                         />
                     </div>
                     <div className="col-md-8">

@@ -7,32 +7,6 @@ from authenticator import authenticator
 
 client = TestClient(app=app)
 
-# class AccountsQueriesMock:
-#   def create_account(self, account: AccountIn, hashed_password) -> AccountOut:
-#     account_dict = account.dict()
-#     return AccountOut(id = 23, **account_dict)
-
-# def test_create_account():
-#   # Arrange
-#   app.dependency_overrides[AccountsQueries] = AccountsQueriesMock
-#   account_body = {
-#     "email": "email@email.com",
-#     "username": "username",
-#     "password": "password",
-#   }
-
-#   # Act
-#   res = client.post('/api/accounts/', json.dumps(account_body))
-#   # Assert
-#   assert res.status_code == 200
-#   assert res.json()['email'] == "email@email.com"
-#   assert res.json()['hashed_password'] == "hashed_password"
-#   assert res.json()['username'] == "username"
-#   assert res.json()['id'] == 23
-
-#   # A cleanup
-#   app.dependency_overrides = {}
-
 def get_current_account_data_mock():
   return {
     'id': 1337,
@@ -59,11 +33,14 @@ class ReviewQueriesMock:
     }
     return ReviewOut(id=666, **record)
 
+  def update_review(self, review_id, review: ReviewIn) -> ReviewOut:
+      review_dict = review.dict()
+      return ReviewOut(id=55, **review_dict)
+
   def delete_review(self, review_id: int) -> bool:
     return True
 
 def test_create_review():
-  # Arrange
   app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
   app.dependency_overrides[authenticator.get_current_account_data] = get_current_account_data_mock
   review_body = {
@@ -77,15 +54,12 @@ def test_create_review():
     "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f"
   }
 
-  # Act
   res = client.post('/api/reviews/', json.dumps(review_body))
 
-  # Assert
   assert res.status_code == 200
   assert res.json()['id'] == 1337
   assert res.json()['reviewer_id'] == 1337
 
-  # A cleanup
   app.dependency_overrides = {}
 
 
@@ -132,9 +106,40 @@ def test_get_review():
 
   app.dependency_overrides = {}
 
+def test_update_review():
+  app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
+  app.dependency_overrides[authenticator.get_current_account_data] = get_current_account_data_mock
+  review_id = 55
+
+  new_review_body = {
+    "reviewer_id": 1337,
+    "title": "Not so electrifting",
+    "rating": 3,
+    "content": "I can't believe this is live, they gently pushed it over, and the audio quality is alright",
+    "album_id": "1dmBXO2zmCbsf8qAicqbs0",
+    "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
+    "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
+  }
+
+  res = client.put(f'/api/reviews/{review_id}', json.dumps(new_review_body))
+  assert res.status_code == 200
+  assert res.json() == {
+    "reviewer_id": 1337,
+    "title": "Not so electrifting",
+    "rating": 3,
+    "content": "I can't believe this is live, they gently pushed it over, and the audio quality is alright",
+    "album_id": "1dmBXO2zmCbsf8qAicqbs0",
+    "best_song": "Dirty Deeds Done Dirt Cheap - Live - 1991",
+    "worst_song": "For Those About to Rock (We Salute You) - Live - 1991",
+    "img_url": "https://i.scdn.co/image/ab67616d0000b273c5a5b4be2acc36cddc42fb8f",
+    "id": 55
+  }
+
+  app.dependency_overrides = {}
 
 def test_delete_review():
-  # Arrange
+
   app.dependency_overrides[ReviewQueries] = ReviewQueriesMock
   app.dependency_overrides[authenticator.get_current_account_data] = get_current_account_data_mock
   review_body = {
@@ -150,13 +155,10 @@ def test_delete_review():
 
   review_id = 727
 
-  # Act
   res = client.post('/api/reviews/', json.dumps(review_body))
   res = client.delete(f'/api/reviews/{review_id}')
 
-  # Assert
   assert res.status_code == 200
   assert res.json() == True
 
-  # A cleanup
   app.dependency_overrides = {}

@@ -13,11 +13,13 @@ class SpotifyQueries:
         results = sp.search(name, type="artist")
         artist_id = results['artists']['items'][0]['id']
         artist_albums = sp.artist_albums(artist_id, limit = 50, country = "US", album_type = "album")
-        # for a in albums:                                # removing the "available_markets" list
-        #     del a["available_markets"]                  # to make it easier to read the returned object
-        return artist_albums                            # from the albums object
+        return artist_albums
 
     def get_album_details(self, album_id: str):
-        album_details = sp.album(album_id)              # removing the "available_markets" list
-        del album_details["available_markets"]          # to make it easier to read the returned object
-        return album_details                            # from the albums object
+        album_details = sp.album(album_id)
+        del album_details["available_markets"]
+        return album_details
+
+    def related_artists(self, artist_id: str):
+        results = sp.artist_related_artists(artist_id)
+        return results

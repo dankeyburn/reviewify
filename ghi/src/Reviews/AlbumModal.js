@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { NavLink } from "react-router-dom";
-import { useAuthContext } from "./UseToken";
-import { Context } from "./Store";
+import { useAuthContext } from "../UseToken";
+import { Context } from "../Store";
 import { useContext } from "react";
+import RelatedArtists from "./RelatedArtists";
 
 function AlbumModal(props) {
     const [show, setShow] = useState(false);
     const [album, setAlbum] = useState([]);
     const { token } = useAuthContext();
     const [state, dispatch] = useContext(Context);
-    // const [loggedIn, setLoggedIn] = useState();
+    const [artist, setArtist] = useState("");
 
     async function search() {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${props.album_id}`)
+        fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/albums/${props.album_id}`
+        )
             .then((response) => response.json())
             .then((data) => {
                 setAlbum(data);
+                setArtist(data.artists[0]["name"]);
             });
     }
 
@@ -31,7 +35,6 @@ function AlbumModal(props) {
                 }}
                 alt={`${props.album_name} Album Cover`}
             />
-
             <Modal
                 size="lg"
                 key={props.album_id}
@@ -43,66 +46,40 @@ function AlbumModal(props) {
                     <Modal.Title id="example-custom-modal-styling-title">
                         Album Details
                     </Modal.Title>
-                    {/* <Modal.Img src={album.images?[0].url} /> */}
                 </Modal.Header>
-                <Modal.Body
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(5, 1fr)",
-                        gridTemplateRows: "repeat(5, 1fr)",
-                        gridColumnGap: "0px",
-                        gridRowGap: "0px",
-                    }}>
-                    <div
-                        style={{
-                            gridArea: "1 / 3 / 3 / 6",
-                            marginLeft: "10px",
-                            marginRight: "10px",
-                        }}>
-                        <div
-                            style={{
-                                fontWeight: "bold",
-                                textAlign: "center",
-                                fontSize: "30px ",
-                                marginBottom: "10px",
-                                borderBottom: "2px solid black",
-                            }}>
+                <Modal.Body className="album-modal-body">
+                    <div className="album-modal-body-div1">
+                        <div className="album-modal-body-div2">
                             {album.name}
                         </div>
-
+                        <div className="album-modal-body-div3">{artist}</div>
                         <div>Release Date: {album.release_date}</div>
-                        <div>Label: {album.label}</div>
-                    </div>
-                    <div
-                        style={{
-                            // height: "100px",
-                            gridArea: "1 / 1 / 3 / 3",
-                        }}>
-                        <img
-                            src={props.img_url}
-                            alt=""
-                            style={{ objectFit: "contain", maxWidth: "100%" }}
+                        <div
+                            style={{ marginTop: "15px", marginBottom: "15px" }}>
+                            Label: {album.label}
+                        </div>
+                        <RelatedArtists
+                            artist_id={props.artist_id}
+                            artist={artist}
                         />
                     </div>
-                    <div
-                        style={{
-                            gridArea: "3 / 3 / 6 / 6",
-                        }}>
-                        <ol
-                            style={{
-                                height: "400px",
-                                width: "100%",
-                                overflow: "hidden",
-                                overflowY: "scroll",
-                            }}>
-                            Tracks
+                    <div className="album-modal-body-div4">
+                        <img
+                            className="album-modal-img"
+                            src={props.img_url}
+                            alt=""
+                        />
+                    </div>
+                    <div className="album-modal-body-div5">
+                        <div className="album-modal-body-div6">Tracks</div>
+                        <ol className="album-modal-body-ol">
                             {album.tracks?.items.map((track) => {
                                 return <li key={track.id}>{track.name}</li>;
                             })}
                         </ol>
                     </div>
 
-                    <div>
+                    <div className="album-modal-body-div7">
                         {state.token ? (
                             <NavLink
                                 to="/reviews/new"
@@ -121,14 +98,7 @@ function AlbumModal(props) {
                         ) : (
                             <></>
                         )}
-
-                        <NavLink
-                            style={{
-                                color: "#3f72af",
-                                textDecoration: "none",
-                            }}
-                            to="/reviews"
-                            state={{ id: props.album_id }}>
+                        <NavLink to="/reviews" state={{ id: props.album_id }}>
                             <Button
                                 type="button"
                                 className="btn btn-primary btn-sm">

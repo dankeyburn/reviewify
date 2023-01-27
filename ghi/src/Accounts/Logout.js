@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Context } from "./Store";
+import { Context } from "../Store";
 
 function Logout() {
     const [token, dispatch] = useContext(Context);
@@ -7,13 +7,20 @@ function Logout() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const accountsUrl = "http://localhost:8000/token/";
+        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token/`;
         const fetchConfig = {
             method: "delete",
             credentials: "include",
         };
         await fetch(accountsUrl, fetchConfig);
         dispatch({ type: "logout" });
+        let accountData = {
+            id: null,
+            email: null,
+            username: null,
+        };
+        dispatch({ type: "update_current", payload: accountData });
+        window.location.href = `${process.env.PUBLIC_URL}/`;
     };
     return (
         <>

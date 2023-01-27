@@ -1,35 +1,34 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
+import { Context } from "../Store";
+import { Container } from "react-bootstrap";
 
-function SeeReviews(props) {
-    const location = useLocation();
-    const album_id = location.state["id"];
+function UserReviews() {
     const [reviews, setReviews] = useState([]);
+    const [state] = useContext(Context);
+    const account_id = state.currentAccount["id"];
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error("Cannot load review data");
-            })
-            .then((response) =>
-                setReviews(
-                    response.reviews.filter(
-                        (review) => review.album_id === album_id
-                    )
-                )
-            );
-    }, []);
+        if (account_id) {
+            fetch(
+                `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews`
+            )
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error("Cannot load review data");
+                })
+                .then((response) => setReviews(response.reviews));
+        }
+    }, [account_id, setReviews]);
 
     return (
         <>
             <div className="App" style={{ marginTop: "30px" }}></div>
-            {reviews !== [] ? (
-                <container>
+            {reviews.length > 0 ? (
+                <Container>
                     <div className="row justify-content-center">
                         {reviews.map((review) => {
                             return (
@@ -50,29 +49,18 @@ function SeeReviews(props) {
                             );
                         })}
                     </div>
-                </container>
+                </Container>
             ) : (
-                <div>No Reviews Yet</div>
+                <Container>
+                    <div
+                        style={{ marginTop: "50px" }}
+                        className="row justify-content-center">
+                        You Have No Reiviews Yet!
+                    </div>
+                </Container>
             )}
         </>
     );
 }
 
-export default SeeReviews;
-
-// <div>
-//     <div>
-//         Reviews:
-//         {reviews.map((review) => {
-//             return (
-//                 <div key={review.id}>
-//                     <ReviewModal
-//                     id={review.id}
-//                     title={review.title}/>
-//                     <div>Rating: {review.rating}</div>
-//                     <div>Reviewer ID: {review.reviewer_id}</div>
-//                 </div>
-//             );
-//         })}
-//     </div>
-// </div>
+export default UserReviews;
