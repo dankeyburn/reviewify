@@ -10,7 +10,6 @@ function LoginModal() {
         username: "",
     });
     const [state, dispatch] = useContext(Context);
-    const [currentAccount, updateCurrent] = useState(state.currentAccount);
 
     const handleChange = (event) => {
         setAccount({ ...account, [event.target.name]: event.target.value });
@@ -58,60 +57,57 @@ function LoginModal() {
     };
 
     return (
-        <>
-            <button onClick={() => setShow(true)} className="btn btn-primary">
-                Login
-            </button>
-            <Modal
-                size="lg"
-                show={show}
-                onHide={() => setShow(false)}
-                className="modal fade bd-example-modal-lg"
-                aria-labelledby="example-custom-modal-styling-title">
-                <Modal.Header closeButton>
-                    <Modal.Title id="example-custom-modal-styling-title">
-                        Login
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body style={{ color: "black" }}>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-floating mb-3">
-                            <input
-                                onChange={handleChange}
-                                className="form-control"
-                                type="text"
-                                name="username"
-                                id="username"
-                                placeholder="Username"
-                                value={account.username}
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="username">
-                                Username
-                            </label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                onChange={handleChange}
-                                className="form-control"
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder="password"
-                                value={account.password}
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="password">
-                                Password
-                            </label>
-                        </div>
-                        <button className="btn btn-primary">Submit</button>
-                    </form>
-                </Modal.Body>
-            </Modal>
-        </>
+      <>
+        <button onClick={() => setShow(true)} className="btn btn-primary">
+          Login
+        </button>
+        <Modal
+          size="lg"
+          show={show}
+          onHide={() => setShow(false)}
+          className="modal fade bd-example-modal-lg"
+          aria-labelledby="example-custom-modal-styling-title"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-custom-modal-styling-title">
+              Login
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="modal-body">
+            <form onSubmit={handleSubmit}>
+              <div className="form-floating mb-3">
+                <input
+                  onChange={handleChange}
+                  className="form-control"
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Username"
+                  value={account.username}
+                />
+                <label className="form-check-label" htmlFor="username">
+                  Username
+                </label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  onChange={handleChange}
+                  className="form-control"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="password"
+                  value={account.password}
+                />
+                <label className="form-check-label" htmlFor="password">
+                  Password
+                </label>
+              </div>
+              <button className="btn btn-primary">Submit</button>
+            </form>
+          </Modal.Body>
+        </Modal>
+      </>
     );
 }
 
