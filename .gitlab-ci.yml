@@ -4,7 +4,7 @@ stages:
     - deploy
 
 services:
-    - postgres: 14.2-bullseye
+    postgres: 14.2-bullseye
 
 variables:
     DATABASE_URL: postgres://music:music12345@http://srv-captain--reviewifydb/postgres
