@@ -33,8 +33,8 @@ api-unit-test-job:
 build-api-backend:
     image: docker:19.03.1
     stage: build
-    # variables:
-    #     CORS_HOST: https://dalgriff.gitlab.io
+    variables:
+        CORS_HOST: https://team-drop-and-give-me-20.gitlab.io/module3-project-gamma/
     services:
         - docker:19.03.1-dind
     before_script:
