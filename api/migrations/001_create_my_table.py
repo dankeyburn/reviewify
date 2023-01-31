@@ -10,8 +10,7 @@ steps = [
         """,
         """
         DROP TABLE accounts;
-        """
-
+        """,
     ],
     [
         """
@@ -27,9 +26,8 @@ steps = [
             img_url VARCHAR(2000)
         )
         """,
-
         """
         DROP TABLE reviews;
-        """
-    ]
+        """,
+    ],
 ]
