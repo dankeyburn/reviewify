@@ -6,7 +6,7 @@ WORKDIR /app
 # Modify these instructions to do that
 COPY requirements.txt requirements.txt
 COPY main.py main.py
-COPY db.py db.py
+COPY queries queries
 
 # Copy all of the subdirectories in your service's directory
 # Modify these instructions to do that
