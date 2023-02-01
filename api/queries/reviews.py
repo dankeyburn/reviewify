@@ -1,8 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional, List, Union
-from datetime import date
+from typing import Optional, List
 from queries.pool import pool
-
 
 
 class ReviewIn(BaseModel):
@@ -18,6 +16,7 @@ class ReviewIn(BaseModel):
 
 class ReviewOut(ReviewIn):
     id: int
+
 
 class ReviewOutForList(BaseModel):
     id: int
@@ -76,7 +75,7 @@ class ReviewQueries:
                     FROM reviews
                     WHERE reviewer_id = %s
                     """,
-                    [account_id]
+                    [account_id],
                 )
 
                 results = []
@@ -87,7 +86,6 @@ class ReviewQueries:
                     results.append(record)
 
                 return results
-
 
     def get_all_reviews_by_album(self, album_id: str) -> ReviewsOutAll:
         with pool.connection() as conn:
@@ -98,7 +96,7 @@ class ReviewQueries:
                     FROM reviews
                     WHERE album_id = %s
                     """,
-                    [album_id]
+                    [album_id],
                 )
 
                 results = []
@@ -109,7 +107,6 @@ class ReviewQueries:
                     results.append(record)
 
                 return results
-
 
     def get_review(self, id) -> ReviewOut:
         with pool.connection() as conn:
@@ -128,7 +125,7 @@ class ReviewQueries:
                     FROM reviews
                     WHERE id = %s
                     """,
-                    [id]
+                    [id],
                 )
                 record = None
                 row = cur.fetchone()
@@ -138,7 +135,6 @@ class ReviewQueries:
                         record[column.name] = row[i]
 
                 return record
-
 
     def update_review(self, review_id, review: ReviewIn) -> ReviewOut:
         with pool.connection() as conn:
@@ -152,7 +148,7 @@ class ReviewQueries:
                     review.best_song,
                     review.worst_song,
                     review.img_url,
-                    review_id
+                    review_id,
                 ]
                 cur.execute(
                     """
@@ -180,7 +176,6 @@ class ReviewQueries:
 
                 return record
 
-
     def create_review(self, review: ReviewIn) -> ReviewOut:
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -192,7 +187,7 @@ class ReviewQueries:
                     review.album_id,
                     review.best_song,
                     review.worst_song,
-                    review.img_url
+                    review.img_url,
                 ]
                 cur.execute(
                     """

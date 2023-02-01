@@ -1,6 +1,4 @@
-import os
-from typing import Optional, List, Union
-from datetime import date
+from typing import List
 from pydantic import BaseModel
 from queries.pool import pool
 
@@ -11,19 +9,23 @@ class Account(BaseModel):
     hashed_password: str
     username: str
 
+
 class AccountOut(BaseModel):
     id: int
     email: str
     username: str
     hashed_password: str
 
+
 class AccountIn(BaseModel):
     email: str
     password: str
     username: str
 
+
 class AccountsOutAll(BaseModel):
     accounts: List[AccountOut]
+
 
 class AccountsQueries:
     def get_account(self, username: str) -> AccountOut:
@@ -38,7 +40,7 @@ class AccountsQueries:
                     FROM accounts
                     WHERE username = %s;
                     """,
-                    [username]
+                    [username],
                 )
                 record = result.fetchone()
                 if record is None:
@@ -72,7 +74,9 @@ class AccountsQueries:
 
                 return results
 
-    def create_account(self, account: AccountIn, hashed_password: str) -> AccountOut:
+    def create_account(
+        self, account: AccountIn, hashed_password: str
+    ) -> AccountOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -81,7 +85,7 @@ class AccountsQueries:
                     VALUES (%s, %s, %s)
                     RETURNING id;
                     """,
-                    [account.email, hashed_password, account.username]
+                    [account.email, hashed_password, account.username],
                 )
                 id = result.fetchone()[0]
                 return AccountOut(
@@ -92,16 +96,16 @@ class AccountsQueries:
                 )
 
     def update_account(self, account_id, account: AccountIn) -> AccountOut:
-            with pool.connection() as conn:
-                with conn.cursor() as cur:
-                    params = [
-                        account.email,
-                        account.username,
-                        account.password,
-                        account_id
-                    ]
-                    cur.execute(
-                        """
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                params = [
+                    account.email,
+                    account.username,
+                    account.password,
+                    account_id,
+                ]
+                cur.execute(
+                    """
                         UPDATE accounts
                         SET email = %s
                             , username = %s
@@ -109,18 +113,17 @@ class AccountsQueries:
                         WHERE id = %s
                         RETURNING id, email, username, hashed_password
                         """,
-                        params,
-                    )
+                    params,
+                )
 
-                    record = None
-                    row = cur.fetchone()
-                    if row is not None:
-                        record = {}
-                        for i, column in enumerate(cur.description):
-                            record[column.name] = row[i]
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
 
-                    return record
-
+                return record
 
     def delete_account(self, account_id: int) -> bool:
         with pool.connection() as conn:
