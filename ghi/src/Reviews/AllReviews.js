@@ -5,7 +5,7 @@ function AllReviews() {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`)
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -17,7 +17,7 @@ function AllReviews() {
 
     return (
         <>
-            <div className="App" ></div>
+            <div className="App"></div>
             <Container>
                 <div className="row justify-content-center">
                     {reviews.map((review) => {
@@ -26,8 +26,7 @@ function AllReviews() {
                                 key={review.id}
                                 className="card mb-3 w-100 justify-content-around">
                                 <div className="row no-gutters">
-                                    <div
-                                        className="col-md-4">
+                                    <div className="col-md-4">
                                         <img
                                             src={review.img_url}
                                             className="card-img"

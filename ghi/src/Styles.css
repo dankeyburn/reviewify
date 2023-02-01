@@ -113,7 +113,7 @@ body {
 
 .card:hover {
   box-shadow: 0 10px 16px 0 var(--Accent-1);
-  cursor: url("https://i.imgur.com/d1oEZiM.png"), pointer;
+  cursor: pointer;
 }
 
 .album-modal-body {

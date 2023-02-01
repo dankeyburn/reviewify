@@ -18,7 +18,7 @@ function SignupModal() {
         event.preventDefault();
         const data = { ...account };
         if (data.password === data.passwordConfirm) {
-            const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts`;
+            const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/`;
             const fetchConfig = {
                 method: "POST",
                 body: JSON.stringify(data),

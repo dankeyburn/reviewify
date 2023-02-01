@@ -15,7 +15,7 @@ function ReviewModal(props) {
 
     async function search() {
         fetch(
-            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}/`
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/${props.id}`
         )
             .then((response) => response.json())
             .then((data) => {

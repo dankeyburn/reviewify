@@ -13,26 +13,26 @@ export default function SearchBar() {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
 
-  async function search() {
-    await fetch(
-      `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/artists/${searchInput}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        let albums_with_dupes = data.items;
-        const seen = new Set();
-        const uniqueAlbums = albums_with_dupes.filter((album) => {
-          const duplicate = seen.has(album.name);
-          seen.add(album.name);
-          return !duplicate;
-        });
-        setAlbums(uniqueAlbums);
-      });
-  }
-  function Display() {
-    document.getElementById("dark-logo").style.display = "none";
-    document.getElementById("light-logo").style.display = "none";
-  }
+    async function search() {
+        await fetch(
+            `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/artists/${searchInput}`
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                let albums_with_dupes = data.items;
+                const seen = new Set();
+                const uniqueAlbums = albums_with_dupes.filter((album) => {
+                    const duplicate = seen.has(album.name);
+                    seen.add(album.name);
+                    return !duplicate;
+                });
+                setAlbums(uniqueAlbums);
+            });
+    }
+    function Display() {
+        document.getElementById("dark-logo").style.display = "none";
+        document.getElementById("light-logo").style.display = "none";
+    }
 
     return (
         <div className="App" style={{ marginTop: "30px" }}>

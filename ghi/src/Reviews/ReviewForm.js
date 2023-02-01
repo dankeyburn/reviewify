@@ -31,7 +31,7 @@ function ReviewForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = { ...review };
-        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`;
+        const reviewUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),

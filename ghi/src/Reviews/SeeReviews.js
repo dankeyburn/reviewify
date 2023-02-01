@@ -9,7 +9,7 @@ function SeeReviews(props) {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews`)
+        fetch(`${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/reviews/`)
             .then((response) => {
                 if (response.ok) {
                     return response.json();

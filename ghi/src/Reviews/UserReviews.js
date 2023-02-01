@@ -12,7 +12,7 @@ function UserReviews() {
     useEffect(() => {
         if (account_id) {
             fetch(
-                `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews`
+                `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/${account_id}/reviews/`
             )
                 .then((response) => {
                     if (response.ok) {
