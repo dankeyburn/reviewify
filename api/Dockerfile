@@ -7,6 +7,8 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 COPY main.py main.py
 COPY authenticator.py authenticator.py
+COPY token_auth.py token_auth.py
+COPY secrets.py secrets.py
 COPY queries queries
 
 # Copy all of the subdirectories in your service's directory
