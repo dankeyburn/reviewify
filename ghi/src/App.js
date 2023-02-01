@@ -16,7 +16,7 @@ function App() {
     const { token } = useAuthContext();
 
     useEffect(() => {
-        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/token/`;
+        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/token`;
         const fetchConfig = {
             method: "GET",
             credentials: "include",
@@ -47,7 +47,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/reviews/new" element={<ReviewForm />} />
-                    <Route path="/reviews/update"element={<EditReviewForm />}/>
+                    <Route
+                        path="/reviews/update"
+                        element={<EditReviewForm />}
+                    />
                     <Route path="/reviews" element={<SeeReviews />} />
                     <Route path="/reviews/all" element={<AllReviews />} />
                     <Route path="/reviews/user" element={<UserReviews />} />

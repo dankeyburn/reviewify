@@ -87,7 +87,7 @@ def delete_account(account_id: int, queries: AccountsQueries = Depends()):
     return True
 
 
-@router.get("/api/token/", response_model=AccountToken | None)
+@router.get("/api/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
     account: Account = Depends(authenticator.try_get_current_account_data),

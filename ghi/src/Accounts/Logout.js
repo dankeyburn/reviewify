@@ -8,7 +8,7 @@ function Logout() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token/`;
+        const accountsUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token`;
         const fetchConfig = {
             method: "delete",
             credentials: "include",
