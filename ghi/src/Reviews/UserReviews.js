@@ -55,7 +55,7 @@ function UserReviews() {
                     <div
                         style={{ marginTop: "50px" }}
                         className="row justify-content-center">
-                        You Have No Reiviews Yet!
+                        You Have No Reviews Yet!
                     </div>
                 </Container>
             )}
